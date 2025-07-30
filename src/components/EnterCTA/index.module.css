@@ -1,9 +1,9 @@
 .root {
-  --ring-size: 200px;
+  --ring-size: 270px;
 
   position: absolute;
-  top: calc(100% - calc(var(--ring-size) * 1.5));
-  left: 49%;
+  top: calc(100% - calc(var(--ring-size) * 0.85));
+  right: 100px;
   transform: translate3d(-50%, 0, 0);
   transition: opacity 0.7s ease 0s, visibility 0s 0s;
   will-change: opacity, visibility;
@@ -20,9 +20,10 @@
 @media screen and (max-width: 768px){
   
   .root {
-    --ring-size: 120px;
+    --ring-size: 90px;
     bottom: 140px;
     top: auto;
+    right: 0;
   }
   .label{
     font-size: 1rem !important;

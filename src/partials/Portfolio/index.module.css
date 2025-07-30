@@ -130,7 +130,7 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 16px;
   /* Transparent glass-like background */
-  background: linear-gradient(135deg, purple, #0000ffd1); /* very subtle white */
+  background: linear-gradient(135deg, #8e078e, rgb(0 0 255 / 8%)); /* very subtle white */
   backdrop-filter: blur(10px); /* glass effect */
   -webkit-backdrop-filter: blur(10px); /* Safari support */
   transition: all 0.3s ease;
@@ -266,7 +266,8 @@
 
 @media (max-width: 768px) {
   .timelineContainer {
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
     max-width: 600px;
     gap: 1.25rem;
   }
@@ -274,6 +275,8 @@
   .timelineItem {
     min-height: 220px;
     padding: 1.5rem;
+    margin: 0;
+    width: 100%;;
   }
   
   .timelineTitle {
@@ -455,12 +458,19 @@
 
 @media (max-width: 768px) {
   .specialCards {
-    grid-template-columns: 1fr;
+    flex-direction: column;
   }
   
   .specialCard {
     padding: 1.5rem;
+    margin: 0;
   }
+
+  .specialCardRight {
+    padding: 1.5rem;
+    margin: 0;
+  }
+
 }
 
 .outline-process{

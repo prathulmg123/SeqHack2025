@@ -1,0 +1,248 @@
+.toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    border-radius: 15px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    padding: 20px 24px;
+    min-width: 320px;
+    max-width: 420px;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    z-index: 10000;
+    transform: translateX(100%);
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(8px);
+  }
+  
+  .toast.show {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  
+  .toast.success {
+    border-color: rgba(16, 185, 129, 0.3);
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  }
+  
+  .toast.success::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(135deg, #10b981, #34d399);
+    border-radius: 15px 0 0 15px;
+  }
+  
+  .toast.error {
+    border-color: rgba(255, 77, 77, 0.3);
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  }
+  
+  .toast.error::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(135deg, #ff4d4d, #ff6b6b);
+    border-radius: 15px 0 0 15px;
+  }
+  
+  .toast.warning {
+    border-color: rgba(245, 158, 11, 0.3);
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  }
+  
+  .toast.warning::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(135deg, #f59e0b, #fbbf24);
+    border-radius: 15px 0 0 15px;
+  }
+  
+  .toast.info {
+    border-color: rgba(59, 130, 246, 0.3);
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  }
+  
+  .toast.info::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(135deg, #3b82f6, #60a5fa);
+    border-radius: 15px 0 0 15px;
+  }
+  
+  .icon {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 16px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .toast.success .icon {
+    color: #10b981;
+    background: rgba(16, 185, 129, 0.15);
+    border-color: rgba(16, 185, 129, 0.3);
+  }
+  
+  .toast.error .icon {
+    color: #ff4d4d;
+    background: rgba(255, 77, 77, 0.15);
+    border-color: rgba(255, 77, 77, 0.3);
+  }
+  
+  .toast.warning .icon {
+    color: #f59e0b;
+    background: rgba(245, 158, 11, 0.15);
+    border-color: rgba(245, 158, 11, 0.3);
+  }
+  
+  .toast.info .icon {
+    color: #3b82f6;
+    background: rgba(59, 130, 246, 0.15);
+    border-color: rgba(59, 130, 246, 0.3);
+  }
+  
+  .content {
+    flex: 1;
+    min-width: 0;
+  }
+  
+  .title {
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 6px;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  .message {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.5;
+    word-wrap: break-word;
+  }
+  
+  .closeButton {
+    flex-shrink: 0;
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    transition: all 0.3s ease;
+  }
+  
+  .closeButton:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    transform: scale(1.1);
+  }
+  
+  .progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    background: currentColor;
+    animation: progress linear forwards;
+    border-radius: 0 0 15px 15px;
+  }
+  
+  .toast.success .progress {
+    background: linear-gradient(135deg, #10b981, #34d399);
+  }
+  
+  .toast.error .progress {
+    background: linear-gradient(135deg, #ff4d4d, #ff6b6b);
+  }
+  
+  .toast.warning .progress {
+    background: linear-gradient(135deg, #f59e0b, #fbbf24);
+  }
+  
+  .toast.info .progress {
+    background: linear-gradient(135deg, #3b82f6, #60a5fa);
+  }
+  
+  @keyframes progress {
+    from {
+      width: 100%;
+    }
+    to {
+      width: 0%;
+    }
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .toast {
+      top: 10px;
+      right: 10px;
+      left: 10px;
+      min-width: auto;
+      max-width: none;
+      transform: translateY(-100%);
+      padding: 16px 20px;
+    }
+    
+    .toast.show {
+      transform: translateY(0);
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .toast {
+      padding: 14px 18px;
+      gap: 12px;
+    }
+    
+    .title {
+      font-size: 14px;
+    }
+    
+    .message {
+      font-size: 13px;
+    }
+    
+    .icon {
+      width: 24px;
+      height: 24px;
+      font-size: 14px;
+    }
+    
+    .closeButton {
+      padding: 4px;
+      font-size: 12px;
+    }
+  } 

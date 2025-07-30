@@ -63,10 +63,8 @@ const LangSwitch = () => {
         className={style.button}
       >
         <span className={style.label}>
-          <span className={style.icon} aria-hidden="true">
             <Email className={style.email}/>
-          </span>
-          <span>hackathon@seqato.com</span>
+          <span className={style.text}>seqathon@seqato.com</span>
         </span>
         <span className={style.marker} />
       </div>

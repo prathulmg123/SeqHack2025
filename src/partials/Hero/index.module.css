@@ -99,11 +99,14 @@
 }
 
 .scramble {
-  margin-top: var(--spc-15);
+  margin-top: 40vh;
   letter-spacing: 3px;
   line-height: 1;
   text-transform: uppercase;
   transition: opacity 0.3s ease-in-out;
+  word-break: keep-all;
+  width: 260px;
+  position: absolute;
 
   &.gone {
     opacity: 0;
@@ -260,17 +263,25 @@
   }
 
   .timerDigits {
-    font-size: 3rem;
+    font-size: 2rem;
   }
 
   .head{
     position: relative;
     width: 100%;
+    display: flex;
+    align-items: center;
   }
 
   .logoContainer{
     margin : 0;
   }
+
+  .middle{
+    display: none;
+  }
+
+
 
 }
 
@@ -408,6 +419,9 @@
   margin: 1rem 0;
   color: #ffffff; /* or any color that matches your design */
   font-size: 1.4rem;
+  text-align: justify;
+  padding: 50px;
+  background: rgba(255, 255, 255, 0.03);
 }
 
 .fadeIn {
@@ -423,4 +437,7 @@
 .specialCardContainer {
   transition: all 0.5s ease-in-out;
   will-change: transform, opacity;
+  margin: 0 !important;
+  width: 100% !important;
+  display: flex;
 }

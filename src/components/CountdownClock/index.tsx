@@ -4,9 +4,10 @@ import style from './index.module.css'
 
 interface CountdownClockProps {
   endDate: string; // ISO string format: '2025-08-15T23:59:59'
+  animationDelay?: number;
 }
 
-const CountdownClock: React.FC<CountdownClockProps> = ({ endDate }) => {
+const CountdownClock: React.FC<CountdownClockProps> = ({ endDate, animationDelay = 0 }) => {
   const intervalRef = useRef<NodeJS.Timeout | null>(null)
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
@@ -15,8 +16,9 @@ const CountdownClock: React.FC<CountdownClockProps> = ({ endDate }) => {
     seconds: 0,
     isExpired: false
   })
+  const [isAnimatedIn, setIsAnimatedIn] = useState(false)
 
-  const radius = 40
+  const radius = 45
   const circumference = 2 * Math.PI * radius
 
   const calculateTimeLeft = () => {
@@ -61,6 +63,14 @@ const CountdownClock: React.FC<CountdownClockProps> = ({ endDate }) => {
     }
   }, [endDate])
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsAnimatedIn(true)
+    }, animationDelay)
+
+    return () => clearTimeout(timer)
+  }, [animationDelay])
+
   // Calculate the percentage of time remaining for the progress circle
   const totalSeconds = 60 // We'll show progress for seconds in the current minute
   const progressOffset = ((totalSeconds - timeLeft.seconds) / totalSeconds) * circumference
@@ -76,9 +86,9 @@ const CountdownClock: React.FC<CountdownClockProps> = ({ endDate }) => {
   }
 
   return (
-    <div className={style.clockWrapper}>
+    <div className={`${style.clockWrapper} ${isAnimatedIn ? style.animateIn : ''}`}>
       <div className={style.clockContainer}>
-        <div className={style.headerText}>REGISTRATION ENDS IN</div>
+        <div className={style.headerText}>REGISTRATION <br></br>ENDS IN</div>
         <svg className={style.circleSvg} viewBox="0 0 100 100">
           <circle
             className={style.clockBackground}
@@ -87,7 +97,7 @@ const CountdownClock: React.FC<CountdownClockProps> = ({ endDate }) => {
             r={radius}
             fill="none"
             stroke="rgba(255, 255, 255, 0.1)"
-            strokeWidth="4"
+            strokeWidth="2"
           />
           <circle
             className={style.clockProgress}
@@ -95,8 +105,8 @@ const CountdownClock: React.FC<CountdownClockProps> = ({ endDate }) => {
             cy="50"
             r={radius}
             fill="none"
-            stroke="#0070f3"
-            strokeWidth="4"
+            stroke="#bc64f8"
+            strokeWidth="2"
             strokeLinecap="round"
             strokeDasharray={circumference}
             strokeDashoffset={progressOffset}

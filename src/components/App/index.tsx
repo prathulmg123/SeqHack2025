@@ -20,6 +20,7 @@ import Hero from 'partials/Hero'
 import Portfolio from 'partials/Portfolio'
 import About from 'partials/About'
 import Contact from 'partials/Contact'
+import ToastManager from '../ToastManager'
 
 window.cursor = {
   x: 0,
@@ -114,6 +115,7 @@ function App() {
 
   return (
     <>
+    <ToastManager>
       <div
         ref={appHeightTesterRef}
         style={{ height: '100vh', width: '100%', pointerEvents: 'none', position: 'fixed' }}
@@ -130,6 +132,7 @@ function App() {
       <Contact />
 
       {deviceHasPointer && <Pointer />}
+      </ToastManager>
     </>
   )
 }

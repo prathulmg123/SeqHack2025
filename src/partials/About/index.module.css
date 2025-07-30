@@ -126,6 +126,8 @@
   .grid {
     grid-template-columns: 1fr;
     gap: 1.5rem;
+    margin: 0;
+    width: 100%;;
   }
 }
 
@@ -534,8 +536,9 @@
   }
   
   .cardNumber {
-    left: -15px !important;
+    left: -105px !important;
     right: auto !important;
+    background: #4a00e0 !important;
   }
 }
 
@@ -817,6 +820,9 @@
 
 /* Responsive Styles */
 @media (min-width: 768px) {
+  .grid{
+    margin:0;
+  }
   .timelineContainer {
     padding: 3rem 0;
   }

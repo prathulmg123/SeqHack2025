@@ -35,8 +35,8 @@
 }
 
 @media screen and (max-width: 768px){
-.container{
-  
+.logoContainer{
+  justify-content: left;
 }
 .logoImage {
     width: 20%;

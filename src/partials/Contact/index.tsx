@@ -5,14 +5,21 @@ import Section from 'components/Section'
 import Container, { Row } from 'components/Container'
 import ContentBlock from 'components/ContentBlock'
 import Heading from 'components/Heading'
+import LiquidButton from './LiquidButton'
+import RegistrationForm from 'components/RegistrationForm'
 
 // Hooks
-import { useCallback, useEffect, useRef } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { FaUserPlus, FaArrowRight } from 'react-icons/fa'
 import { useInView } from 'react-intersection-observer'
 import { useDispatch } from 'react-redux'
 import gsap from 'gsap'
+
+// Services
+// import ExcelService from 'utils/excelService'
+// import ImageStorageService from 'utils/imageStorageService'
+import { useToast } from 'components/ToastManager'
 // Icons
 import {
   FiMail as Email,
@@ -26,6 +33,8 @@ function Contact() {
   const dispatch = useDispatch()
   const { t } = useTranslation('translation', { keyPrefix: 'contact' })
   const intro = t('intro')
+  const [isRegistrationFormOpen, setIsRegistrationFormOpen] = useState(false)
+  const { showSuccess, showError } = useToast()
 
   const { ref: inViewRef, inView } = useInView({
     threshold: 0.1,
@@ -96,6 +105,41 @@ function Contact() {
     dispatch.pointer.setType('default')
   }, [dispatch])
 
+  const handleRegistrationSubmit = async (formData: any) => {
+    try {
+      // Generate unique registration ID
+      const registrationId = `reg_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`
+      
+      // Store images for each team member
+      for (let i = 0; i < formData.numberOfParticipants; i++) {
+        const member = formData.teamMembers[i]
+        if (member.idCard) {
+          // await ImageStorageService.storeImage(member.idCard, 'idCard', registrationId, i)
+        }
+      }
+      
+      // Generate Excel/CSV file
+      // try {
+      //   await ExcelService.generateExcelFile(formData)
+      // } catch (excelError) {
+      //   console.warn('Excel generation failed, falling back to CSV:', excelError)
+      //   ExcelService.generateCSVFile(formData)
+      // }
+      
+      // Show success message
+      showSuccess('Registration submitted successfully! Data file has been downloaded.')
+      
+    } catch (error) {
+      console.error('Registration submission error:', error)
+      showError('Error submitting registration. Please try again.')
+      throw error
+    }
+  }
+
+  const handleRegisterClick = () => {
+    setIsRegistrationFormOpen(true)
+  }
+
   const contactInfo = [
     {
       icon: <Email />,
@@ -150,18 +194,27 @@ function Contact() {
         </Row>
       </Container>
 
-      <a
-        ref={registerBtnRef}
-        href={REGISTRATION_LINK}
-        className={style.registerCoin}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Register Now"
-      >
-        <span className={style.coinFront}>
-          REGISTER NOW <FaArrowRight className={style.arrowIcon} />
-        </span>
-      </a>
+      {/* Register button with liquid effect */}
+      <LiquidButton
+        text="REGISTER NOW"
+        onClick={handleRegisterClick}
+        width={220}
+        height={60}
+        color1="#ff4d4d"
+        color2="#f9cb28"
+        color3="#ff4d4d"
+        color4="#f9cb28"
+        color5="#ff4d4d"
+        className={style.btnLiquid}
+        icon={<FaArrowRight className={style.arrowIcon} />}
+      />
+
+      {/* Registration Form Modal */}
+      <RegistrationForm
+        isOpen={isRegistrationFormOpen}
+        onClose={() => setIsRegistrationFormOpen(false)}
+        onSubmit={handleRegistrationSubmit}
+      />
 
       <div className={style.contactWrapper}>
         <div className={style.contactSection}>

@@ -133,13 +133,14 @@ export default function Hero() {
   const scrollClasses = cn(style.scroll, {
     [style.gone]: gone || menu.open || !app.ready
   })
-
+  
   const contentClasses = cn(style.contentWrapper, {
     [style.visible]: !loading
   });
-
+  
   return (
     <>
+    <CountdownClock endDate="2025-08-15T23:59:59" animationDelay={9000} />
       {loading ? (
 
         <div className={style.loadingScreen}>
@@ -165,10 +166,10 @@ export default function Hero() {
               <Menu />
             </div>
             <LangSwitch />
-            <CountdownClock endDate="2025-08-15T23:59:59" />
           </header>
 
           <Section name="hero" className={style.root}>
+
             <div className={style.middle}>
               <span className={style.line} />
               <div className={scrambleClasses}>
@@ -220,12 +221,12 @@ export default function Hero() {
                   />
                   <CountdownTimer />
                   
-                  <div className={style.enterButtonContainer}>
-                    <EnterCTA />
-                  </div>
                 </div>
               )
             }
+                  <div className={style.enterButtonContainer}>
+                    <EnterCTA />
+                  </div>
             <footer className={scrollClasses}>
               <span className={style.scrollIndicator} />
               <div>
