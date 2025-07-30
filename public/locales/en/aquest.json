@@ -1,0 +1,28 @@
+{
+  "title": "Criteria",
+  "image": "/projects/aq/crit.png",
+  "live": "",
+  "role": "Frontend Developer",
+  "agency": "AQuest",
+  "completed": "06.2018",
+  "awards": [],
+  "modules": [
+    {
+      "component": "TextIntro",
+      "text": "🎯 What We're Looking For : It’s not just about building something that works — it’s about how you think, structure your approach, and creatively solve real-world problems.\nHere’s exactly how we will evaluate your submissions across all phases."
+    },
+    
+    {
+      "component": "TextTwoColumns",
+      "title": "Evaluation Criteria for Phase 1 & Phase 2 (Warmup)",
+"text": "What's Judged :<br>✅ Problem Understanding – Did you understand the problem statement and requirements clearly?<br>✅ Approach and Clarity – How you structured your solution and your reasoning behind the approach.<br>✅ Code Quality – Clean, readable, and efficient code over just speed.<br>✅ Functionality – Does your solution work and meet the problem requirements?<br>✅ Documentation – Clear README or inline comments explaining your logic and setup.<br><br>💡 Remember:<br> * This isn't just about writing code.<br> * Bring your logic, your curiosity, and your structured thinking.<br> * Experiment, iterate, and document your journey.<br><br>Your GitHub submission should reflect your approach, clarity of thought, and creativity."
+      
+      
+    },
+    {
+      "component": "TextTwoColumns",
+      "title": "Final Phase Evaluation Criteria (Presentation Day)",
+   "text": "Detailed evaluation criteria for the presentation on September 20 will be shared with the top 10 shortlisted teams who complete Phase 1 and Phase 2.<br><br>It will cover :<br>✅ Solution depth and impact<br>✅ Presentation clarity and demo quality<br>✅ Technical innovation and feasibility<br>✅ Team collaboration and communication<br><br>🎯 Key Takeaways<br>✨ Focus on the process as much as the solution<br>✨ Show your ability to think creatively and practically<br>✨ Quality matters more than speed<br>✨ Document your approach and decision points<br><br>Ready to showcase your skills and take on the challenge?<br>Your hackathon journey begins now. Let's build something legendary together.🚀"
+    }
+  ]
+}

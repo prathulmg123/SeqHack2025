@@ -1,0 +1,168 @@
+@font-face {
+  font-family: 'DS-DIGI';
+  src: url('./DS-DIGI.TTF');
+}
+
+:root {
+  --clockSize: 30rem;
+  --bgColor: #111;
+  --mainColor: #37f;
+  --loadingSize: 0;
+  --dashArray: 876;
+}
+
+body {
+  background: var(--bgColor);
+  font-family: 'DS-DIGI', sans-serif;
+}
+
+.box {
+  margin-top: 10rem;
+  position: relative;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.clockWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  font-family: 'DS-DIGI', 'Digital-7', monospace;
+}
+
+.clockContainer {
+  position: relative;
+  width: 330px;
+  height: 320px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.headerText {
+  position: absolute;
+  /* top: 20px; */
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 1rem;
+  text-align: center;
+  width: 100%;
+  z-index: 3;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.circleSvg {
+  position: absolute;
+  top: 50px;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.clockBackground {
+  stroke: rgba(255, 255, 255, 0.1);
+  transition: 0.3s stroke-dashoffset;
+}
+
+.clockProgress {
+  stroke: #741970;
+  transition: 0.3s stroke-dashoffset;
+  transition-timing-function: linear;
+}
+
+.digitalClock {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-align: center;
+  gap: 4px;
+  top: 4rem;
+}
+
+.timeSegment {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 50px;
+}
+
+.timeNumber {
+  font-size: 2.2rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 1px;
+  text-shadow: 0 0 10px rgba(0, 112, 243, 0.5);
+  font-family: 'DS-DIGI', 'Digital-7', monospace;
+}
+
+.timeLabel {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  /* opacity: 0.7; */
+  margin-top: 4px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.timeSeparator {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin: 0 2px;
+  line-height: 1;
+  opacity: 0.8;
+  animation: blink 1s infinite;
+}
+
+.expiredMessage {
+  font-size: 1.5rem;
+  color: #ff4d4f;
+  font-weight: bold;
+  text-align: center;
+  padding: 1rem;
+  background: rgba(255, 77, 79, 0.1);
+  border-radius: 8px;
+  width: 100%;
+  max-width: 280px;
+}
+
+.ampm {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 0.8rem;
+  opacity: 0.8;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .clockContainer {
+    width: 240px;
+    height: 320px;
+  }
+  
+  .timeNumber {
+    font-size: 1.8rem;
+  }
+  
+  .timeLabel {
+    font-size: 0.5rem;
+  }
+}

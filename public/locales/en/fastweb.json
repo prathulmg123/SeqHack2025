@@ -1,0 +1,51 @@
+{
+  "title": "FAQ",
+  "image": "/projects/fb/fq.jpg",
+  "live": "",
+  "role": "UX Engineer",
+  "agency": "Sketchin",
+  "completed": "06.2020",
+  "awards": [],
+  "modules": [
+    {
+      "component": "TextIntro",
+      "text": "🤔 Got Questions? We’ve got answers! Here are the most frequently asked questions about Seqathon 2025."
+    },
+    {
+      "component": "TextTwoColumns",
+      "title": "Do I need to bring my laptop or devices?",
+      "text": "Yes, please bring your own laptop and any devices you need for your solution development and presentation. If you need any specific software or hardware setup, let us know in advance so we can check feasibility."
+    },
+    {
+      "component": "TextTwoColumns",
+      "title": "Where will the hackathon happen?",
+      "text": "The final presentation day on September 20 will be held at our office. You will receive the address and entry instructions after shortlisting and payment confirmation."
+    },
+    {
+      "component": "TextTwoColumns",
+      "title": "Will there be food?",
+      "text": "Yes! Snacks, meals, and drinks will be provided to keep you energized throughout the event. If you have any specific dietary restrictions, please let us know ahead of time."
+    },
+    {
+      "component": "TextTwoColumns",
+      "title": "Can I get help if I am stuck during submission?",
+      "text": "Absolutely. We encourage you to reach out if you get stuck during the GitHub submission on August 21 or September 18. Our team will guide you through submission issues or clarifications."
+    },
+    {
+      "component": "TextTwoColumns",
+      "title": "Will I annoy people if I ask questions?",
+      "text": "Not at all! Hackathons are about learning and building together. If you have questions, please reach out to our team or mentors — we are here to support you."
+    },
+    {
+      "component": "TextTwoColumns",
+      "title": "What if I feel my project isn’t ready to present?",
+      "text": "Present it anyway! Hackathons are not just competitions; they are about learning, experimenting, and showcasing your effort. Whether your project is finished or a work in progress, presenting helps you gain valuable feedback and experience."
+    },
+    {
+      "component": "TextTwoColumns",
+      "title": "What do I get out of this hackathon?",
+      "text": "✅ The chance to win cash prizes<br>✅ Learn and apply your skills to real-world challenges<br>✅ Network with peers, mentors, and our team<br>✅ Free food, swags, and a fun environment<br>✅ The experience of building under constraints and presenting your work<br>✅ A potential pathway to internship or career opportunities with us"
+    }
+    
+  ]
+}
