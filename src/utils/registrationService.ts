@@ -18,41 +18,55 @@ export interface RegistrationData {
   githubRepository: string;
 }
 
-export const submitRegistration = async (data: RegistrationData): Promise<{ success: boolean; message: string; fileUrls?: Record<string, string> }> => {
+export const submitRegistration = async (
+  data: RegistrationData
+): Promise<{ success: boolean; message: string; fileUrls?: Record<string, string> }> => {
   try {
     console.log('🚀 Starting registration submission...');
     console.log('📡 API URL:', API_URL);
-    console.log('📋 Form data:', data);
 
-    // Prepare form data for file uploads
     const formData = new FormData();
-
-    // Add team member ID cards to files
+    const fileUrls: Record<string, string> = {};
     let fileCount = 0;
-    data.teamMembers.forEach((member, index) => {
+
+    // Helper to convert File to base64
+    const fileToBase64 = (file: File): Promise<string> => {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result as string);
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+    };
+
+    // Add base64 ID cards to formData
+    for (let i = 0; i < data.teamMembers.length; i++) {
+      const member = data.teamMembers[i];
       if (member.idCard) {
-        console.log(`📎 Adding file for member ${index + 1}:`, member.idCard.name);
-        formData.append(`member_${index}_id_file`, member.idCard);
+        const base64 = await fileToBase64(member.idCard);
+        formData.append(`member_${i}_id_file`, base64);
         fileCount++;
+        console.log(`📎 Added base64 file for member ${i + 1}`);
       }
-    });
+    }
 
-    console.log(`📁 Total files to upload: ${fileCount}`);
+    console.log(`📁 Total files converted to base64: ${fileCount}`);
 
-    // Add JSON data
+    // Strip out File objects for JSON payload
     const jsonData = {
       instituteName: data.instituteName,
       numberOfParticipants: data.numberOfParticipants,
-      teamMembers: data.teamMembers.map(member => ({
-        fullName: member.fullName,
-        contactNumber: member.contactNumber,
-        email: member.email,
-        collegeId: member.collegeId
-      })),
-      githubRepository: data.githubRepository
+      githubRepository: data.githubRepository,
+      teamMembers: data.teamMembers.map(({ fullName, contactNumber, email, collegeId }) => ({
+        fullName,
+        contactNumber,
+        email,
+        collegeId
+      }))
     };
 
     formData.append('data', JSON.stringify(jsonData));
+
     console.log('📤 Sending request to Google Apps Script...');
 
     const response = await fetch(API_URL, {
@@ -60,9 +74,6 @@ export const submitRegistration = async (data: RegistrationData): Promise<{ succ
       body: formData,
       mode: 'cors',
     });
-
-    console.log('📥 Response status:', response.status);
-    console.log('📥 Response headers:', Object.fromEntries(response.headers.entries()));
 
     if (!response.ok) {
       const errorText = await response.text();
@@ -72,29 +83,27 @@ export const submitRegistration = async (data: RegistrationData): Promise<{ succ
 
     const result = await response.json();
     console.log('✅ Response received:', result);
-    
+
     if (!result.success) {
-      console.error('❌ API Error:', result.error);
-      throw new Error(result.error || 'Unknown error occurred');
+      throw new Error(result.error || 'Unknown API error');
     }
 
-    console.log('🎉 Registration successful!');
     return result;
   } catch (error) {
-    console.error('💥 Registration submission failed:', error);
-    
-    // Provide more specific error messages
+    console.error('💥 Submission failed:', error);
+
     if (error instanceof TypeError && error.message.includes('fetch')) {
-      throw new Error('Network error: Unable to connect to Google Apps Script. Please check your internet connection and try again.');
+      throw new Error('Network error: Cannot connect to Google Apps Script.');
     }
-    
+
     if (error instanceof Error && error.message.includes('CORS')) {
-      throw new Error('CORS error: The Google Apps Script is not configured to accept requests from this domain. Please check the deployment settings.');
+      throw new Error('CORS error: Check your Google Apps Script deployment settings.');
     }
-    
+
     throw error;
   }
 };
+
 
 // Test function to verify API connection
 export const testApiConnection = async (): Promise<boolean> => {

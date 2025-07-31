@@ -6,7 +6,7 @@ interface EnvironmentConfig {
 }
 
 const config: EnvironmentConfig = {
-  googleAppsScriptUrl:'https://script.google.com/macros/s/AKfycbzWg_i2K341ZwIOHlr9XC-cBTTAOYJ90H04sd9G-Ugz_wV1PIr6qf-yAZgGnou76NLojA/exec',
+  googleAppsScriptUrl:'https://script.google.com/macros/s/AKfycbylniL8zxkWseaj0-B52ToFg3qu9Or-BROy0_tTRlWnSgZa0tS9ASR-AdalqUbwlRTaew/exec',
   isDevelopment: process.env.NODE_ENV === 'development',
   isProduction: process.env.NODE_ENV === 'production'
 };
