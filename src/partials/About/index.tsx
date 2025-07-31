@@ -178,43 +178,49 @@ function About() {
             {[
               {
                 title: 'Registration',
-                date: 'July 15 - Aug 15, 2025',
-                description: 'Register your team and get ready',
+                date: 'AUG 04 - AUG 16',
+                year: '2025',
+                description: 'Register your team and get ready for an exciting hackathon experience',
                 icon: '📝',
                 color: '#6366F1'
               },
               {
-                title: 'Kickoff',
-                date: 'August 16, 2025',
-                description: 'Event begins with opening ceremony',
+                title: 'Problem Statement',
+                date: 'AUG 18 - AUG 21',
+                year: '2025',
+                description: 'The problem will be released on August 18, and solutions are due by August 21. Get ready to innovate in this 3-day challenge!',
                 icon: '🚀',
                 color: '#EC4899'
               },
               {
-                title: 'Coding Phase',
-                date: 'Aug 16 - 30, 2025',
-                description: 'Teams work on their solutions',
+                title: 'Final Problem Statement',
+                date: 'SEPT 15 - SEPT 16',
+                year: '2025',
+                description: 'The final problem will be out on September 15th at noon. Submit your solution by midnight on September 16th. Make every hour count!',
                 icon: '💻',
                 color: '#10B981'
               },
               {
-                title: 'Submission',
-                date: 'August 30, 2025',
-                description: 'Final submissions due',
+                title: 'Presentation',
+                date: 'AUG 30',
+                year: '2025',
+                description: 'Final project submissions and demos due',
                 icon: '📤',
                 color: '#F59E0B'
               },
               {
                 title: 'Judging',
-                date: 'Aug 31 - Sep 5',
-                description: 'Expert evaluation period',
+                date: 'AUG 31 - SEP 5',
+                year: '2025',
+                description: 'Expert evaluation of all projects',
                 icon: '🏆',
                 color: '#3B82F6'
               },
               {
                 title: 'Results',
-                date: 'September 10, 2025',
-                description: 'Winners announced',
+                date: 'SEP 10',
+                year: '2025',
+                description: 'Winners announced and closing ceremony',
                 icon: '🎉',
                 color: '#8B5CF6'
               }
@@ -222,7 +228,7 @@ function About() {
               <motion.div 
                 key={index}
                 className={style.timelineItem}
-                initial={{ opacity: 0, y: 50 }}
+                initial={{ opacity: 0, y: 40 }}
                 whileInView={{ 
                   opacity: 1, 
                   y: 0,
@@ -232,19 +238,60 @@ function About() {
                     ease: [0.16, 1, 0.3, 1]
                   }
                 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, margin: "-50px" }}
               >
-                <div 
-                  className={style.timelineDot}
-                  style={{ backgroundColor: milestone.color }}
+                <motion.div 
+                  className={style.timelineContent}
+                  style={{ 
+                    borderColor: `${milestone.color}40`,
+                    boxShadow: `0 10px 30px ${milestone.color}20`
+                  }}
+                  whileHover={{
+                    scale: 1.05,
+                    boxShadow: `0 15px 40px ${milestone.color}40`,
+                    transition: { duration: 0.3 }
+                  }}
                 >
-                  <span className={style.timelineIcon}>{milestone.icon}</span>
-                </div>
-                <div className={style.timelineContent}>
-                  <div className={style.timelineDate}>{milestone.date}</div>
-                  <h3 className={style.timelineTitle}>{milestone.title}</h3>
-                  <p className={style.timelineDescription}>{milestone.description}</p>
-                </div>
+                  <div className={style.timelineDate}>
+                    {milestone.date}
+                    <div style={{ 
+                      fontSize: '0.7rem',
+                      opacity: 0.8,
+                      marginTop: '0.2rem'
+                    }}>
+                      {milestone.year}
+                    </div>
+                  </div>
+                  
+                  <div className={style.timelineContentInner}>
+                    <h2 className={style.timelineTitle}>
+                      {milestone.title}
+                    </h2>
+                    <p className={style.timelineDescription}>
+                      {milestone.description}
+                    </p>
+                  </div>
+
+                  <div 
+                    className={style.timelineDot}
+                    style={{ 
+                      // backgroundColor: milestone.color,
+                      color: 'white',
+                      position: 'absolute',
+                      top: '1.5rem',
+                      // right: '1.5rem',
+                      width: '40px',
+                      height: '40px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontSize: '1.9rem',
+                      // boxShadow: `0 0 0 4px rgba(17, 24, 39, 0.8)`
+                    }}
+                  >
+                    {milestone.icon}
+                  </div>
+                </motion.div>
               </motion.div>
             ))}
           </div>
