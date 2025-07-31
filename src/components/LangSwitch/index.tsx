@@ -14,6 +14,7 @@ import { useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
 import {FiMail as Email} from 'react-icons/fi'
+import { motion } from 'framer-motion'
 
 const languages = ['it', 'en']
 
@@ -46,29 +47,40 @@ const LangSwitch = () => {
     if (app.ready) {
       setTimeout(() => {
         setIsReady(true)
-      }, 3500)
+      }, 15000)
     }
   }, [app.ready])
 
   const isHome = location.pathname === '/'
 
   const classes = cn(style.root, {
-    [style.hidden]: !isReady || menu.open,
+    [style.hidden]: !app.ready || menu.open,
     [style.dark]: !isHome
   })
 
   return (
-    <div className={classes}>
+    <motion.div 
+      className={classes}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: !app.ready ? 1 : 0 }}
+      transition={{ 
+        duration: 0.9,
+        delay: 1  // Adds a 2-second delay before animation starts
+      }}
+    >
       <div
         className={style.button}
+        onMouseEnter={overHandler}
+        onMouseLeave={outHandler}
       >
         <span className={style.label}>
-            <Email className={style.email}/>
+          <Email className={style.email}/>
           <span className={style.text}>seqathon@seqato.com</span>
         </span>
         <span className={style.marker} />
       </div>
-    </div>
+    </motion.div>
   )
 }
+
 export default LangSwitch
