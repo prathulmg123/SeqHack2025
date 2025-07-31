@@ -2,15 +2,15 @@
 // This script will store data in Google Sheets and upload files to Google Drive
 
 // Configuration
-const SPREADSHEET_ID = 'YOUR_SPREADSHEET_ID'; // Replace with your Google Sheet ID
-const DRIVE_FOLDER_ID = 'YOUR_DRIVE_FOLDER_ID'; // Replace with your Google Drive folder ID
+const SPREADSHEET_ID = '1dQWl07IzyQeuV-RFUl-zkI5XJ01q-mHaGcyBMU_vFKs'; // Replace with your Google Sheet ID
+const DRIVE_FOLDER_ID = '16H6lQgz3zEjz2R5YaYamV32GsNuE6NrC'; // Replace with your Google Drive folder ID
 
 // CORS headers for cross-origin requests
 const CORS_HEADERS = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-  'Access-Control-Allow-Headers': 'Content-Type',
-  'Content-Type': 'application/json'
+  'Access-Control-Allow-Headers': 'Content-Type, X-Requested-With',
+  'Access-Control-Max-Age': '86400'
 };
 
 /**
@@ -18,41 +18,62 @@ const CORS_HEADERS = {
  */
 function doPost(e) {
   try {
-    // Handle CORS preflight requests
-    if (e.parameter.method === 'OPTIONS') {
-      return ContentService.createTextOutput('')
-        .setMimeType(ContentService.MimeType.TEXT)
-        .setHeaders(CORS_HEADERS);
-    }
-
+    console.log('Received POST request');
+    console.log('Parameters:', Object.keys(e.parameter));
+    
     // Parse the form data
     const formData = e.parameter;
-    const jsonData = JSON.parse(formData.data);
+    let jsonData;
+    
+    // Handle different content types
+    if (formData.data) {
+      jsonData = JSON.parse(formData.data);
+    } else if (e.postData && e.postData.contents) {
+      jsonData = JSON.parse(e.postData.contents);
+    } else {
+      throw new Error('No data received');
+    }
+    
+    console.log('Parsed JSON data:', jsonData);
     
     // Process file uploads
     const fileUrls = processFileUploads(e.parameter, jsonData);
+    console.log('File URLs:', fileUrls);
     
     // Store data in Google Sheets
     const rowData = prepareRowData(jsonData, fileUrls);
     appendToSheet(rowData);
     
     // Return success response
-    return ContentService.createTextOutput(JSON.stringify({
+    const response = ContentService.createTextOutput(JSON.stringify({
       success: true,
       message: 'Registration submitted successfully',
       fileUrls: fileUrls
     }))
-    .setMimeType(ContentService.MimeType.JSON)
-    .setHeaders(CORS_HEADERS);
+    .setMimeType(ContentService.MimeType.JSON);
+    
+    // Set CORS headers
+    Object.keys(CORS_HEADERS).forEach(key => {
+      response.setHeader(key, CORS_HEADERS[key]);
+    });
+    
+    return response;
     
   } catch (error) {
     console.error('Error processing registration:', error);
-    return ContentService.createTextOutput(JSON.stringify({
+    
+    const errorResponse = ContentService.createTextOutput(JSON.stringify({
       success: false,
       error: error.toString()
     }))
-    .setMimeType(ContentService.MimeType.JSON)
-    .setHeaders(CORS_HEADERS);
+    .setMimeType(ContentService.MimeType.JSON);
+    
+    // Set CORS headers even for error responses
+    Object.keys(CORS_HEADERS).forEach(key => {
+      errorResponse.setHeader(key, CORS_HEADERS[key]);
+    });
+    
+    return errorResponse;
   }
 }
 
@@ -60,9 +81,30 @@ function doPost(e) {
  * Handle GET requests (for testing)
  */
 function doGet(e) {
-  return ContentService.createTextOutput('Registration API is running')
-    .setMimeType(ContentService.MimeType.TEXT)
-    .setHeaders(CORS_HEADERS);
+  const response = ContentService.createTextOutput('Registration API is running')
+    .setMimeType(ContentService.MimeType.TEXT);
+  
+  // Set CORS headers
+  Object.keys(CORS_HEADERS).forEach(key => {
+    response.setHeader(key, CORS_HEADERS[key]);
+  });
+  
+  return response;
+}
+
+/**
+ * Handle OPTIONS requests for CORS preflight
+ */
+function doOptions(e) {
+  const response = ContentService.createTextOutput('')
+    .setMimeType(ContentService.MimeType.TEXT);
+  
+  // Set CORS headers for preflight
+  Object.keys(CORS_HEADERS).forEach(key => {
+    response.setHeader(key, CORS_HEADERS[key]);
+  });
+  
+  return response;
 }
 
 /**
@@ -72,21 +114,39 @@ function processFileUploads(formData, jsonData) {
   const fileUrls = {};
   
   try {
+    console.log('Processing file uploads...');
+    
     // Get the Drive folder
     const folder = DriveApp.getFolderById(DRIVE_FOLDER_ID);
+    console.log('Drive folder accessed');
     
     // Process team member ID cards
     jsonData.teamMembers.forEach((member, index) => {
       const fileKey = `member_${index}_id_file`;
+      console.log(`Checking for file key: ${fileKey}`);
+      
       if (formData[fileKey]) {
+        console.log(`Processing file for member ${index + 1}`);
         const file = formData[fileKey];
-        const blob = Utilities.newBlob(file.getBytes(), file.getContentType(), file.getName());
+        
+        // Create blob from file data
+        const blob = Utilities.newBlob(
+          file.getBytes(), 
+          file.getContentType(), 
+          `member_${index + 1}_id_${file.getName()}`
+        );
+        
+        // Upload to Drive
         const driveFile = folder.createFile(blob);
+        console.log(`File uploaded: ${driveFile.getName()}`);
         
         // Set file permissions to anyone with link can view
         driveFile.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
         
         fileUrls[`member_${index}_id`] = driveFile.getUrl();
+        console.log(`File URL: ${driveFile.getUrl()}`);
+      } else {
+        console.log(`No file found for member ${index + 1}`);
       }
     });
     
@@ -106,6 +166,8 @@ function processFileUploads(formData, jsonData) {
         }
       });
     }
+    
+    console.log('File processing completed');
     
   } catch (error) {
     console.error('Error processing files:', error);

@@ -58,6 +58,7 @@ export const submitRegistration = async (data: RegistrationData): Promise<{ succ
     const response = await fetch(API_URL, {
       method: 'POST',
       body: formData,
+      mode: 'cors',
     });
 
     console.log('📥 Response status:', response.status);
@@ -102,6 +103,7 @@ export const testApiConnection = async (): Promise<boolean> => {
     
     const response = await fetch(API_URL, {
       method: 'GET',
+      mode: 'cors',
     });
     
     console.log('📡 Test response status:', response.status);
