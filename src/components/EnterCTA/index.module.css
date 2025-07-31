@@ -17,6 +17,25 @@
   }
 }
 
+@media screen and (min-width: 1000px){
+  
+  .root {
+    --ring-size: 100px;
+    bottom: 140px;
+  top: calc(100vh - 100px);
+  right: 30px;
+  }
+  .label{
+    font-size: 0.8rem !important;
+  }
+  .button{
+    &&::after,
+    &&::before {
+      width: var(--ring-size);
+      height: var(--ring-size);
+    }
+  }
+}
 @media screen and (max-width: 768px){
   
   .root {

@@ -172,7 +172,7 @@ function About() {
           </div>
         </Row>
       </Container>
-      <Container>
+      <Container className="timeline-container-outer">
         <Row start={1} end={3}>
           <div className={style.timelineContainer}>
             {[
