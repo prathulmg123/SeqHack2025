@@ -1,5 +1,6 @@
 // CountdownClock.tsx
 import React, { useEffect, useRef, useState } from 'react'
+import { motion } from 'framer-motion';
 import style from './index.module.css'
 
 interface CountdownClockProps {
@@ -79,17 +80,58 @@ const CountdownClock: React.FC<CountdownClockProps> = ({ endDate, animationDelay
 
   if (timeLeft.isExpired) {
     return (
-      <div className={style.expiredMessage}>
+      <motion.div 
+        className={style.expiredMessage}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8, delay: animationDelay / 800 }}
+      >
         Registration Closed
-      </div>
+      </motion.div>
     )
   }
 
   return (
-    <div className={`${style.clockWrapper} ${isAnimatedIn ? style.animateIn : ''}`}>
+    <motion.div 
+      className={style.clockWrapper}
+      initial={{ opacity: 0, y: 20 }}
+      animate={isAnimatedIn ? { 
+        opacity: 1, 
+        y: 0,
+        transition: { 
+          duration: 0.8,
+          ease: [0.16, 1, 0.3, 1]
+        }
+      } : {}}
+    >
       <div className={style.clockContainer}>
-        <div className={style.headerText}>REGISTRATION <br></br>ENDS IN</div>
-        <svg className={style.circleSvg} viewBox="0 0 100 100">
+        <motion.div 
+          className={style.headerText}
+          initial={{ opacity: 0 }}
+          animate={isAnimatedIn ? { 
+            opacity: 1,
+            transition: { 
+              duration: 0.8,
+              delay: 0.2
+            }
+          } : {}}
+        >
+          REGISTRATION <br /> ENDS IN
+        </motion.div>
+        <motion.svg 
+          className={style.circleSvg} 
+          viewBox="0 0 100 100"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={isAnimatedIn ? { 
+            opacity: 1,
+            scale: 1,
+            transition: { 
+              duration: 0.8,
+              delay: 0.1,
+              ease: [0.16, 1, 0.3, 1]
+            }
+          } : {}}
+        >
           <circle
             className={style.clockBackground}
             cx="50"
@@ -112,9 +154,21 @@ const CountdownClock: React.FC<CountdownClockProps> = ({ endDate, animationDelay
             strokeDashoffset={progressOffset}
             transform="rotate(-90 50 50)"
           />
-        </svg>
+        </motion.svg>
         
-        <div className={style.digitalClock}>
+        <motion.div 
+          className={style.digitalClock}
+          initial={{ opacity: 0, y: 10 }}
+          animate={isAnimatedIn ? { 
+            opacity: 1,
+            y: 0,
+            transition: { 
+              duration: 0.8,
+              delay: 0.3,
+              ease: [0.16, 1, 0.3, 1]
+            }
+          } : {}}
+        >
           {timeLeft.days > 0 && (
             <>
             <div className={style.timeSegment}>
@@ -138,9 +192,9 @@ const CountdownClock: React.FC<CountdownClockProps> = ({ endDate, animationDelay
             <span className={style.timeNumber}>{formatNumber(timeLeft.seconds)}</span>
             <span className={style.timeLabel}>SEC</span>
           </div>
-        </div>
+        </motion.div>
       </div>
-    </div>
+    </motion.div>
   )
 }
 

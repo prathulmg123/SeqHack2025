@@ -71,6 +71,7 @@
   cursor: none;
   transform: translateY(-50%);
   visibility: hidden;
+  color: white !important;
 
   &.open,
   &.transitionOut {

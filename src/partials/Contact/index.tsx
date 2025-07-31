@@ -133,8 +133,8 @@ function Contact() {
   const contactInfo = [
     {
       icon: <Email />,
-      text: 'hackathon@seqato.com',
-      href: 'mailto:hackathon@seqato.com',
+      text: 'seqathon@seqato.com',
+      href: 'mailto:seqathon@seqato.com',
       ariaLabel: 'Email address'
     },
     {
@@ -155,19 +155,19 @@ function Contact() {
     {
       icon: <LinkedIn />,
       text: 'LinkedIn',
-      href: 'https://www.linkedin.com/company/seqato/',
+      href: 'https://in.linkedin.com/company/seqato',
       ariaLabel: 'LinkedIn profile'
     },
     {
       icon: <Instagram />,
       text: 'Instagram',
-      href: 'https://www.instagram.com/seqato/',
+      href: 'https://www.instagram.com/seqato_software/?hl=en',
       ariaLabel: 'Instagram profile'
     },
     {
       icon: <YouTube />,
       text: 'YouTube',
-      href: 'https://www.youtube.com/@seqato/',
+      href: 'https://www.youtube.com/@seqato6196/featured',
       ariaLabel: 'YouTube channel'
     }
   ];
