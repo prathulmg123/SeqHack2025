@@ -7,6 +7,7 @@ import ContentBlock from 'components/ContentBlock'
 import Heading from 'components/Heading'
 import LiquidButton from './LiquidButton'
 import RegistrationForm from 'components/RegistrationForm'
+import ApiTest from 'components/ApiTest'
 
 // Hooks
 import { useCallback, useEffect, useRef, useState } from 'react'
@@ -19,6 +20,7 @@ import gsap from 'gsap'
 // Services
 // import ExcelService from 'utils/excelService'
 // import ImageStorageService from 'utils/imageStorageService'
+import { submitRegistration } from 'utils/registrationService'
 import { useToast } from 'components/ToastManager'
 // Icons
 import {
@@ -107,32 +109,20 @@ function Contact() {
 
   const handleRegistrationSubmit = async (formData: any) => {
     try {
-      // Generate unique registration ID
-      const registrationId = `reg_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`
-      
-      // Store images for each team member
-      for (let i = 0; i < formData.numberOfParticipants; i++) {
-        const member = formData.teamMembers[i]
-        if (member.idCard) {
-          // await ImageStorageService.storeImage(member.idCard, 'idCard', registrationId, i)
-        }
-      }
-      
-      // Generate Excel/CSV file
-      // try {
-      //   await ExcelService.generateExcelFile(formData)
-      // } catch (excelError) {
-      //   console.warn('Excel generation failed, falling back to CSV:', excelError)
-      //   ExcelService.generateCSVFile(formData)
-      // }
+      // Submit the registration data
+      const result = await submitRegistration(formData);
       
       // Show success message
-      showSuccess('Registration submitted successfully! Data file has been downloaded.')
+      showSuccess(result.message || 'Registration submitted successfully! Data has been saved to Google Drive.');
       
-    } catch (error) {
-      console.error('Registration submission error:', error)
-      showError('Error submitting registration. Please try again.')
-      throw error
+      // Close the registration form
+      setIsRegistrationFormOpen(false);
+      
+    } catch (error: unknown) {
+      console.error('Registration submission error:', error);
+      const errorMessage = error instanceof Error ? error.message : 'Error submitting registration. Please try again.';
+      showError(errorMessage);
+      throw error;
     }
   }
 
@@ -215,6 +205,11 @@ function Contact() {
         onClose={() => setIsRegistrationFormOpen(false)}
         onSubmit={handleRegistrationSubmit}
       />
+
+      {/* API Test Component (remove in production) */}
+      {process.env.NODE_ENV === 'development' && (
+        <ApiTest />
+      )}
 
       <div className={style.contactWrapper}>
         <div className={style.contactSection}>
