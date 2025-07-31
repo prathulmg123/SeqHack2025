@@ -1,22 +1,31 @@
+// Google Apps Script for handling registration form submissions
+// This script will store data in Google Sheets and upload files to Google Drive
+
 // Configuration
 const SPREADSHEET_ID = '1dQWl07IzyQeuV-RFUl-zkI5XJ01q-mHaGcyBMU_vFKs';
 const DRIVE_FOLDER_ID = '16H6lQgz3zEjz2R5YaYamV32GsNuE6NrC';
 
-/**
- * CORS headers
- */
+// CORS headers for cross-origin requests
 const CORS_HEADERS = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-  'Access-Control-Allow-Headers': 'Content-Type',
+  'Access-Control-Allow-Headers': 'Content-Type, X-Requested-With',
   'Access-Control-Max-Age': '86400'
 };
 
+/**
+ * Main function to handle POST requests
+ */
 function doPost(e) {
   try {
-    let jsonData;
+    console.log('Received POST request');
+    console.log('Parameters:', Object.keys(e.parameter));
+    
+    // Parse the form data
     const formData = e.parameter;
-
+    let jsonData;
+    
+    // Handle different content types
     if (formData.data) {
       jsonData = JSON.parse(formData.data);
     } else if (e.postData && e.postData.contents) {
@@ -24,134 +33,317 @@ function doPost(e) {
     } else {
       throw new Error('No data received');
     }
-
-    // Upload files and get URLs
-    const fileUrls = processFileUploads(formData, jsonData);
-
-    // Prepare row and save to Sheet
+    
+    console.log('Parsed JSON data:', jsonData);
+    
+    // Process file uploads
+    const fileUrls = processFileUploads(e.parameter, jsonData);
+    console.log('File URLs:', fileUrls);
+    
+    // Store data in Google Sheets
     const rowData = prepareRowData(jsonData, fileUrls);
     appendToSheet(rowData);
-
-    const output = ContentService
-      .createTextOutput(JSON.stringify({ success: true, fileUrls }))
-      .setMimeType(ContentService.MimeType.JSON);
-    return setCorsHeaders(output);
-  } catch (err) {
-    const output = ContentService
-      .createTextOutput(JSON.stringify({ success: false, error: err.message }))
-      .setMimeType(ContentService.MimeType.JSON);
-    return setCorsHeaders(output);
+    
+    // Return success response
+    const response = ContentService.createTextOutput(JSON.stringify({
+      success: true,
+      message: 'Registration submitted successfully',
+      fileUrls: fileUrls
+    }))
+    .setMimeType(ContentService.MimeType.JSON);
+    
+    // Set CORS headers
+    Object.keys(CORS_HEADERS).forEach(key => {
+      response.setHeader(key, CORS_HEADERS[key]);
+    });
+    
+    return response;
+    
+  } catch (error) {
+    console.error('Error processing registration:', error);
+    
+    const errorResponse = ContentService.createTextOutput(JSON.stringify({
+      success: false,
+      error: error.toString()
+    }))
+    .setMimeType(ContentService.MimeType.JSON);
+    
+    // Set CORS headers even for error responses
+    Object.keys(CORS_HEADERS).forEach(key => {
+      errorResponse.setHeader(key, CORS_HEADERS[key]);
+    });
+    
+    return errorResponse;
   }
 }
 
-function doGet() {
-  const output = ContentService
-    .createTextOutput('Registration API is running')
+/**
+ * Handle GET requests (for testing)
+ */
+function doGet(e) {
+  const response = ContentService.createTextOutput('Registration API is running')
     .setMimeType(ContentService.MimeType.TEXT);
-  return setCorsHeaders(output);
+  
+  // Set CORS headers
+  Object.keys(CORS_HEADERS).forEach(key => {
+    response.setHeader(key, CORS_HEADERS[key]);
+  });
+  
+  return response;
 }
 
-function doOptions() {
-  const output = ContentService
-    .createTextOutput('')
-    .setMimeType(ContentService.MimeType.TEXT);
-  return setCorsHeaders(output);
-}
-function setCorsHeaders(output) {
- 
-    return output;
-  }  
-  
 /**
- * Convert base64 files to Drive uploads and return public URLs
+ * Handle OPTIONS requests for CORS preflight
+ */
+function doOptions(e) {
+  const response = ContentService.createTextOutput('')
+    .setMimeType(ContentService.MimeType.TEXT);
+  
+  // Set CORS headers for preflight
+  Object.keys(CORS_HEADERS).forEach(key => {
+    response.setHeader(key, CORS_HEADERS[key]);
+  });
+  
+  return response;
+}
+
+/**
+ * Process file uploads and store them in Google Drive
  */
 function processFileUploads(formData, jsonData) {
-  const folder = DriveApp.getFolderById(DRIVE_FOLDER_ID);
   const fileUrls = {};
-
-  for (let i = 0; i < 4; i++) {
-    const key = `member_${i}_id_file`;
-    if (formData[key]) {
-      const base64 = formData[key];
+  
+  try {
+    console.log('Processing file uploads...');
+    
+    // Get the Drive folder
+    const folder = DriveApp.getFolderById(DRIVE_FOLDER_ID);
+    console.log('Drive folder accessed');
+    
+    // Process participant college ID proofs
+    jsonData.participants.forEach((participant, index) => {
+      const fileKey = `participant_${index}_college_id_proof`;
+      console.log(`Checking for file key: ${fileKey}`);
+      
+      if (formData[fileKey]) {
+        console.log(`Processing college ID proof for participant ${index + 1}`);
+        const base64 = formData[fileKey];
+        const match = base64.match(/^data:(.+);base64,(.*)$/);
+        
+        if (match) {
+          const contentType = match[1];
+          const bytes = Utilities.base64Decode(match[2]);
+          const blob = Utilities.newBlob(bytes, contentType, `participant_${index + 1}_college_id_proof`);
+          
+          // Upload to Drive
+          const driveFile = folder.createFile(blob);
+          console.log(`File uploaded: ${driveFile.getName()}`);
+          
+          // Set file permissions to anyone with link can view
+          driveFile.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
+          
+          fileUrls[`participant_${index}_college_id_proof`] = driveFile.getUrl();
+          console.log(`File URL: ${driveFile.getUrl()}`);
+        }
+      } else {
+        console.log(`No college ID proof found for participant ${index + 1}`);
+      }
+    });
+    
+    // Process college verification document
+    if (formData.college_verification) {
+      console.log('Processing college verification document');
+      const base64 = formData.college_verification;
       const match = base64.match(/^data:(.+);base64,(.*)$/);
-      if (!match) continue;
-
-      const contentType = match[1];
-      const bytes = Utilities.base64Decode(match[2]);
-      const blob = Utilities.newBlob(bytes, contentType, `member_${i + 1}_id_card.png`);
-
-      const file = folder.createFile(blob);
-      file.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
-      fileUrls[`member_${i}_id`] = file.getUrl();
+      
+      if (match) {
+        const contentType = match[1];
+        const bytes = Utilities.base64Decode(match[2]);
+        const blob = Utilities.newBlob(bytes, contentType, 'college_verification_letter');
+        
+        // Upload to Drive
+        const driveFile = folder.createFile(blob);
+        console.log(`College verification uploaded: ${driveFile.getName()}`);
+        
+        // Set file permissions
+        driveFile.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
+        
+        fileUrls['college_verification'] = driveFile.getUrl();
+        console.log(`College verification URL: ${driveFile.getUrl()}`);
+      }
     }
+    
+    console.log('File processing completed');
+    
+  } catch (error) {
+    console.error('Error processing files:', error);
+    throw new Error('Failed to process file uploads: ' + error.toString());
   }
-
+  
   return fileUrls;
 }
 
 /**
- * Prepare a row for Google Sheets
+ * Prepare row data for Google Sheets
  */
 function prepareRowData(jsonData, fileUrls) {
+  const timestamp = new Date().toISOString();
+  
+  // Base row data
   const rowData = [
-    new Date().toISOString(),
-    jsonData.instituteName || '',
-    jsonData.numberOfParticipants || '',
-    jsonData.githubRepository || ''
+    timestamp, // Timestamp
+    jsonData.collegeName || '',
+    jsonData.teamSize || ''
   ];
-
+  
+  // Add participant data (up to 4 participants)
   for (let i = 0; i < 4; i++) {
-    const member = jsonData.teamMembers[i] || {};
-    const fileUrl = fileUrls[`member_${i}_id`] || '';
+    const participant = jsonData.participants[i] || {};
+    const fileUrl = fileUrls[`participant_${i}_college_id_proof`] || '';
+    
     rowData.push(
-      member.fullName || '',
-      member.contactNumber || '',
-      member.email || '',
-      member.collegeId || '',
-      fileUrl
+      participant.name || '',
+      participant.email || '',
+      participant.phoneNumber || '',
+      fileUrl,
+      participant.gitLink || '',
+      participant.achievements || '',
+      participant.registeredInMulearn ? 'Yes' : 'No',
+      participant.karmaPoints || ''
     );
   }
-
-  // Optional: add any other file URLs
-  rowData.push('');
+  
+  // Add college verification URL
+  rowData.push(fileUrls['college_verification'] || '');
+  
   return rowData;
 }
 
 /**
- * Append data to Google Sheets
+ * Append data to Google Sheet
  */
 function appendToSheet(rowData) {
-  const sheet = SpreadsheetApp.openById(SPREADSHEET_ID).getActiveSheet();
-  if (sheet.getLastRow() === 0) {
+  try {
+    const spreadsheet = SpreadsheetApp.openById(SPREADSHEET_ID);
+    const sheet = spreadsheet.getActiveSheet();
+    
+    // If sheet is empty, add headers
+    if (sheet.getLastRow() === 0) {
+      const headers = [
+        'Timestamp',
+        'College Name',
+        'Team Size',
+        'Participant 1 - Name',
+        'Participant 1 - Email',
+        'Participant 1 - Phone Number',
+        'Participant 1 - College ID Proof URL',
+        'Participant 1 - Git Link',
+        'Participant 1 - Achievements',
+        'Participant 1 - Registered in Mulearn',
+        'Participant 1 - Karma Points',
+        'Participant 2 - Name',
+        'Participant 2 - Email',
+        'Participant 2 - Phone Number',
+        'Participant 2 - College ID Proof URL',
+        'Participant 2 - Git Link',
+        'Participant 2 - Achievements',
+        'Participant 2 - Registered in Mulearn',
+        'Participant 2 - Karma Points',
+        'Participant 3 - Name',
+        'Participant 3 - Email',
+        'Participant 3 - Phone Number',
+        'Participant 3 - College ID Proof URL',
+        'Participant 3 - Git Link',
+        'Participant 3 - Achievements',
+        'Participant 3 - Registered in Mulearn',
+        'Participant 3 - Karma Points',
+        'Participant 4 - Name',
+        'Participant 4 - Email',
+        'Participant 4 - Phone Number',
+        'Participant 4 - College ID Proof URL',
+        'Participant 4 - Git Link',
+        'Participant 4 - Achievements',
+        'Participant 4 - Registered in Mulearn',
+        'Participant 4 - Karma Points',
+        'College Verification URL'
+      ];
+      sheet.getRange(1, 1, 1, headers.length).setValues([headers]);
+    }
+    
+    // Append the new row
+    sheet.appendRow(rowData);
+    
+  } catch (error) {
+    console.error('Error appending to sheet:', error);
+    throw new Error('Failed to save data to spreadsheet: ' + error.toString());
+  }
+}
+
+/**
+ * Setup function to create the initial spreadsheet structure
+ */
+function setupSpreadsheet() {
+  try {
+    const spreadsheet = SpreadsheetApp.openById(SPREADSHEET_ID);
+    const sheet = spreadsheet.getActiveSheet();
+    
+    // Clear existing data
+    sheet.clear();
+    
+    // Add headers
     const headers = [
       'Timestamp',
-      'Institute Name',
-      'Number of Participants',
-      'GitHub Repository',
-      'Member 1 - Full Name',
-      'Member 1 - Contact Number',
-      'Member 1 - Email',
-      'Member 1 - College ID',
-      'Member 1 - ID Card URL',
-      'Member 2 - Full Name',
-      'Member 2 - Contact Number',
-      'Member 2 - Email',
-      'Member 2 - College ID',
-      'Member 2 - ID Card URL',
-      'Member 3 - Full Name',
-      'Member 3 - Contact Number',
-      'Member 3 - Email',
-      'Member 3 - College ID',
-      'Member 3 - ID Card URL',
-      'Member 4 - Full Name',
-      'Member 4 - Contact Number',
-      'Member 4 - Email',
-      'Member 4 - College ID',
-      'Member 4 - ID Card URL',
-      'Additional Files'
+      'College Name',
+      'Team Size',
+      'Participant 1 - Name',
+      'Participant 1 - Email',
+      'Participant 1 - Phone Number',
+      'Participant 1 - College ID Proof URL',
+      'Participant 1 - Git Link',
+      'Participant 1 - Achievements',
+      'Participant 1 - Registered in Mulearn',
+      'Participant 1 - Karma Points',
+      'Participant 2 - Name',
+      'Participant 2 - Email',
+      'Participant 2 - Phone Number',
+      'Participant 2 - College ID Proof URL',
+      'Participant 2 - Git Link',
+      'Participant 2 - Achievements',
+      'Participant 2 - Registered in Mulearn',
+      'Participant 2 - Karma Points',
+      'Participant 3 - Name',
+      'Participant 3 - Email',
+      'Participant 3 - Phone Number',
+      'Participant 3 - College ID Proof URL',
+      'Participant 3 - Git Link',
+      'Participant 3 - Achievements',
+      'Participant 3 - Registered in Mulearn',
+      'Participant 3 - Karma Points',
+      'Participant 4 - Name',
+      'Participant 4 - Email',
+      'Participant 4 - Phone Number',
+      'Participant 4 - College ID Proof URL',
+      'Participant 4 - Git Link',
+      'Participant 4 - Achievements',
+      'Participant 4 - Registered in Mulearn',
+      'Participant 4 - Karma Points',
+      'College Verification URL'
     ];
+    
     sheet.getRange(1, 1, 1, headers.length).setValues([headers]);
+    
+    // Format headers
+    const headerRange = sheet.getRange(1, 1, 1, headers.length);
+    headerRange.setFontWeight('bold');
+    headerRange.setBackground('#4285f4');
+    headerRange.setFontColor('white');
+    
+    // Auto-resize columns
+    sheet.autoResizeColumns(1, headers.length);
+    
+    console.log('Spreadsheet setup completed successfully');
+    
+  } catch (error) {
+    console.error('Error setting up spreadsheet:', error);
   }
-
-  sheet.appendRow(rowData);
 }

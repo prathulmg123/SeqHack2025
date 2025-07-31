@@ -3,19 +3,22 @@ import config from '../config/environment';
 
 const API_URL = config.googleAppsScriptUrl;
 
-export interface TeamMember {
-  fullName: string;
-  contactNumber: string;
+export interface Participant {
+  name: string;
   email: string;
-  collegeId: string;
-  idCard: File | null;
+  phoneNumber: string;
+  collegeIdProof: File | null;
+  gitLink: string;
+  achievements: string;
+  registeredInMulearn: boolean;
+  karmaPoints: string;
 }
 
 export interface RegistrationData {
-  instituteName: string;
-  numberOfParticipants: number;
-  teamMembers: TeamMember[];
-  githubRepository: string;
+  collegeName: string;
+  teamSize: number;
+  participants: Participant[];
+  collegeVerification: File | null;
 }
 
 export const submitRegistration = async (
@@ -39,29 +42,39 @@ export const submitRegistration = async (
       });
     };
 
-    // Add base64 ID cards to formData
-    for (let i = 0; i < data.teamMembers.length; i++) {
-      const member = data.teamMembers[i];
-      if (member.idCard) {
-        const base64 = await fileToBase64(member.idCard);
-        formData.append(`member_${i}_id_file`, base64);
+    // Add base64 college ID proofs to formData
+    for (let i = 0; i < data.participants.length; i++) {
+      const participant = data.participants[i];
+      if (participant.collegeIdProof) {
+        const base64 = await fileToBase64(participant.collegeIdProof);
+        formData.append(`participant_${i}_college_id_proof`, base64);
         fileCount++;
-        console.log(`📎 Added base64 file for member ${i + 1}`);
+        console.log(`📎 Added college ID proof for participant ${i + 1}`);
       }
+    }
+
+    // Add college verification document
+    if (data.collegeVerification) {
+      const base64 = await fileToBase64(data.collegeVerification);
+      formData.append('college_verification', base64);
+      fileCount++;
+      console.log('📎 Added college verification document');
     }
 
     console.log(`📁 Total files converted to base64: ${fileCount}`);
 
     // Strip out File objects for JSON payload
     const jsonData = {
-      instituteName: data.instituteName,
-      numberOfParticipants: data.numberOfParticipants,
-      githubRepository: data.githubRepository,
-      teamMembers: data.teamMembers.map(({ fullName, contactNumber, email, collegeId }) => ({
-        fullName,
-        contactNumber,
+      collegeName: data.collegeName,
+      teamSize: data.teamSize,
+      participants: data.participants.map(({ name, email, phoneNumber, gitLink, achievements, registeredInMulearn, karmaPoints }) => ({
+        name,
         email,
-        collegeId
+        phoneNumber,
+        gitLink,
+        achievements,
+        registeredInMulearn,
+        karmaPoints
       }))
     };
 
@@ -103,7 +116,6 @@ export const submitRegistration = async (
     throw error;
   }
 };
-
 
 // Test function to verify API connection
 export const testApiConnection = async (): Promise<boolean> => {
