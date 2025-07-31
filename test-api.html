@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        button { padding: 10px 20px; margin: 10px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        #results { margin-top: 20px; padding: 10px; background: #f8f9fa; border-radius: 5px; }
+        .success { color: green; }
+        .error { color: red; }
+        .info { color: blue; }
+    </style>
+</head>
+<body>
+    <h1>Google Apps Script API Test</h1>
+    
+    <button onclick="testGet()">Test GET Request</button>
+    <button onclick="testPost()">Test POST Request</button>
+    <button onclick="clearResults()">Clear Results</button>
+    
+    <div id="results"></div>
+    
+    <script>
+        const API_URL = 'https://script.google.com/macros/s/AKfycbzWg_i2K341ZwIOHlr9XC-cBTTAOYJ90H04sd9G-Ugz_wV1PIr6qf-yAZgGnou76NLojA/exec';
+        
+        function log(message, type = 'info') {
+            const results = document.getElementById('results');
+            const timestamp = new Date().toLocaleTimeString();
+            results.innerHTML += `<p class="${type}">[${timestamp}] ${message}</p>`;
+            console.log(message);
+        }
+        
+        function clearResults() {
+            document.getElementById('results').innerHTML = '';
+        }
+        
+        async function testGet() {
+            try {
+                log('🔍 Testing GET request...', 'info');
+                
+                const response = await fetch(API_URL, {
+                    method: 'GET',
+                    mode: 'cors'
+                });
+                
+                log(`📡 Response status: ${response.status}`, 'info');
+                log(`📡 Response headers: ${JSON.stringify(Object.fromEntries(response.headers.entries()))}`, 'info');
+                
+                const text = await response.text();
+                log(`📄 Response body: ${text}`, 'info');
+                
+                if (response.ok) {
+                    log('✅ GET test successful!', 'success');
+                } else {
+                    log('❌ GET test failed!', 'error');
+                }
+            } catch (error) {
+                log(`💥 GET test error: ${error.message}`, 'error');
+            }
+        }
+        
+        async function testPost() {
+            try {
+                log('🔍 Testing POST request...', 'info');
+                
+                const testData = {
+                    instituteName: 'Test Institute',
+                    numberOfParticipants: 2,
+                    teamMembers: [
+                        {
+                            fullName: 'Test Member 1',
+                            contactNumber: '1234567890',
+                            email: 'test1@example.com',
+                            collegeId: 'TEST001'
+                        },
+                        {
+                            fullName: 'Test Member 2',
+                            contactNumber: '0987654321',
+                            email: 'test2@example.com',
+                            collegeId: 'TEST002'
+                        }
+                    ],
+                    githubRepository: 'https://github.com/test/repo'
+                };
+                
+                const formData = new FormData();
+                formData.append('data', JSON.stringify(testData));
+                
+                log('📤 Sending POST request...', 'info');
+                
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    body: formData,
+                    mode: 'cors'
+                });
+                
+                log(`📡 Response status: ${response.status}`, 'info');
+                log(`📡 Response headers: ${JSON.stringify(Object.fromEntries(response.headers.entries()))}`, 'info');
+                
+                const result = await response.json();
+                log(`📄 Response body: ${JSON.stringify(result, null, 2)}`, 'info');
+                
+                if (response.ok && result.success) {
+                    log('✅ POST test successful!', 'success');
+                } else {
+                    log('❌ POST test failed!', 'error');
+                }
+            } catch (error) {
+                log(`💥 POST test error: ${error.message}`, 'error');
+            }
+        }
+    </script>
+</body>
+</html> 

@@ -3,65 +3,90 @@ import config from '../config/environment';
 
 const API_URL = config.googleAppsScriptUrl;
 
-export interface TeamMember {
-  fullName: string;
-  contactNumber: string;
+export interface Participant {
+  name: string;
   email: string;
-  collegeId: string;
-  idCard: File | null;
+  phoneNumber: string;
+  collegeIdProof: File | null;
+  gitLink: string;
+  achievements: string;
+  registeredInMulearn: boolean;
+  karmaPoints: string;
 }
 
 export interface RegistrationData {
-  instituteName: string;
-  numberOfParticipants: number;
-  teamMembers: TeamMember[];
-  githubRepository: string;
+  collegeName: string;
+  teamSize: number;
+  participants: Participant[];
+  collegeVerification: File | null;
 }
 
-export const submitRegistration = async (data: RegistrationData): Promise<{ success: boolean; message: string; fileUrls?: Record<string, string> }> => {
+export const submitRegistration = async (
+  data: RegistrationData
+): Promise<{ success: boolean; message: string; fileUrls?: Record<string, string> }> => {
   try {
     console.log('🚀 Starting registration submission...');
     console.log('📡 API URL:', API_URL);
-    console.log('📋 Form data:', data);
 
-    // Prepare form data for file uploads
     const formData = new FormData();
-
-    // Add team member ID cards to files
+    const fileUrls: Record<string, string> = {};
     let fileCount = 0;
-    data.teamMembers.forEach((member, index) => {
-      if (member.idCard) {
-        console.log(`📎 Adding file for member ${index + 1}:`, member.idCard.name);
-        formData.append(`member_${index}_id_file`, member.idCard);
+
+    // Helper to convert File to base64
+    const fileToBase64 = (file: File): Promise<string> => {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result as string);
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+    };
+
+    // Add base64 college ID proofs to formData
+    for (let i = 0; i < data.participants.length; i++) {
+      const participant = data.participants[i];
+      if (participant.collegeIdProof) {
+        const base64 = await fileToBase64(participant.collegeIdProof);
+        formData.append(`participant_${i}_college_id_proof`, base64);
         fileCount++;
+        console.log(`📎 Added college ID proof for participant ${i + 1}`);
       }
-    });
+    }
 
-    console.log(`📁 Total files to upload: ${fileCount}`);
+    // Add college verification document
+    if (data.collegeVerification) {
+      const base64 = await fileToBase64(data.collegeVerification);
+      formData.append('college_verification', base64);
+      fileCount++;
+      console.log('📎 Added college verification document');
+    }
 
-    // Add JSON data
+    console.log(`📁 Total files converted to base64: ${fileCount}`);
+
+    // Strip out File objects for JSON payload
     const jsonData = {
-      instituteName: data.instituteName,
-      numberOfParticipants: data.numberOfParticipants,
-      teamMembers: data.teamMembers.map(member => ({
-        fullName: member.fullName,
-        contactNumber: member.contactNumber,
-        email: member.email,
-        collegeId: member.collegeId
-      })),
-      githubRepository: data.githubRepository
+      collegeName: data.collegeName,
+      teamSize: data.teamSize,
+      participants: data.participants.map(({ name, email, phoneNumber, gitLink, achievements, registeredInMulearn, karmaPoints }) => ({
+        name,
+        email,
+        phoneNumber,
+        gitLink,
+        achievements,
+        registeredInMulearn,
+        karmaPoints
+      }))
     };
 
     formData.append('data', JSON.stringify(jsonData));
+
     console.log('📤 Sending request to Google Apps Script...');
 
     const response = await fetch(API_URL, {
       method: 'POST',
       body: formData,
+      mode: 'cors',
     });
-
-    console.log('📥 Response status:', response.status);
-    console.log('📥 Response headers:', Object.fromEntries(response.headers.entries()));
 
     if (!response.ok) {
       const errorText = await response.text();
@@ -71,26 +96,23 @@ export const submitRegistration = async (data: RegistrationData): Promise<{ succ
 
     const result = await response.json();
     console.log('✅ Response received:', result);
-    
+
     if (!result.success) {
-      console.error('❌ API Error:', result.error);
-      throw new Error(result.error || 'Unknown error occurred');
+      throw new Error(result.error || 'Unknown API error');
     }
 
-    console.log('🎉 Registration successful!');
     return result;
   } catch (error) {
-    console.error('💥 Registration submission failed:', error);
-    
-    // Provide more specific error messages
+    console.error('💥 Submission failed:', error);
+
     if (error instanceof TypeError && error.message.includes('fetch')) {
-      throw new Error('Network error: Unable to connect to Google Apps Script. Please check your internet connection and try again.');
+      throw new Error('Network error: Cannot connect to Google Apps Script.');
     }
-    
+
     if (error instanceof Error && error.message.includes('CORS')) {
-      throw new Error('CORS error: The Google Apps Script is not configured to accept requests from this domain. Please check the deployment settings.');
+      throw new Error('CORS error: Check your Google Apps Script deployment settings.');
     }
-    
+
     throw error;
   }
 };
@@ -102,6 +124,7 @@ export const testApiConnection = async (): Promise<boolean> => {
     
     const response = await fetch(API_URL, {
       method: 'GET',
+      mode: 'cors',
     });
     
     console.log('📡 Test response status:', response.status);

@@ -206,11 +206,6 @@ function Contact() {
         onSubmit={handleRegistrationSubmit}
       />
 
-      {/* API Test Component (remove in production) */}
-      {process.env.NODE_ENV === 'development' && (
-        <ApiTest />
-      )}
-
       <div className={style.contactWrapper}>
         <div className={style.contactSection}>
           {contactInfo.map((item, index) => (
