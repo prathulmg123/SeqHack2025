@@ -8,6 +8,7 @@ import Heading from 'components/Heading'
 import LiquidButton from './LiquidButton'
 import RegistrationForm from 'components/RegistrationForm'
 import ApiTest from 'components/ApiTest'
+import { motion } from 'framer-motion';
 
 // Hooks
 import { useCallback, useEffect, useRef, useState } from 'react'
@@ -30,6 +31,7 @@ import {
   FiInstagram as Instagram,
   FiYoutube as YouTube
 } from 'react-icons/fi'
+import { Encryption } from '@/components/RegisterEncrypt'
 
 function Contact() {
   const dispatch = useDispatch()
@@ -185,7 +187,7 @@ function Contact() {
       </Container>
 
       {/* Register button with liquid effect */}
-      <LiquidButton
+      {/* <LiquidButton
         text="REGISTER NOW"
         onClick={handleRegisterClick}
         width={220}
@@ -197,8 +199,47 @@ function Contact() {
         color5="#ff4d4d"
         className={style.btnLiquid}
         icon={<FaArrowRight className={style.arrowIcon} />}
-      />
-
+      /> */}
+<div style={{
+  position: 'relative',
+  width: '100%',
+  margin: '2rem 0'
+}}>
+  <div style={{
+    position: 'absolute',
+    left: '25%',
+    top: '50%',
+    transform: 'translateY(-50%)',
+    fontSize: '1.2rem',
+    lineHeight: '1.6',
+    color: '#e2e8f0',
+    maxWidth: '40%',
+    zIndex: 1,
+    margin: 0
+  }}>
+    <motion.div
+      initial={{ 
+        opacity: 0,
+        x: -50,
+        filter: 'blur(4px)'
+      }}
+      whileInView={{
+        opacity: 1,
+        x: 0,
+        filter: 'blur(0px)',
+        transition: {
+          duration: 0.9,
+          ease: [0.16, 0.77, 0.47, 0.97],
+          delay: 0.9
+        }
+      }}
+      viewport={{ once: true, margin: "-20% 0px" }}
+    >
+      Join us for an exciting hackathon!<br></br> Register now to showcase your skills,<br></br> collaborate with others, and build innovative solutions.<br></br> Don’t miss the chance to learn, create, and compete!
+    </motion.div>
+  </div>
+  <Encryption onRegisterClick={handleRegisterClick} />
+</div>
       {/* Registration Form Modal */}
       <RegistrationForm
         isOpen={isRegistrationFormOpen}
