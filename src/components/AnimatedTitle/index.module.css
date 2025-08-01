@@ -1,0 +1,30 @@
+.container {
+  display: inline-block;
+  line-height: 1;
+  white-space: nowrap;
+  perspective: 1000px;
+}
+
+.char {
+  display: inline-block;
+  position: relative;
+  will-change: transform, opacity, filter;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  color: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  -webkit-text-fill-color: inherit;
+  -webkit-background-clip: inherit;
+  background-clip: inherit;
+  background: inherit;
+  transform-origin: bottom center;
+  opacity: 1;
+}
+
+/* Ensure proper spacing between characters */
+.char:not(:last-child) {
+  margin-right: 0.05em;
+}

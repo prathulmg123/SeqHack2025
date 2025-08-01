@@ -1,0 +1,464 @@
+.root {
+  position: relative;
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  margin-bottom: 100vh;
+  color: var(--color-white);
+}
+
+.head {
+  position: fixed;
+  z-index: var(--z-burger);
+
+  @media (--md-l) {
+    display: flex;
+  }
+}
+
+.logoContainer {
+  margin-top: var(--frame-margin);
+  margin-bottom: var(--frame-margin);
+  margin-left: var(--frame-margin);
+}
+
+.middle {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: var(--frame-margin);
+
+  @media (--md-p) {
+    margin-left: var(--text-margin-left);
+  }
+}
+
+.scroll {
+  @mixin desc;
+
+  display: flex;
+  width: 130px;
+  align-items: flex-end;
+  margin-right: var(--frame-margin);
+  margin-bottom: calc(var(--frame-margin) + var(--spc-8));
+  margin-left: var(--frame-margin);
+
+  @media (--md-p) {
+    margin-left: var(--text-margin-left);
+  }
+
+  @media (--md-l) {
+    width: 170px;
+    margin-bottom: var(--frame-margin);
+  }
+
+  .scrollText {
+    display: block;
+    margin-left: var(--spc-2);
+    transition: opacity 0.5s ease-in-out 4s;
+
+    @media (--md-l) {
+      margin-left: var(--spc-4);
+    }
+  }
+
+  &.gone {
+    .scrollText {
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+    }
+  }
+}
+
+.scrollIndicator {
+  display: block;
+  width: 1px;
+  height: 100px;
+  background-color: #ccc;
+  transform-origin: 50% 0%;
+  transition: transform 0.5s ease-in-out 4s;
+
+  &::before {
+    top: 0;
+    display: block;
+    width: 1px;
+    height: 50%;
+    background-color: #333;
+    content: '';
+
+    :global {
+      animation: downWipe 2s ease-in-out infinite;
+    }
+  }
+
+  .scroll.gone & {
+    transform: scaleY(0);
+    transition: transform 0.5s ease-in-out;
+  }
+}
+
+.scramble {
+  margin-top: 40vh;
+  letter-spacing: 3px;
+  line-height: 1;
+  text-transform: uppercase;
+  transition: opacity 0.3s ease-in-out;
+  word-break: keep-all;
+  width: 260px;
+  position: absolute;
+
+  &.gone {
+    opacity: 0;
+  }
+}
+
+.footer {
+  position: fixed;
+  top: auto;
+  right: var(--frame-margin);
+  bottom: var(--frame-margin);
+  left: auto;
+}
+
+.dud {
+  color: var(--color-gray-600);
+}
+
+/* Hero Content Styles */
+.heroContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  max-width: 1200px;
+  height: 100vh;
+  margin: 0 auto;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+.heroTitleContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  overflow: visible;
+  /* margin-bottom: 1.5rem; */
+}
+
+.heroTitle {
+  font-size: 5rem;
+  font-weight: 900;
+  margin: 0 0 1.5rem;
+  line-height: 1.1;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  background: linear-gradient(90deg, #fff, #aaa, #fff);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+  animation: shine 3s linear infinite;
+}
+
+@keyframes shine {
+  to {
+    background-position: 200% center;
+  }
+}
+
+.heroDescription {
+  font-size: 1.5rem;
+  max-width: 800px;
+  margin: 1rem auto 0;
+  opacity: 0.9;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  width: 100%;
+}
+
+.timerContainer {
+  margin: 2rem 0;
+  font-size: 2.5rem;
+  font-family: 'Roboto Mono', monospace;
+  letter-spacing: 2px;
+  background: rgba(0, 0, 0, 0.1);
+  padding: 1.5rem 3rem;
+  border-radius: 15px;
+  display: inline-block;
+  backdrop-filter: blur(5px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.timerLabel {
+  font-size: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin-bottom: 0.5rem;
+  opacity: 0.8;
+  display: block;
+  color: white;
+}
+
+.timerDigits {
+  font-weight: 700;
+  font-size: 5rem;
+  background:  #bb61f6; 
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 3px;
+}
+
+.enterButtonContainer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 2rem;
+  z-index: 2;
+}
+
+.enterButtonContainer > * {
+  margin: 0 auto;
+}
+
+/* Responsive adjustments */
+@media (min-width: 1000px) {
+  .heroContent {
+    min-height: 100vh;
+  }
+  .heroImage{
+    width: 70%;
+  }
+.timerDigits {
+  font-size: 4rem;
+}
+.specialCardDescription{
+  font-size: 0.8rem !important;
+}
+.specialCardContainer{
+  position: absolute;
+  bottom: 20%;
+}
+.scramble {
+  margin-top: 200px;
+}
+}
+@media (max-width: 768px) {
+  .heroContent {
+    padding: 1rem;
+  }
+  
+  .enterButtonContainer {
+    margin-top: 1.5rem;
+  }
+  
+  .timerContainer {
+    margin: 1.5rem 0;
+  }
+  
+  .heroTitle {
+    font-size: 2.5rem;
+    letter-spacing: 0.1em;
+  }
+  
+  .heroDescription {
+    font-size: 1.1rem;
+    padding: 0 1rem;
+  }
+  
+  .timerContainer {
+    font-size: 1.8rem;
+    padding: 1rem 1.5rem;
+  }
+  
+  .timerLabel {
+    font-size: 0.8rem;
+  }
+
+  .timerDigits {
+    font-size: 2rem;
+  }
+
+  .head{
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  .logoContainer{
+    margin : 0;
+  }
+
+  .middle{
+    display: none;
+  }
+
+
+
+}
+
+/* Loading Screen Styles */
+.loadingScreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-black);
+  z-index: 1000;
+  color: var(--color-white);
+}
+
+.loadingTitle {
+  font-size: 5rem;
+  margin-bottom: 2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  text-align: center;
+  padding: 0 1rem;
+}
+
+.loadingBarContainer {
+  width: 400px;
+  height: 6px;
+  background-color: var(--color-gray-700);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.loadingBar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, purple,  rgb(35, 43, 78));
+  border-radius: inherit;
+  transition: width 0.3s ease;
+}
+
+.loadingPercentage {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  opacity: 0.7;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.contentWrapper {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.contentWrapper.visible {
+  opacity: 1;
+}
+.heroDescription {
+  max-width: 700px;
+  margin: 1.5rem auto 2rem;
+  min-height: 4.8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.heroImage {
+  max-width: 100%;
+  height: auto;
+  max-height: 100%; /* Adjust based on your needs */
+  object-fit: contain;
+  animation: fadeIn 1s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from { 
+    opacity: 0; 
+    transform: translateY(20px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+.labelContainer{
+  display: flex;
+  width: 100%;
+  padding-bottom: var(--spc-1);
+  border: 0;
+  background-color: transparent;
+  color: var(--color-white);
+  cursor: none;
+  place-content: flex-end;
+  place-items: center;
+  text-align: right;
+  transition: color 0.3s 0.5s;
+
+  .dark & {
+    color: var(--color-black);
+  }
+
+  &.active {
+    .marker {
+      width: var(--spc-4);
+      margin-left: var(--spc-1);
+    }
+  }
+
+  &:hover:not(.active) {
+    .marker {
+      width: var(--spc-1);
+      margin-left: var(--spc-1);
+    }
+  }
+}
+.label {
+  display: inline-block;
+  overflow: hidden;
+
+  span {
+    display: inline-block;
+    transition: transform 0.5s var(--power3-ease-out);
+
+    .hidden & {
+      transform: translate3d(15px, 0, 0);
+      transition: transform 0.5s var(--power3-ease-out) 0s;
+    }
+  }
+}
+.specialCardDescription {
+  line-height: 1.6;
+  margin: 1rem 0;
+  color: #ffffff; /* or any color that matches your design */
+  font-size: 1.4rem;
+  text-align: justify;
+  padding: 50px;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.fadeIn {
+  opacity: 0;
+  animation: fadeIn 0.5s ease-in-out forwards;
+  animation-delay: 4s; /* 1 second delay before starting the fade in */
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.specialCardContainer {
+  transition: all 0.5s ease-in-out;
+  will-change: transform, opacity;
+  margin: 0 !important;
+  width: 100% !important;
+  display: flex;
+}
