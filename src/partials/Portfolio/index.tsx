@@ -131,7 +131,7 @@ function Portfolio() {
         </Row>
       </Container>
       <Container grid key={portfolio[1]}>
-        <Row start={2} end={4}>
+        <Row start={3} end={4}>
           <ContentBlock className={style.contentBlock}>
             <div className={style.specialCardDescription}>
               <Trans i18nKey="portfolio.portfolio.1" />

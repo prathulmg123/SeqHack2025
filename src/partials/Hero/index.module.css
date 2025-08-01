@@ -230,6 +230,27 @@
 }
 
 /* Responsive adjustments */
+@media (min-width: 1000px) {
+  .heroContent {
+    min-height: 100vh;
+  }
+  .heroImage{
+    width: 70%;
+  }
+.timerDigits {
+  font-size: 4rem;
+}
+.specialCardDescription{
+  font-size: 0.8rem !important;
+}
+.specialCardContainer{
+  position: absolute;
+  bottom: 20%;
+}
+.scramble {
+  margin-top: 200px;
+}
+}
 @media (max-width: 768px) {
   .heroContent {
     padding: 1rem;

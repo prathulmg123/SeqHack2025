@@ -11,6 +11,29 @@ body {
   font-weight: var(--fw-light);
   -webkit-text-rendering: optimizespeed;
   text-rendering: optimizespeed;
+      max-width: 100vw;
+    overflow-x: hidden;
+}
+/* Whole scrollbar */
+::-webkit-scrollbar {
+  width: 5px; /* or height for horizontal scrollbar */
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: linear-gradient(180deg, rgba(0,0,255,0.81961), purple, rgba(0, 0, 255, 0.81961));
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: white;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 
 code {
