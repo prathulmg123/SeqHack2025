@@ -215,7 +215,8 @@ function Contact() {
     color: '#e2e8f0',
     maxWidth: '40%',
     zIndex: 1,
-    margin: 0
+    margin: 0,
+    pointerEvents: 'auto' // Ensure the text is clickable
   }}>
     <motion.div
       initial={{ 
@@ -238,7 +239,9 @@ function Contact() {
       Join us for an exciting hackathon!<br></br> Register now to showcase your skills,<br></br> collaborate with others, and build innovative solutions.<br></br> Don’t miss the chance to learn, create, and compete!
     </motion.div>
   </div>
-  <Encryption onRegisterClick={handleRegisterClick} />
+  <div style={{ position: 'relative', zIndex: 2 }}>
+    <Encryption onRegisterClick={handleRegisterClick} />
+  </div>
 </div>
       {/* Registration Form Modal */}
       <RegistrationForm

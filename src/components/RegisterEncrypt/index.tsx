@@ -68,32 +68,49 @@ export const Encryption = ({ onRegisterClick }: EncryptionProps) => {
           />
         </div>
 
-        <motion.button 
-          className={styles.registerButton}
-          onClick={onRegisterClick}
-          whileHover={{ 
-            scale: 1.05, 
-            boxShadow: '0 0 15px rgba(168, 85, 247, 0.5)',
-            transition: { duration: 0.2 }
+        <motion.div 
+          style={{ 
+            position: 'relative',
+            zIndex: 10, // Higher z-index to ensure it's above other elements
+            cursor: 'pointer',
+            pointerEvents: 'auto' // Ensure it can receive click events
           }}
-          whileTap={{ 
-            scale: 0.95,
-            transition: { duration: 0.1 }
-          }}
-          initial={{ y: 20, opacity: 0 }}
-          whileInView={{ 
-            y: 0, 
-            opacity: 1,
-            transition: {
-              delay: 1.2,
-              duration: 0.8,
-              ease: [0.16, 0.77, 0.47, 0.97]
-            }
-          }}
-          viewport={{ once: false, margin: "0px 0px -10% 0px" }}
         >
-          Register Now
-        </motion.button>
+          <motion.button 
+            className={styles.registerButton}
+            onClick={(e) => {
+              e.stopPropagation(); // Prevent event bubbling
+              onRegisterClick();
+            }}
+            whileHover={{ 
+              scale: 1.05, 
+              boxShadow: '0 0 15px rgba(168, 85, 247, 0.5)',
+              transition: { duration: 0.2 }
+            }}
+            whileTap={{ 
+              scale: 0.95,
+              transition: { duration: 0.1 }
+            }}
+            initial={{ y: 20, opacity: 0 }}
+            whileInView={{ 
+              y: 0, 
+              opacity: 1,
+              transition: {
+                delay: 1.2,
+                duration: 0.8,
+                ease: [0.16, 0.77, 0.47, 0.97]
+              }
+            }}
+            viewport={{ once: false, margin: "0px 0px -10% 0px" }}
+            style={{
+              position: 'relative',
+              zIndex: 10,
+              pointerEvents: 'auto'
+            }}
+          >
+            Register Now
+          </motion.button>
+        </motion.div>
       </motion.div>
       
       <motion.div 
