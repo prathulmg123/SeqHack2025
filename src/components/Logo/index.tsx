@@ -12,6 +12,7 @@ import cn from 'classnames'
 import { useState, useCallback, useRef, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
 function Logo() {
   const location = useLocation()
@@ -19,7 +20,7 @@ function Logo() {
   const [closingModal, setClosingModal] = useState(false)
   const currentPathname = useRef<string>(location.pathname)
   const app = useSelector((state: RootState) => state.app)
-
+  const dispatch = useDispatch()
   const endAnimationHandler = useCallback((e: AnimationEvent) => {
     if (e.animationName === style['to-white']) {
       setClosingModal(false)
@@ -53,8 +54,16 @@ function Logo() {
     [style.toBlack]: app.ready && location.pathname !== '/'
   })
 
+  const overHandler = useCallback(() => {
+    dispatch.pointer.setType('hidden')
+  }, [dispatch.pointer])
+  
+  const outHandler = useCallback(() => {
+    dispatch.pointer.setType('default')
+  }, [dispatch.pointer])
+
   return (
-    <div className={classes} onClick={handleLogoClick} style={{ cursor: 'pointer' }}>
+    <div className={classes} onClick={handleLogoClick} onMouseEnter={overHandler} onMouseLeave={outHandler} style={{ cursor: 'pointer' }}>
       <div className={style.logoContainer}>
         <img 
           src="/public/images/10thLogo.png" 

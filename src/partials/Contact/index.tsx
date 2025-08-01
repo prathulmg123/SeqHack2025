@@ -101,13 +101,14 @@ function Contact() {
     };
   }, [inView]); // Add inView as a dependency
   
-  const overHandler = useCallback(() => {
-    dispatch.pointer.setType('hover')
-  }, [dispatch])
-
   const outHandler = useCallback(() => {
     dispatch.pointer.setType('default')
-  }, [dispatch])
+  }, [dispatch.pointer])
+
+ const overHandler = useCallback(() => {
+    dispatch.pointer.setType('hidden')
+  }, [dispatch.pointer])
+
 
   const handleRegistrationSubmit = async (formData: any) => {
     try {
@@ -200,6 +201,10 @@ function Contact() {
         className={style.btnLiquid}
         icon={<FaArrowRight className={style.arrowIcon} />}
       /> */}
+      <Container>
+        <ContentBlock className={style.contentBlock}>
+
+       
 <div style={{
   position: 'relative',
   width: '100%',
@@ -243,6 +248,8 @@ function Contact() {
     <Encryption onRegisterClick={handleRegisterClick} />
   </div>
 </div>
+</ContentBlock>
+</Container>
       {/* Registration Form Modal */}
       <RegistrationForm
         isOpen={isRegistrationFormOpen}
@@ -255,10 +262,10 @@ function Contact() {
           {contactInfo.map((item, index) => (
             <a
               key={`contact-${index}`}
-              href={item.href}
+              // href={item.href}
               className={style.contactItem}
-              onMouseEnter={overHandler}
-              onMouseLeave={outHandler}
+              // onMouseEnter={overHandler}
+              // onMouseLeave={outHandler}
               target="_blank"
               rel="noopener noreferrer"
               aria-label={item.ariaLabel}
@@ -271,7 +278,7 @@ function Contact() {
           ))}
         </div>
 
-        <div className={style.socialSection}>
+        <div className={style.socialSection} onMouseLeave={outHandler} onMouseEnter={overHandler}>
           {socialMedia.map((item, index) => (
             <a
               key={`social-${index}`}

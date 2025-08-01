@@ -62,7 +62,7 @@ const LangSwitch = () => {
     <motion.div 
       className={classes}
       initial={{ opacity: 0 }}
-      animate={{ opacity: !app.ready ? 1 : 0 }}
+      animate={{ opacity: !app.ready ? 1 : 1 }}
       transition={{ 
         duration: 0.9,
         delay: 1  // Adds a 2-second delay before animation starts

@@ -243,7 +243,7 @@ ctx.stroke();
           const img = new Image();
           img.src = createCardImage(
             'Evaluation Criteria', 
-            'Projects will be evaluated based on:\n• Code Quality (30%)\n• Innovation (25%)\n• Presentation (25%)\n• Impact (20%)', 
+            'Projects will be evaluated based on:\n• Approach & Structure	(20%)\n• Functionality (20%)\n• Code Quality (15%)\n• Problem Understanding (15%)\n• Testing & Coverage (15%)\n• Documentation (15%)', 
             '📊'
           );
           return img;
@@ -257,7 +257,7 @@ ctx.stroke();
           const img = new Image();
           img.src = createCardImage(
             'Frequently Asked Questions', 
-            '• How many members per team? (Max 4)\n• What technologies can we use? (Any)\n• Is there a registration fee? (No)\n• When is the deadline? (Check timeline)', 
+            '• How many members per team? (Max 4)\n• What technologies can we use? (Any)\n• Is there a registration fee? (Yes)\n• When is the deadline? (Check timeline)', 
             '❓'
           );
           return img;

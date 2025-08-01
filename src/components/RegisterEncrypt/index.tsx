@@ -3,12 +3,23 @@
 import { motion } from "framer-motion";
 import styles from "./index.module.css";
 import { slideInFromTop } from "@/lib/motion";
+import { useDispatch } from "react-redux";
+import { useCallback } from "react";
 
 interface EncryptionProps {
   onRegisterClick: () => void;
 }
 
 export const Encryption = ({ onRegisterClick }: EncryptionProps) => {
+ const dispatch = useDispatch()
+
+  const outHandler = useCallback(() => {
+    dispatch.pointer.setType('default')
+  }, [dispatch.pointer])
+
+ const overHandler = useCallback(() => {
+  dispatch.pointer.setType('hidden')
+  }, [dispatch.pointer])
   return (
     <motion.div 
       className={styles.container}
@@ -38,7 +49,8 @@ export const Encryption = ({ onRegisterClick }: EncryptionProps) => {
         }}
         viewport={{ once: false, margin: "0px 0px -20% 0px" }}
       >
-        <div className={styles.lockGroup}>
+        <div className={styles.lockGroup}  onMouseLeave={outHandler}
+            onMouseEnter={overHandler}>
           {/* <motion.div
             initial={{ y: -10 }}
             animate={{ y: 0 }}
@@ -78,6 +90,8 @@ export const Encryption = ({ onRegisterClick }: EncryptionProps) => {
         >
           <motion.button 
             className={styles.registerButton}
+            onMouseLeave={outHandler}
+            onMouseEnter={overHandler}
             onClick={(e) => {
               e.stopPropagation(); // Prevent event bubbling
               onRegisterClick();

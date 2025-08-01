@@ -139,6 +139,7 @@ function About() {
         </Row>
       </Container>
       <Container>
+      <ContentBlock>
         <Row start={1} end={3}>
           <div className={style.modernTimeline}>
             {roadmapItems.map((item, index) => (
@@ -158,6 +159,7 @@ function About() {
             ))}
           </div>
         </Row>
+        </ContentBlock>
       </Container>
       <Container grid outerRightOnMobile>
         <Row start={1} end={3}>
@@ -173,6 +175,7 @@ function About() {
         </Row>
       </Container>
       <Container className="timeline-container-outer">
+        <ContentBlock>
         <Row start={1} end={3}>
           <div className={style.timelineContainer}>
             {[
@@ -296,6 +299,7 @@ function About() {
             ))}
           </div>
         </Row>
+        </ContentBlock>
       </Container>
     </Section>
   )

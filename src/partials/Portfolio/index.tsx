@@ -142,7 +142,7 @@ function Portfolio() {
       </Container>
 
       <Container className={style.specialContainer}>
-
+              <ContentBlock>
         <div>
       <div className={style.specialCards}>
               {/* Final Challenge Card */}
@@ -194,6 +194,7 @@ function Portfolio() {
               </div>
             </div>
             </div>
+            </ContentBlock>
       </Container>
 
       <div className={style.cardContainer} id="card-container" />
