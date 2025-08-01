@@ -205,20 +205,24 @@ function Contact() {
         <ContentBlock className={style.contentBlock}>
 
        
-<div style={{
+<div className='contact-div' style={{
   position: 'relative',
   width: '100%',
-  margin: '2rem 0'
+  margin: '2rem 0',
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center'
 }}>
-  <div style={{
-    position: 'absolute',
-    left: '25%',
-    top: '50%',
-    transform: 'translateY(-50%)',
-    fontSize: '1.2rem',
+  <div className='contact-text' style={{
+    // position: 'absolute',
+    // left: '25%',
+    // top: '50%',
+    // transform: 'translateY(-50%)',
+    fontSize: '0.8rem',
     lineHeight: '1.6',
     color: '#e2e8f0',
     maxWidth: '40%',
+    textAlign: 'justify',
     zIndex: 1,
     margin: 0,
     pointerEvents: 'auto' // Ensure the text is clickable
@@ -244,7 +248,7 @@ function Contact() {
       Join us for an exciting hackathon!<br></br> Register now to showcase your skills,<br></br> collaborate with others, and build innovative solutions.<br></br> Don’t miss the chance to learn, create, and compete!
     </motion.div>
   </div>
-  <div style={{ position: 'relative', zIndex: 2 }}>
+  <div style={{ position: 'relative', zIndex: 2, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
     <Encryption onRegisterClick={handleRegisterClick} />
   </div>
 </div>

@@ -252,6 +252,13 @@
 }
 }
 @media (max-width: 768px) {
+  .loadingTitle {
+    font-size: 2rem !important;
+  }
+  .specialCardDescription{
+  font-size: 0.8rem !important;
+  margin-top: 150px !important;
+}
   .heroContent {
     padding: 1rem;
   }
