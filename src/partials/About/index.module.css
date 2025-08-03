@@ -133,6 +133,16 @@
     margin: 0;
     width: 100%;;
   }
+  .customHeading > span{
+  font-size: 2rem !important;
+}
+.title {
+  font-size: 1rem !important;
+}
+.description {
+  font-size: 1rem !important;
+}
+
 }
 
 
@@ -683,7 +693,7 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: anchor-center;
+  align-items: center;
   gap: 3rem;
 }
 
@@ -817,6 +827,10 @@
 
 /* Responsive Design */
 @media (max-width: 768px) {
+  .root > div{
+    overflow: visible !important;
+    margin: auto !important;
+  }
   .timelineContainer {
     padding: 2rem 1rem;
   }
