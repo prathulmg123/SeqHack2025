@@ -116,7 +116,7 @@ function Contact() {
       const result = await submitRegistration(formData);
       
       // Show success message
-      showSuccess(result.message || 'Registration submitted successfully! Data has been saved to Google Drive.');
+      // showSuccess(result.message || 'Registration submitted successfully! Data has been saved to Google Drive.');
       
       // Close the registration form
       setIsRegistrationFormOpen(false);

@@ -250,18 +250,37 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({ isOpen, onClose, on
                 {errors.collegeName && <span className={style.errorText}>{errors.collegeName}</span>}
               </div>
 
-              <div className={style.inputGroup}>
+              <div className={`${style.inputGroup} ${style.customSelectWrapper}`}>
                 <label htmlFor="teamSize">Team Size *</label>
-                <select
-                  id="teamSize"
-                  value={formData.teamSize}
-                  onChange={(e) => handleTeamSizeChange(Number(e.target.value))}
-                  className={errors.teamSize ? style.error : ''}
-                >
-                  <option value={2}>2 Participants</option>
-                  <option value={3}>3 Participants</option>
-                  <option value={4}>4 Participants</option>
-                </select>
+                <div className={style.customSelectContainer}>
+                  <select
+                    id="teamSize"
+                    value={formData.teamSize}
+                    onChange={(e) => handleTeamSizeChange(Number(e.target.value))}
+                    className={`${style.customSelect} ${errors.teamSize ? style.error : ''}`}
+                  >
+                    <option value={2}>2 Participants</option>
+                    <option value={3}>3 Participants</option>
+                    <option value={4}>4 Participants</option>
+                  </select>
+                  <span className={style.selectArrow}>
+                    <svg
+                      width="12"
+                      height="8"
+                      viewBox="0 0 12 8"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M1 1.5L6 6.5L11 1.5"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </span>
+                </div>
                 {errors.teamSize && <span className={style.errorText}>{errors.teamSize}</span>}
               </div>
             </div>
@@ -374,15 +393,21 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({ isOpen, onClose, on
                   </div>
                 </div>
 
-                <div className={style.inputGroup}>
-                  <label className={style.checkboxLabel}>
+                <div className={`${style.inputGroup} ${style.toggleContainer}`}>
+                  <label className={style.toggleLabel}>
                     <input
                       type="checkbox"
                       checked={formData.participants[index]?.registeredInMulearn || false}
                       onChange={(e) => handleParticipantChange(index, 'registeredInMulearn', e.target.checked)}
+                      className={style.toggleInput}
                     />
-                    <FaCheckCircle className={style.checkboxIcon} />
-                    Registered in Mulearn
+                    <span className={style.toggleSwitch}>
+                      <span className={style.toggleKnob} />
+                    </span>
+                    <span className={style.toggleText}>
+                      <FaCheckCircle className={style.toggleIcon} />
+                      <span>Registered in Mulearn</span>
+                    </span>
                   </label>
                 </div>
 
