@@ -457,4 +457,211 @@
       font-size: 14px;
       left: 12px;
     }
-  } 
+  }
+
+  /* Custom Select Styles */
+  .customSelectWrapper {
+    position: relative;
+    margin-bottom: 1.5rem;
+  }
+
+  .customSelectContainer {
+    position: relative;
+    margin-top: 0.5rem;
+  }
+
+  .customSelect {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    padding-right: 3rem;
+    font-size: 1rem;
+    color: #e2e8f0;
+    background: rgba(45, 55, 72, 0.4);
+    border: 1px solid rgba(74, 85, 104, 0.5);
+    border-radius: 10px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    outline: none;
+  }
+
+  .customSelect:hover {
+    border-color: #805ad5;
+    box-shadow: 0 0 0 1px #805ad5;
+  }
+
+  .customSelect:focus {
+    border-color: #805ad5;
+    box-shadow: 0 0 0 2px rgba(128, 90, 213, 0.3);
+  }
+
+  .customSelect.error {
+    border-color: #e53e3e;
+    box-shadow: 0 0 0 1px #e53e3e;
+  }
+
+  .selectArrow {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: #a0aec0;
+    transition: transform 0.2s ease, color 0.2s ease;
+  }
+
+  .customSelect:focus + .selectArrow,
+  .customSelect:hover + .selectArrow {
+    color: #d6bcfa;
+  }
+
+  /* Custom dropdown arrow animation */
+  .customSelect:focus + .selectArrow {
+    transform: translateY(-50%) rotate(180deg);
+  }
+
+  /* Custom scrollbar for the dropdown */
+  .customSelect::-ms-expand {
+    display: none;
+  }
+
+  /* Style the dropdown options */
+  .customSelect option {
+    background: #2d3748;
+    color: #e2e8f0;
+    padding: 0.5rem 1rem;
+    border: none;
+  }
+
+  .customSelect option:hover,
+  .customSelect option:focus,
+  .customSelect option:checked {
+    background: #4a5568;
+    color: #fff;
+  }
+
+  /* Animation for the select */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .customSelect {
+    animation: fadeIn 0.2s ease-out;
+  }
+
+  /* Toggle Switch Styles */
+  .toggleContainer {
+    margin: 1.5rem 0;
+    padding: 0.5rem 0;
+  }
+
+  .toggleLabel {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.2s ease;
+    padding: 0.5rem;
+    border-radius: 8px;
+    margin: -0.5rem;
+  }
+
+  .toggleLabel:hover {
+    background: rgba(102, 14, 165, 0.1);
+  }
+
+  .toggleInput {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .toggleSwitch {
+    position: relative;
+    display: inline-block;
+    width: 48px;
+    height: 24px;
+    background: rgba(74, 85, 104, 0.5);
+    border-radius: 34px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    flex-shrink: 0;
+    border: 2px solid transparent;
+  }
+
+  .toggleKnob {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 2px;
+    bottom: 0;
+    top: 0;
+    margin: auto 0;
+    background-color: white;
+    border-radius: 50%;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  .toggleInput:checked + .toggleSwitch {
+    background: #805ad5;
+    border-color: rgba(128, 90, 213, 0.5);
+  }
+
+  .toggleInput:checked + .toggleSwitch .toggleKnob {
+    transform: translateX(24px);
+    background: #ffffff;
+  }
+
+  .toggleInput:focus + .toggleSwitch {
+    box-shadow: 0 0 0 3px rgba(128, 90, 213, 0.3);
+  }
+
+  .toggleText {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #e2e8f0;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: color 0.2s ease;
+  }
+
+  .toggleIcon {
+    color: #805ad5;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    opacity: 0.9;
+  }
+
+  .toggleInput:checked ~ .toggleText .toggleIcon {
+    color: #9f7aea;
+    transform: scale(1.1);
+  }
+
+  /* Hover effect for the entire toggle */
+  .toggleLabel:hover .toggleSwitch {
+    background: rgba(128, 90, 213, 0.3);
+  }
+
+  .toggleInput:checked + .toggleSwitch {
+    background: #805ad5;
+  }
+
+  /* Focus styles for accessibility */
+  .toggleInput:focus-visible + .toggleSwitch {
+    outline: 2px solid #805ad5;
+    outline-offset: 2px;
+  }
+
+  /* Disabled state */
+  .toggleInput:disabled + .toggleSwitch {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
