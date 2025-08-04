@@ -62,7 +62,7 @@ function Portfolio() {
       icon: <img src="public/images/mobile.png" width={"80%"} />,
       title: "Registration",
       date: "Aug 15",
-      description: "Register and receive participant details by email."
+      description: "Register and receive participant details by email.,Register and receive participant details by email."
     },
     {
       icon: <img src="public/images/problem-solving.png" width={"80%"} />,
@@ -123,7 +123,7 @@ function Portfolio() {
                   description={item.description}
                   index={index}
                 />
-              ))}
+         ))}
             </div>
           </ContentBlock>
         </Row>

@@ -24,22 +24,22 @@ function About() {
 
   const rewards = [
     {
-      icon: <FaMoneyBillWave />,
+      icon: <FaMoneyBillWave className={style.neonBlueIcon} />,
       title: 'HUGE PRIZE POOL',
       description: 'Amazing cash prizes await those who seek innovation!',
     },
     {
-      icon: <FaGift />,
+      icon: <FaGift className={style.neonBlueIcon} />,
       title: 'GOODIES?',
       description: 'Stickers, T-Shirts, and more fascinating prizes!',
     },
     {
-      icon: <FaRocket />,
+      icon: <FaRocket className={style.neonBlueIcon} />,
       title: 'RESUME BOOST!',
       description: 'Boost your resume with a new project! Better if you win!',
     },
     {
-      icon: <FaCode />,
+      icon: <FaCode className={style.neonBlueIcon} />,
       title: 'CODE & CHILL',
       description: 'Write code, chill with the others and have fun!',
     },
