@@ -59,25 +59,64 @@ function Portfolio() {
 
   const timelineData = [
     {
-      icon: <img src="public/images/mobile.png" width={"80%"} />,
+      icon: <img
+      src="/images/mobile-min.png"                 // your original
+      loading="lazy"
+      decoding="async"
+      alt="Mobile preview"
+      style={{ display: 'block', width: '80%', height: 'auto' }} // replace width={"80%"}
+      width={800}      // approximate intrinsic size to reserve layout (adjust if needed)
+      height={450}     // keep aspect ratio, adjust to match real image
+      // fetchpriority="low"
+    />,
       title: "Registration",
       date: "Aug 15",
       description: "Register and receive participant details by email.,Register and receive participant details by email."
     },
+    
     {
-      icon: <img src="public/images/problem-solving.png" width={"80%"} />,
+      icon: <img
+      src="/images/problem-solving-min.png"                 // your original
+      loading="lazy"
+      decoding="async"
+      alt="Mobile preview"
+      style={{ display: 'block', width: '80%', height: 'auto' }} // replace width={"80%"}
+      width={800}      // approximate intrinsic size to reserve layout (adjust if needed)
+      height={450}     // keep aspect ratio, adjust to match real image
+      
+    />,
       title: "Problem Statement Release",
       date: "Aug 18",
       description: "Problem statements sent to all registered teams."
     },
+
     {
-      icon: <img src="public/images/checklist.png" width={"80%"} />,
+      icon: <img
+    src="/images/checklist-min.png"                 // your original
+    loading="lazy"
+    decoding="async"
+    alt="Mobile preview"
+    style={{ display: 'block', width: '80%', height: 'auto' }} // replace width={"80%"}
+    width={800}      // approximate intrinsic size to reserve layout (adjust if needed)
+    height={450}     // keep aspect ratio, adjust to match real image
+    // fetchpriority="low"
+  />,
       title: "Solution Submission",
       date: "Aug 21",
       description: "Teams submit solutions via GitHub."
     },
+
     {
-      icon: <img src="public/images/marketplace.png" width={"80%"} />,
+      icon:<img
+    src="/images/marketplace-min.png"                 // your original
+    loading="lazy"
+    decoding="async"
+    alt="Mobile preview"
+    style={{ display: 'block', width: '80%', height: 'auto' }} // replace width={"80%"}
+    width={800}      // approximate intrinsic size to reserve layout (adjust if needed)
+    height={450}     // keep aspect ratio, adjust to match real image
+    // fetchpriority="low"
+  />,
       title: "Shortlisting and Payment",
       date: "Aug 26",
       description: "Top 10 teams are shortlisted and informed to submit payment details."
