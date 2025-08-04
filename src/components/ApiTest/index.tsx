@@ -58,7 +58,7 @@ const ApiTest: React.FC = () => {
           }
         ],
         githubRepository: 'https://github.com/testuser/testrepo'
-      };
+      }as any;
 
       const result = await submitRegistration(testData);
       setTestResult(`✅ Registration test successful! ${result.message}\n\nCheck browser console for detailed logs.`);

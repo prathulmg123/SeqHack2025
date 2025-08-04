@@ -19,7 +19,7 @@
 .logoContainer {
   margin-top: var(--frame-margin);
   margin-bottom: var(--frame-margin);
-  margin-left: var(--frame-margin);
+ /* margin-left: var(--frame-margin);  */
 }
 
 .middle {
@@ -446,7 +446,7 @@
   line-height: 1.6;
   margin: 1rem 0;
   color: #ffffff; /* or any color that matches your design */
-  font-size: 1.4rem;
+  font-size: 1rem !important;
   text-align: justify;
   padding: 50px;
   background: rgba(255, 255, 255, 0.03);

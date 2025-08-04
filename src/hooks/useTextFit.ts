@@ -21,7 +21,7 @@ function useTextFit(refs: Props) {
       | HTMLDivElement
       | HTMLDivElement[]
 
-    textFit(elements, { widthOnly: true, detectMultiLine: false, maxFontSize: 400 })
+    textFit(elements, { widthOnly: true, detectMultiLine: false, maxFontSize: 100 })
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [app.ready, sizes.width])

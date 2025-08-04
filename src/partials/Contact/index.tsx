@@ -142,16 +142,10 @@ function Contact() {
     },
     {
       icon: <Phone />,
-      text: '+91-XXXXXXXXXX',
-      href: 'tel:+91XXXXXXXXXX',
+      text: '+91-6238777284',
+      href: 'tel:+916238777284',
       ariaLabel: 'Phone number 1'
     },
-    {
-      icon: <Phone />,
-      text: '+91-XXXXXXXXXX',
-      href: 'tel:+91XXXXXXXXXX',
-      ariaLabel: 'Phone number 2'
-    }
   ];
 
   const socialMedia = [
@@ -218,7 +212,7 @@ function Contact() {
     // left: '25%',
     // top: '50%',
     // transform: 'translateY(-50%)',
-    fontSize: '0.8rem',
+    fontSize: '1rem',
     lineHeight: '1.6',
     color: '#e2e8f0',
     maxWidth: '40%',

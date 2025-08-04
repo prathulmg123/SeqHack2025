@@ -3,7 +3,8 @@ import { useTranslation } from 'react-i18next';
 import { FaTimes, FaUpload, FaUser, FaEnvelope, FaPhone, FaBuilding, FaImage, FaGithub, FaTrophy, FaCheckCircle, FaFileAlt } from 'react-icons/fa';
 import style from './index.module.css';
 import { useToast } from '../ToastManager';
-
+import { useDispatch } from 'react-redux';
+import { useCallback } from 'react';
 interface Participant {
   name: string;
   email: string;
@@ -44,6 +45,7 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({ isOpen, onClose, on
   const [isSubmitting, setIsSubmitting] = useState(false);
   const fileInputRefs = useRef<(HTMLInputElement | null)[]>([]);
   const { showError, showSuccess } = useToast();
+  const dispatch = useDispatch()
 
   const validateForm = (): boolean => {
     const newErrors: Partial<FormData> & { participants?: (string | undefined)[] } = {};
@@ -175,6 +177,13 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({ isOpen, onClose, on
       setErrors(prev => ({ ...prev, teamSize: undefined }));
     }
   };
+  const overHandler = useCallback(() => {
+    dispatch.pointer.setType('hidden')
+  }, [dispatch.pointer])
+  
+  const outHandler = useCallback(() => {
+    dispatch.pointer.setType('default')
+  }, [dispatch.pointer])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -211,16 +220,16 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({ isOpen, onClose, on
 
   return (
     <div className={style.overlay}>
-      <div className={style.modal}>
+      <div className={style.modal}  >
         <div className={style.header}>
           <h2>Hackathon Registration</h2>
-          <button className={style.closeButton} onClick={onClose}>
+          <button className={style.closeButton} onClick={onClose} onMouseEnter={overHandler} onMouseLeave={outHandler}>
             <FaTimes />
           </button>
         </div>
 
         <form onSubmit={handleSubmit} className={style.form}>
-          <div className={style.formGrid}>
+          <div className={style.formGrid} onMouseEnter={overHandler} onMouseLeave={outHandler}>
             {/* College Information */}
             <div className={style.section}>
               <h3>College Information</h3>
@@ -417,10 +426,10 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({ isOpen, onClose, on
           </div>
 
           <div className={style.formActions}>
-            <button type="button" onClick={onClose} className={style.cancelButton}>
+            <button type="button" onClick={onClose}onMouseEnter={overHandler} onMouseLeave={outHandler} className={style.cancelButton}>
               Cancel
             </button>
-            <button type="submit" disabled={isSubmitting} className={style.submitButton}>
+            <button type="submit" disabled={isSubmitting}onMouseEnter={overHandler} onMouseLeave={outHandler} className={style.submitButton}>
               {isSubmitting ? 'Submitting...' : 'Register Team'}
             </button>
           </div>

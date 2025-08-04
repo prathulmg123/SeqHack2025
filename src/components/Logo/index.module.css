@@ -15,11 +15,11 @@
 }
 
 .logoImage {
-  max-width: 70%;
+  max-width: 45%;
   height: auto;
   object-fit: contain;
   transition: opacity 1s var(--expo-ease-in-out);
-  max-height: 230px;
+  max-height: 233px;
 }
 
 .root.hidden .logoImage {

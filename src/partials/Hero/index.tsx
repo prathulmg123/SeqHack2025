@@ -165,7 +165,11 @@ export default function Hero() {
             <div className={style.menuContainer}>
               <Menu />
             </div>
+            {
+              app.ready && (
             <LangSwitch />
+            )
+            }
           </header>
 
           <Section name="hero" className={style.root}>

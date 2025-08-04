@@ -67,7 +67,7 @@ function Portfolio() {
     {
       icon: <img src="public/images/problem-solving.png" width={"80%"} />,
       title: "Problem Statement Release",
-      date: "Aug 20",
+      date: "Aug 18",
       description: "Problem statements sent to all registered teams."
     },
     {
@@ -79,7 +79,7 @@ function Portfolio() {
     {
       icon: <img src="public/images/marketplace.png" width={"80%"} />,
       title: "Shortlisting and Payment",
-      date: "Aug 25",
+      date: "Aug 26",
       description: "Top 10 teams are shortlisted and informed to submit payment details."
     },
   
@@ -88,19 +88,28 @@ function Portfolio() {
   return (
     <Section name="portfolio" className={style.root}>
       <Container grid outerRightOnMobile >
-  <Row start={1} end={2}>
-    <div className={style.headingContainer}>
+  <Row start={2} end={2}>
+    {/* <div className={style.headingContainer}> */}
       <Heading 
         misaligned 
         key={intro[0]} 
         className={`${style.font} ${style.portfolioHeading} ${style.customHeading}`}
       >
-        <span className={style.glowText}>ONLINE PROCESS</span>
+        <span className={style.glowText}>Level 1 : Ignition Stage</span>
       </Heading>
       <div className={style.headingLine}></div>
-    </div>
+    {/* </div> */}
   </Row>
 </Container>
+<Container grid key={portfolio[2]}>
+        <Row start={3} end={4}>
+          <ContentBlock className={style.contentBlock}>
+            <div className={style.specialCardDescription}>
+              <Trans i18nKey="portfolio.portfolio.2" />
+            </div>
+          </ContentBlock>
+        </Row>
+      </Container>
       <div key={intro[2]} className='outline-process'>
         <Row start={1} end={4}>
           <ContentBlock>
@@ -126,7 +135,7 @@ function Portfolio() {
         key={intro[0]} 
         className={`${style.font} ${style.portfolioHeading} ${style.customHeading}`}
       >
-        <span className={style.glowText}>OFFLINE PROCESS</span>
+        <span className={style.glowText}>Level 2 : Mission Core</span>
       </Heading>
         </Row>
       </Container>
@@ -153,7 +162,7 @@ function Portfolio() {
                 <h3 className={style.specialCardTitle}>Final Challenge</h3>
                 <div className={style.specialCardDate}>
                   <FaCalendarDay />
-                  <span>Sept 18 (Morning)</span>
+                  <span>Sept 15 (Noon)</span>
                 </div>
                 <p className={style.specialCardDescription}>
                   Final problem statements sent to 10 teams. Teams reply with selected problem statement.
@@ -161,7 +170,7 @@ function Portfolio() {
                 <div className={style.specialCardSecondDate}>
                   <div className={style.specialCardDate}>
                     <FaCalendarDay />
-                    <span>Sept 18 (Evening)</span>
+                    <span>Sept 16 (Midnight)</span>
                   </div>
                   <p className={style.specialCardDescription}>
                     Teams submit final solutions via GitHub.
@@ -185,10 +194,10 @@ function Portfolio() {
                 <div className={style.specialCardSecondDate}>
                   <div className={style.specialCardDate}>
                     <FaCalendarDay />
-                    <span>Sept 18 (Evening)</span>
+                    <span>Sept 20</span>
                   </div>
                   <p className={style.specialCardDescription}>
-                    Teams submit final solutions via GitHub.
+                    Results will be announced and prize distribution ceremony.
                   </p>
                 </div>
               </div>

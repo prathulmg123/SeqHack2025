@@ -13,7 +13,7 @@
 
 body {
   background: var(--bgColor);
-  font-family: 'DS-DIGI', sans-serif;
+  /* font-family: 'DS-DIGI', sans-serif; */
 }
 
 .box {

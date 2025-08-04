@@ -130,7 +130,7 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 16px;
   /* Transparent glass-like background */
-  background: linear-gradient(135deg, #8e078e, rgb(0 0 255 / 8%)); /* very subtle white */
+  background: linear-gradient(135deg, #8e078e, rgb(31 81 255 / 36%)); /* very subtle white */
   backdrop-filter: blur(10px); /* glass effect */
   -webkit-backdrop-filter: blur(10px); /* Safari support */
   transition: all 0.3s ease;
@@ -341,7 +341,8 @@
 }
 
 .specialCard {
-  background: rgba(255, 255, 255, 0.03);
+  /* background: rgba(118, 81, 112, 0.25); */
+  background: linear-gradient(135deg, #b308b36b, rgb(31 81 255 / 14%));
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 0 50px 50px 0;
   padding: 2rem;
@@ -354,7 +355,8 @@
 }
 
 .specialCardRight {
-  background: rgba(255, 255, 255, 0.03);
+  /* background: rgba(118, 81, 112, 0.25); */
+  background: linear-gradient(135deg, #b308b36b, rgb(31 81 255 / 14%));
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 50px 0 0 50px;
   padding: 2rem;
@@ -408,15 +410,15 @@
 }
 
 .specialCard:hover {
-  transform: translateY(-5px) translateX(5px);
-  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.3);
-  border-color: purple;
+  /* transform: translateY(-5px) translateX(5px); */
+  /* box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.3);
+  border-color: purple; */
 }
 
 .specialCardRight:hover {
-  transform: translateY(-5px) translateX(5px);
+  /* transform: translateY(-5px) translateX(5px);
   box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.3);
-  border-color: purple;
+  border-color: purple; */
 }
 
 .specialCardIcon {
@@ -446,7 +448,8 @@
 
 .specialCardDate {
   font-size: 1.5rem;
-  color: #bbb;
+  /* color: #bbb; */
+  color: white;
   font-weight: 500;
   margin: 0.5rem 0;
   display: flex;
@@ -455,7 +458,7 @@
 }
 
 .specialCardDescription {
-  font-size: 0.8rem;
+  font-size: 1.1rem;
   color: #ddd;
   line-height: 1.6;
   margin: 0.5rem 0 0;

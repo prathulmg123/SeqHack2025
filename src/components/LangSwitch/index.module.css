@@ -65,7 +65,7 @@
 .label {
   display: flex;
   align-items: center;
-  gap: 1px;
+  gap: 0px !important;
   color: var(--color-white);
   /* overflow: hidden; */
   font-size: 1.3rem;
@@ -80,6 +80,13 @@
   }
 }
 
+
+.text {
+  white-space: nowrap; /* Prevents text from wrapping */
+}
+.email + .text {
+  margin-left: 8px; /* Adjust this value as needed */
+}
 .hidden {
   .active {
     .label {

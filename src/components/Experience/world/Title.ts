@@ -160,6 +160,8 @@ export default class Title {
   }
 
   setScale() {
+
+    console.log(this.settings,"settings")
     // Default scale values
     let mobileScale = 0.012
     let desktopScale = 0.03
@@ -168,6 +170,11 @@ export default class Title {
     if (this.settings.text === 'SEQATHON') {
       mobileScale = 0.009
       desktopScale = 0.020
+    }
+
+    if (this.settings.text === 'Mission Briefing') {
+      mobileScale = 0.009
+      desktopScale = 0.018
     }
 
     // Mobile
