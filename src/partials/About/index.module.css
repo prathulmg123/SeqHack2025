@@ -712,7 +712,7 @@
   width: 300px;
   height: 300px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(118,  28, 141, 0.98);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -815,13 +815,21 @@
   content: '';
   position: absolute;
   display: flex;
-  justify-self: anchor-center;
-  top: 80px;
+  /* justify-self: anchor-center; */
+  top: 100px;
   /* left: 18%; */
+  margin-left: 1rem;
   transform: translateX(-50%);
   width: 4px;
-  height: 95%;
-  background: linear-gradient(180deg, rgba(99, 102, 241, 0.5), rgba(139, 92, 246, 0.5));
+  height: 90%;
+  background: repeating-linear-gradient(
+    to bottom,
+    pink,
+    blue 8px,        /* dash length */
+    transparent 8px,
+    transparent 16px  /* gap size */
+  );
+  /* background: linear-gradient(180deg, rgba(99, 102, 241, 0.5), rgba(139, 92, 246, 0.5)); */
   z-index: 1;
 }
 

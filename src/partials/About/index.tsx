@@ -197,34 +197,26 @@ function About() {
               },
               {
                 title: 'Final Problem Statement',
-                date: 'SEPT 15 - SEPT 16',
+                date: 'SEP 15 - SEP 16',
                 year: '2025',
-                description: 'The final problem will be out on September 15th at noon. Submit your solution by midnight on September 16th. Make every hour count!',
+                description: 'The final problem will be out on September 15th at noon. Submit your solution by midnight on September 16th.',
                 icon: '💻',
                 color: '#10B981'
               },
               {
                 title: 'Presentation',
-                date: 'AUG 30',
+                date: 'SEP 20',
                 year: '2025',
-                description: 'Final project submissions and demos due',
-                icon: '📤',
+                description: 'Showcase your final project through demos and presentations.',
+                icon: '📑',
                 color: '#F59E0B'
               },
               {
-                title: 'Judging',
-                date: 'AUG 31 - SEP 5',
-                year: '2025',
-                description: 'Expert evaluation of all projects',
-                icon: '🏆',
-                color: '#3B82F6'
-              },
-              {
                 title: 'Results',
-                date: 'SEP 10',
+                date: 'SEP 20',
                 year: '2025',
                 description: 'Winners announced and closing ceremony',
-                icon: '🎉',
+                icon: '🏆',
                 color: '#8B5CF6'
               }
             ].map((milestone, index) => (
