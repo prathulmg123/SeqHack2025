@@ -63,10 +63,11 @@
   font-family: "Saira Semi Condensed", -apple-system, blinkmacsystemfont,
     "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
     "Droid Sans", "Helvetica Neue", sans-serif !important;
-    text-shadow:
+    /* text-shadow:
       0 0 5px #fff,
       0 0 15px #fff,
-      0 0 15px #ff00ff;
+      0 0 15px #ff00ff; */
+      text-shadow: 0 0 5px #fff, 0 0 15px #11158b, 0 0 20px #0501ff
 }
 
 .glow-text {
@@ -109,14 +110,17 @@
 }
 
 .card {
-  background: linear-gradient(to bottom,#0000ff1c, purple);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  /* background: linear-gradient(to bottom,#0000ff1c, purple);
+  border: 1px solid rgba(255, 255, 255, 0.08); */
+  border: 1px solid blue;
+background: rgba(0, 0, 30, 0.51);
   backdrop-filter: blur(20px);
   border-radius: 20px;
   padding: 2rem;
   width: 100%;
   text-align: center;
-  box-shadow: 0 0 12px rgba(255, 0, 255, 0.08);
+  /* box-shadow: 0 0 12px rgba(255, 0, 255, 0.08); */
+  box-shadow: 0 4px 20px rgba(10 58 146 / 69%);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   min-height: 25vh;
 
@@ -467,10 +471,13 @@
 .cardContent {
   min-width: 160px;
   padding: 20px 30px;
-  background: linear-gradient(135deg, purple 0%, #0000ff1c 100%);
+  /* background: linear-gradient(135deg, purple 0%, #0000ff1c 100%); */
   border-radius: 15px;
   backdrop-filter: blur(10px);
-  border: 4px dotted rgba(255, 255, 255, 1);
+  /* border: 4px dotted rgba(255, 255, 255, 1); */
+  border: 1px dotted blue;
+background: rgba(0, 0, 30, 0.51);
+box-shadow: 0 4px 20px rgba(10 58 146 / 69%);
   transition: all 0.3s ease;
 }
 
@@ -785,6 +792,21 @@
   margin-bottom: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 1px;
+}
+
+.neonBlueIcon {
+  color: rgba(0, 0, 30, 0.51);
+  filter: drop-shadow(0 0 5px #00f3ff) drop-shadow(0 0 10px #00f3ff);
+
+  /* border: 1px solid blue;
+background: rgba(0, 0, 30, 0.51);
+box-shadow: 0 4px 20px rgba(10 58 146 / 69%); */
+  transition: all 0.3s ease;
+}
+
+.neonBlueIcon:hover {
+  filter: drop-shadow(0 0 8px #00f3ff) drop-shadow(0 0 15px #00f3ff);
+  transform: scale(1.1);
 }
 
 .timelineTitle {
