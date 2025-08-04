@@ -139,28 +139,31 @@ function About() {
         </Row>
       </Container>
       <Container>
-      <ContentBlock>
-        <Row start={1} end={3}>
-          <div className={style.modernTimeline}>
-            {roadmapItems.map((item, index) => (
-              <div
-                key={index}
-                className={`${style.modernCard} ${style[`color-${(index % 4) + 1}`]}`}
-                data-aos="fade-up"
-                data-aos-delay={index * 100}
-              >
-                <div className={style.cardContent}>
-                  <img src={item.img} width={140} alt="" />
-                  <div className={style.cardNumber}>{index + 1}</div>
-                  <h3 className={style.cardTitle}>{item.title}</h3>
-                  <p className={style.cardDescription}>{item.desc}</p>
-                </div>
+  <ContentBlock>
+    <Row start={1} end={3}>
+      <div className={style.modernTimeline}>
+        <div className={style.roadmapRow}>
+          {roadmapItems.map((item, index) => (
+            <div
+              key={index}
+              className={`${style.modernCard} ${style[`color-${(index % 4) + 1}`]}`}
+              data-aos="fade-up"
+              data-aos-delay={index * 100}
+            >
+              <div className={style.cardNumber}>{index + 1}</div>
+              <div className={style.cardContent}>
+                <img src={item.img} width={140} alt={item.title} />
+                <h3 className={style.cardTitle}>{item.title}</h3>
+                <p className={style.cardDescription}>{item.desc}</p>
               </div>
-            ))}
-          </div>
-        </Row>
-        </ContentBlock>
-      </Container>
+            </div>
+          ))}
+        </div>
+      </div>
+    </Row>
+  </ContentBlock>
+</Container>
+
       <Container grid outerRightOnMobile>
         <Row start={1} end={3}>
           <div className={`${style.section} ${style.headingContainer}`}>
