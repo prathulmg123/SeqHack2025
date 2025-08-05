@@ -656,3 +656,6 @@ background: rgba(0, 0, 30, 0.51);
   align-items: center;
   gap: 4rem;
 }
+.specialCardDescription{
+  font-size: 1.2rem;
+}

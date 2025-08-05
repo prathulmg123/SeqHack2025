@@ -23,9 +23,9 @@
   visibility: hidden;
 
   @media (--md-l) {
-    width: 62%;
-    max-width: 62%;
-    height: 70vh;
+    /* width: 62%; */
+    max-width: 45%;
+    height: 67vh;
   }
 
   .open &,

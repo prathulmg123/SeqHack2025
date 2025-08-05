@@ -147,6 +147,16 @@ function About() {
                 <span className={style.glowText}>Rewards & Benefits</span>
               </Heading>
             </div>
+            <Container grid >
+              <Row start={1} end={3}>
+                <ContentBlock className={style.contentBlock}>
+                  <div className={style.specialCardDescription}>
+                    <p>Unlock exciting rewards and exclusive benefits by participating in our hackathon. Stand a chance to win cash prizes, mentorship opportunities, and potential job offers from top tech companies. All participants will receive certificates, swag, and networking opportunities with industry leaders.</p>
+                  </div>
+
+                </ContentBlock>
+              </Row>
+            </Container>
             <div className={style.grid}>
               {rewards.map((reward, index) => (
                 <motion.div
@@ -179,40 +189,50 @@ function About() {
           </div>
         </Row>
       </Container>
+      <Container grid >
+        <Row start={1} end={3}>
+          <ContentBlock className={style.contentBlock}>
+            <div className={style.specialCardDescription}>
+              <p>Evaluation focuses on problem understanding,<br></br> structured approach, code quality, and documentation.<br></br> Creativity, clarity of thought, and teamwork are key across all phases.<br></br> Finalists will also be judged on solution impact, innovation, and presentation.</p>
+            </div>
+
+          </ContentBlock>
+        </Row>
+      </Container>
       <Container>
-  <ContentBlock>
-    <Row start={1} end={3}>
-      <div className={style.modernTimeline}>
-        <div className={style.roadmapRow}>
-          {roadmapItems.map((item, index) => (
-            <div
-              key={index}
-              className={`${style.modernCard} ${style[`color-${(index % 4) + 1}`]}`}
-              data-aos="fade-up"
-              data-aos-delay={index * 100}
-            >
-              <div className={style.cardNumber}>{index + 1}</div>
-              <div className={style.cardContent}>
-              <img
-                src={item.img}               
-                loading="lazy"
-                decoding="async"
-                alt="Mobile preview"
-                style={{ display: 'block', width: '40%', height: 'auto' }} 
-                width={140}     
-                     
-              />
-               
-                <h3 className={style.cardTitle}>{item.title}</h3>
-                <p className={style.cardDescription}>{item.desc}</p>
+        <ContentBlock>
+          <Row start={1} end={3}>
+            <div className={style.modernTimeline}>
+              <div className={style.roadmapRow}>
+                {roadmapItems.map((item, index) => (
+                  <div
+                    key={index}
+                    className={`${style.modernCard} ${style[`color-${(index % 4) + 1}`]}`}
+                    data-aos="fade-up"
+                    data-aos-delay={index * 100}
+                  >
+                    <div className={style.cardNumber}>{index + 1}</div>
+                    <div className={style.cardContent}>
+                      <img
+                        src={item.img}
+                        loading="lazy"
+                        decoding="async"
+                        alt="Mobile preview"
+                        style={{ display: 'block', width: '40%', height: 'auto' }}
+                        width={140}
+
+                      />
+
+                      <h3 className={style.cardTitle}>{item.title}</h3>
+                      <p className={style.cardDescription}>{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
-          ))}
-        </div>
-      </div>
-    </Row>
-  </ContentBlock>
-</Container>
+          </Row>
+        </ContentBlock>
+      </Container>
 
       <Container grid outerRightOnMobile>
         <Row start={1} end={3}>
@@ -227,165 +247,121 @@ function About() {
           </div>
         </Row>
       </Container>
-      <Container className="timeline-container-outer">
-        <ContentBlock>
+      <Container grid >
         <Row start={1} end={3}>
-        {/* <div className={style.timelineWrapper}>
-      {milestones.map((milestone, index) => (
-        <div key={index} className={style.timelineStep}>
-          <motion.div
-            className={style.timelineCard}
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{
-              opacity: 1,
-              y: 0,
-              transition: {
-                duration: 0.6,
-                delay: index * 0.1,
-                ease: [0.16, 1, 0.3, 1],
-              },
-            }}
-            viewport={{ once: true, margin: "-50px" }}
-            style={{
-              borderColor: `${milestone.color}40`,
-              boxShadow: `0 10px 30px ${milestone.color}20`,
-            }}
-          >
-            <div className={style.stepLabel}>Step {index + 1}</div>
-            <div className={style.timelineDot} style={{ backgroundColor: milestone.color }}>
-              {milestone.icon}
+          <ContentBlock className={style.contentBlock}>
+            <div className={style.specialCardDescription}>
+              <p>Stay on track with clearly defined phases and deadlines.<br></br> Each stage has specific deliverables and review points.<br></br> Timely submissions are crucial for progressing to the next round.</p>
             </div>
-            <div className={style.cardDate}>
-              {milestone.date}
-              <div className={style.cardYear}>{milestone.year}</div>
-            </div>
-            <h3 className={style.cardTitle}>{milestone.title}</h3>
-            <p className={style.cardDescription}>{milestone.description}</p>
-          </motion.div>
 
-        
-          {index < milestones.length - 1 && (
-            <div className={style.arrowWrapper}>
-              <svg width="28" height="28" viewBox="0 0 24 24">
-                <path
-                  d="M12 4v16m0 0l-6-6m6 6l6-6"
-                  stroke="#3B82F6"
-                  strokeWidth="2"
-                  fill="none"
-                  strokeLinecap="round"
-                />
-              </svg>
-            </div>
-          )}
-        </div>
-      ))}
-    </div> */}
-
-<div className={style.timelineGridWrapper}>
-      {/* Top Row: First 3 steps */}
-      <div className={style.timelineRow}>
-        {milestones.slice(0, 3).map((milestone, index) => (
-          <div key={index} className={style.timelineStep}>
-            <motion.div
-              className={style.timelineCard}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{
-                opacity: 1,
-                y: 0,
-                transition: {
-                  duration: 0.6,
-                  delay: index * 0.1,
-                  ease: [0.16, 1, 0.3, 1],
-                },
-              }}
-              viewport={{ once: true, margin: "-50px" }}
-              style={{
-                borderColor: `${milestone.color}40`,
-                boxShadow: `0 10px 30px ${milestone.color}20`,
-              }}
-            >
-              <div className={style.stepLabel}>Step {index + 1}</div>
-              {/* <div className={style.timelineDot} style={{ backgroundColor: milestone.color }}>
-                {milestone.icon}
-              </div> */}
-              <div className={style.cardDate}>
-                {milestone.date}
-                <div className={style.cardYear}>{milestone.year}</div>
-              </div>
-              <h3 className={style.cardTitle}>{milestone.title}</h3>
-              <p className={style.cardDescription}>{milestone.description}</p>
-            </motion.div>
-
-            {/* → Arrow (except last in top row) */}
-            {index < 2 && (
-              <div className={style.arrowRight}>
-                <svg width="32" height="32" viewBox="0 0 24 24">
-                  <path d="M4 12h16m0 0l-6-6m6 6l-6 6" stroke="#3B82F6" strokeWidth="2" fill="none" />
-                </svg>
-              </div>
-            )}
-            {/* ↓ Down arrow after 3rd card */}
-            {index === 2 && (
-              <div className={style.arrowDown}>
-                <svg width="32" height="32" viewBox="0 0 24 24">
-                  <path d="M12 4v16m0 0l-6-6m6 6l6-6" stroke="#3B82F6" strokeWidth="2" fill="none" />
-                </svg>
-              </div>
-            )}
-          </div>
-        ))}
-      </div>
-
-      {/* Bottom Row: Last 2 steps */}
-      <div className={style.timelineRow}>
-  {[milestones[4], milestones[3]].map((milestone, index) => (
-    <div key={index + 3} className={style.timelineStep}>
-      <motion.div
-        className={style.timelineCard}
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{
-          opacity: 1,
-          y: 0,
-          transition: {
-            duration: 0.6,
-            delay: index * 0.1,
-            ease: [0.16, 1, 0.3, 1],
-          },
-        }}
-        viewport={{ once: true, margin: "-50px" }}
-        style={{
-          borderColor: `${milestone.color}40`,
-          boxShadow: `0 10px 30px ${milestone.color}20`,
-        }}
-      >
-        <div className={style.stepLabel}>Step {index === 0 ? 5 : 4}</div>
-        {/* <div className={style.timelineDot} style={{ backgroundColor: milestone.color }}>
-          {milestone.icon}
-        </div> */}
-        <div className={style.cardDate}>
-          {milestone.date}
-          <div className={style.cardYear}>{milestone.year}</div>
-        <h3 className={style.cardTitle}>{milestone.title}</h3>
-        </div>
-        <p className={style.cardDescription}>{milestone.description}</p>
-      </motion.div>
-
-      {/* → Arrow should now appear after the first (Step 5) card */}
-      {index === 0 && (
-        <div className={style.arrowRight}>
-         <svg width="32" height="32" viewBox="0 0 24 24">
-      <path d="M20 12H4m0 0l6-6m-6 6l6 6" stroke="#3B82F6" strokeWidth="2" fill="none" />
-    </svg>
-        </div>
-      )}
-    </div>
-  ))}
-</div>
-
-    </div>
-
-
+          </ContentBlock>
         </Row>
+      </Container>
+      {/* <Container> */}
+      <Container className="timeline-container">
+        <ContentBlock>
+          <Row start={1} end={3}>
+
+            <div className={style.timelineGridWrapper}>
+              {/* Top Row: First 3 steps */}
+              <div className={style.timelineRow}>
+                {milestones.slice(0, 3).map((milestone, index) => (
+                  <div key={index} className={style.timelineStep}>
+                    <motion.div
+                      className={style.timelineCard}
+                      initial={{ opacity: 0, y: 40 }}
+                      whileInView={{
+                        opacity: 1,
+                        y: 0,
+                        transition: {
+                          duration: 0.6,
+                          delay: index * 0.1,
+                          ease: [0.16, 1, 0.3, 1],
+                        },
+                      }}
+                      viewport={{ once: true, margin: "-50px" }}
+                      style={{
+                        borderColor: `${milestone.color}40`,
+                        boxShadow: `0 10px 30px ${milestone.color}20`,
+                      }}
+                    >
+                      <div className={style.stepLabel}>Step {index + 1}</div>
+
+                      <div className={style.cardDate}>
+                        {milestone.date}
+                        <div className={style.cardYear}>{milestone.year}</div>
+                      </div>
+                      <h3 className={style.cardTitle}>{milestone.title}</h3>
+                      <p className={style.cardDescription}>{milestone.description}</p>
+                    </motion.div>
+
+                    {/* → Arrow (except last in top row) */}
+                    {index < 2 && (
+                      <div className={style.arrowRight}>
+                        <svg width="32" height="32" viewBox="0 0 24 24">
+                          <path d="M4 12h16m0 0l-6-6m6 6l-6 6" stroke="#3B82F6" strokeWidth="2" fill="none" />
+                        </svg>
+                      </div>
+                    )}
+                    {/* ↓ Down arrow after 3rd card */}
+                    {index === 2 && (
+                      <div className={style.arrowDown}>
+                        <svg width="32" height="32" viewBox="0 0 24 24">
+                          <path d="M12 4v16m0 0l-6-6m6 6l6-6" stroke="#3B82F6" strokeWidth="2" fill="none" />
+                        </svg>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+
+              {/* Bottom Row: Last 2 steps */}
+              <div className={style.timelineRow}>
+                {[milestones[4], milestones[3]].map((milestone, index) => (
+                  <div key={index + 3} className={style.timelineStep}>
+                    <motion.div
+                      className={style.timelineCard}
+                      initial={{ opacity: 0, y: 40 }}
+                      whileInView={{
+                        opacity: 1,
+                        y: 0,
+                        transition: {
+                          duration: 0.6,
+                          delay: index * 0.1,
+                          ease: [0.16, 1, 0.3, 1],
+                        },
+                      }}
+                      viewport={{ once: true, margin: "-50px" }}
+                      style={{
+                        borderColor: `${milestone.color}40`,
+                        boxShadow: `0 10px 30px ${milestone.color}20`,
+                      }}
+                    >
+                      <div className={style.stepLabel}>Step {index === 0 ? 5 : 4}</div>
+                      <div className={style.cardDate}>
+                        {milestone.date}
+                        <div className={style.cardYear}>{milestone.year}</div>
+                        <h3 className={style.cardTitle}>{milestone.title}</h3>
+                      </div>
+                      <p className={style.cardDescription}>{milestone.description}</p>
+                    </motion.div>
+
+                    {/* → Arrow should now appear after the first (Step 5) card */}
+                    {index === 0 && (
+                      <div className={style.arrowRight}>
+                        <svg width="32" height="32" viewBox="0 0 24 24">
+                          <path d="M20 12H4m0 0l6-6m-6 6l6 6" stroke="#3B82F6" strokeWidth="2" fill="none" />
+                        </svg>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+
+            </div>
+
+
+          </Row>
         </ContentBlock>
       </Container>
     </Section>

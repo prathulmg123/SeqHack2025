@@ -212,7 +212,7 @@ function Contact() {
     // left: '25%',
     // top: '50%',
     // transform: 'translateY(-50%)',
-    fontSize: '1rem',
+    fontSize: '1.2rem',
     lineHeight: '1.6',
     color: '#e2e8f0',
     maxWidth: '40%',
