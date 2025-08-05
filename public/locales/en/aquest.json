@@ -15,7 +15,7 @@
     {
       "component": "TextTwoColumns",
       "title": "Evaluation Criteria for Phase 1 & Phase 2 (Warmup)",
-"text": "What's Judged :<br>✅ Problem Understanding – Did you understand the problem statement and requirements clearly?<br>✅ Approach and Clarity – How you structured your solution and your reasoning behind the approach.<br>✅ Code Quality – Clean, readable, and efficient code over just speed.<br>✅ Functionality – Does your solution work and meet the problem requirements?<br>✅ Documentation – Clear README or inline comments explaining your logic and setup.<br><br>💡 Remember:<br> * This isn't just about writing code.<br> * Bring your logic, your curiosity, and your structured thinking.<br> * Experiment, iterate, and document your journey.<br><br>Your GitHub submission should reflect your approach, clarity of thought, and creativity."
+"text": "What's Judged :<br>✅ Problem Understanding – Did you understand the problem statement and requirements clearly?<br>✅ Approach and Clarity – How you structured your solution and your reasoning behind the approach.<br>✅ Code Quality – Clean, readable, and efficient code over just speed.<br>✅ Functionality – Does your solution work and meet the problem requirements?<br>✅ Documentation – Clear README or inline comments explaining your logic and setup.<br> ✅ Testing – Are there unit/integration tests? Do they cover important cases?<br><br>💡 Remember:<br> * This isn't just about writing code.<br> * Bring your logic, your curiosity, and your structured thinking.<br> * Experiment, iterate, and document your journey.<br><br>Your GitHub submission should reflect your approach, clarity of thought, and creativity."
       
       
     },

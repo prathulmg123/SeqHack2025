@@ -655,6 +655,7 @@ background: rgba(0, 0, 30, 0.51);
   flex-direction: column;
   align-items: center;
   gap: 4rem;
+  margin-top: 4rem;
 }
 .specialCardDescription{
   font-size: 1.2rem;
