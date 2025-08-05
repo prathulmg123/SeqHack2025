@@ -1,12 +1,19 @@
-.root {
+.container {
   position: fixed;
   top: var(--frame-margin);
   right: var(--frame-margin);
   left: auto;
   display: flex;
-  width: 55px;
   flex-direction: column;
-  place-items: flex-end;
+  align-items: flex-end;
+  gap: 0.5rem;
+  z-index: 1000;
+}
+
+.root {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
 }
 
 .marker {
@@ -80,13 +87,60 @@
   }
 }
 
-
 .text {
   white-space: nowrap; /* Prevents text from wrapping */
+  font-size: 0.7rem;
+  line-height: 1.2;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transform: translate3d(0, 0, 0);
+  transition: transform 0.5s var(--power3-ease-out);
+  will-change: transform;
+
+  @media (--md-l) {
+    font-size: 0.8rem;
+  }
 }
+
+.registerButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.4rem 1rem;
+  background: white;
+  color: #1a1a1a;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border-radius: 9999px;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.registerButton:hover {
+  background: rgba(255, 255, 255, 0.95);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.arrowIcon {
+  margin-left: 0.5rem;
+  transition: transform 0.2s ease;
+}
+
+.registerButton:hover .arrowIcon {
+  transform: translateX(2px);
+}
+
 .email + .text {
   margin-left: 8px; /* Adjust this value as needed */
 }
+
 .hidden {
   .active {
     .label {

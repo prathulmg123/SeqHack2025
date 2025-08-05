@@ -172,7 +172,7 @@ export default class Title {
       desktopScale = 0.020
     }
 
-    if (this.settings.text === 'Mission Briefing') {
+    if (this.settings.text === 'Mission Briefing' || this.settings.text === 'Battle Plan') {
       mobileScale = 0.009
       desktopScale = 0.018
     }

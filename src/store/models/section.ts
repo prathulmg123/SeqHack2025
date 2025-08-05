@@ -14,7 +14,7 @@ export const section = createModel<RootModel>()({
     sections: [
       { name: 'SEQATHON', id: 'hero' },
       { name: 'Mission Briefing', id: 'portfolio' },
-      { name: '', id: 'about' },
+      { name: 'Battle Plan', id: 'about' },
       { name: 'Register', id: 'contact' }
     ]
   },

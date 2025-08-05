@@ -42,7 +42,7 @@ const MenuTrigger = () => {
   const isDesktop = useMediaQuery({ minWidth: breakpoints.lg })
   const circleEl = useRef<HTMLDivElement>(null)
   const endEl = useRef<HTMLDivElement>(null)
-
+console.log(endEl,"el")
   const closeMenu = useCallback(
     (event: MouseEvent | TouchEvent) => {
       window.removeEventListener('mouseup', closeMenu)

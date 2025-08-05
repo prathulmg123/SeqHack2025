@@ -200,9 +200,9 @@ function About() {
                 alt="Mobile preview"
                 style={{ display: 'block', width: '40%', height: 'auto' }} 
                 width={140}     
-                // height={450}     
+                     
               />
-                {/* <img src={item.img} width={140} alt={item.title} /> */}
+               
                 <h3 className={style.cardTitle}>{item.title}</h3>
                 <p className={style.cardDescription}>{item.desc}</p>
               </div>

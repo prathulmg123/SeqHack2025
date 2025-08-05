@@ -67,7 +67,7 @@ function Portfolio() {
       style={{ display: 'block', width: '80%', height: 'auto' }} // replace width={"80%"}
       width={800}      // approximate intrinsic size to reserve layout (adjust if needed)
       height={450}     // keep aspect ratio, adjust to match real image
-      // fetchpriority="low"
+      fetchPriority="high"
     />,
       title: "Registration",
       date: "Aug 15",
@@ -83,7 +83,7 @@ function Portfolio() {
       style={{ display: 'block', width: '80%', height: 'auto' }} // replace width={"80%"}
       width={800}      // approximate intrinsic size to reserve layout (adjust if needed)
       height={450}     // keep aspect ratio, adjust to match real image
-      
+       fetchPriority="high"
     />,
       title: "Problem Statement Release",
       date: "Aug 18",
@@ -99,7 +99,7 @@ function Portfolio() {
     style={{ display: 'block', width: '80%', height: 'auto' }} // replace width={"80%"}
     width={800}      // approximate intrinsic size to reserve layout (adjust if needed)
     height={450}     // keep aspect ratio, adjust to match real image
-    // fetchpriority="low"
+     fetchPriority="high"
   />,
       title: "Solution Submission",
       date: "Aug 21",
