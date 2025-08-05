@@ -196,7 +196,15 @@ function Portfolio() {
               {/* Final Challenge Card */}
               <div className={style.specialCard}>
                 <div className={style.specialCardIcon}>
-                  <img src="public/images/obstacle.png" width={"30%"} />
+                <img
+                  src="/images/obstacle.png"    
+                  loading="lazy"
+                  decoding="async"
+                  alt="Mobile preview"
+                  style={{ display: 'block', width: '40%', height: 'auto' }}
+                  width={800}      
+                  height={450}     
+                />
                 </div>
                 <h3 className={style.specialCardTitle}>Final Challenge</h3>
                 <div className={style.specialCardDate}>
@@ -220,7 +228,15 @@ function Portfolio() {
               {/* Presentation Day Card */}
               <div className={style.specialCardRight}>
                 <div className={style.specialCardIcon}>
-                  <img src="public/images/pressday.png" width={"25%"} />
+                <img
+                  src="/images/pressday.png"    
+                  loading="lazy"
+                  decoding="async"
+                  alt="Mobile preview"
+                  style={{ display: 'block', width: '40%', height: 'auto' }}
+                  width={800}      
+                  height={450}     
+                />
                 </div>
                 <h3 className={style.specialCardTitle}>Presentation Day</h3>
                 <div className={style.specialCardDate}>

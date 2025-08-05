@@ -52,7 +52,48 @@ function About() {
     // { num: '04', title: 'Impact', desc: 'Real-world applicability and potential', img: '/public/images/browser.png' }
   ];
 
-
+  const milestones = [
+    {
+      title: 'Registration',
+      date: 'AUG 04 - AUG 16',
+      year: '2025',
+      description: 'Register your team and get ready for an exciting hackathon experience',
+      icon: '📝',
+      color: '#6366F1'
+    },
+    {
+      title: 'Problem Statement',
+      date: 'AUG 18 - AUG 21',
+      year: '2025',
+      description: 'The problem will be released on August 18, and solutions are due by August 21. Get ready to innovate in this 3-day challenge!',
+      icon: '🚀',
+      color: '#EC4899'
+    },
+    {
+      title: 'Final Problem Statement',
+      date: 'SEP 15 - SEP 16',
+      year: '2025',
+      description: 'The final problem will be out on September 15th at noon. Submit your solution by midnight on September 16th.',
+      icon: '💻',
+      color: '#10B981'
+    },
+    {
+      title: 'Presentation',
+      date: 'SEP 20',
+      year: '2025',
+      description: 'Showcase your final project through demos and presentations.',
+      icon: '📑',
+      color: '#F59E0B'
+    },
+    {
+      title: 'Results',
+      date: 'SEP 20',
+      year: '2025',
+      description: 'Winners announced and closing ceremony',
+      icon: '🏆',
+      color: '#8B5CF6'
+    }
+  ];
   useEffect(() => {
     function drawConnectors() {
       const cards = document.querySelectorAll('.modernCard');
@@ -152,7 +193,16 @@ function About() {
             >
               <div className={style.cardNumber}>{index + 1}</div>
               <div className={style.cardContent}>
-                <img src={item.img} width={140} alt={item.title} />
+              <img
+                src={item.img}               
+                loading="lazy"
+                decoding="async"
+                alt="Mobile preview"
+                style={{ display: 'block', width: '40%', height: 'auto' }} 
+                width={140}     
+                // height={450}     
+              />
+                {/* <img src={item.img} width={140} alt={item.title} /> */}
                 <h3 className={style.cardTitle}>{item.title}</h3>
                 <p className={style.cardDescription}>{item.desc}</p>
               </div>
@@ -180,119 +230,161 @@ function About() {
       <Container className="timeline-container-outer">
         <ContentBlock>
         <Row start={1} end={3}>
-          <div className={style.timelineContainer}>
-            {[
-              {
-                title: 'Registration',
-                date: 'AUG 04 - AUG 16',
-                year: '2025',
-                description: 'Register your team and get ready for an exciting hackathon experience',
-                icon: '📝',
-                color: '#6366F1'
+        {/* <div className={style.timelineWrapper}>
+      {milestones.map((milestone, index) => (
+        <div key={index} className={style.timelineStep}>
+          <motion.div
+            className={style.timelineCard}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+              transition: {
+                duration: 0.6,
+                delay: index * 0.1,
+                ease: [0.16, 1, 0.3, 1],
               },
-              {
-                title: 'Problem Statement',
-                date: 'AUG 18 - AUG 21',
-                year: '2025',
-                description: 'The problem will be released on August 18, and solutions are due by August 21. Get ready to innovate in this 3-day challenge!',
-                icon: '🚀',
-                color: '#EC4899'
-              },
-              {
-                title: 'Final Problem Statement',
-                date: 'SEP 15 - SEP 16',
-                year: '2025',
-                description: 'The final problem will be out on September 15th at noon. Submit your solution by midnight on September 16th.',
-                icon: '💻',
-                color: '#10B981'
-              },
-              {
-                title: 'Presentation',
-                date: 'SEP 20',
-                year: '2025',
-                description: 'Showcase your final project through demos and presentations.',
-                icon: '📑',
-                color: '#F59E0B'
-              },
-              {
-                title: 'Results',
-                date: 'SEP 20',
-                year: '2025',
-                description: 'Winners announced and closing ceremony',
-                icon: '🏆',
-                color: '#8B5CF6'
-              }
-            ].map((milestone, index) => (
-              <motion.div 
-                key={index}
-                className={style.timelineItem}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ 
-                  opacity: 1, 
-                  y: 0,
-                  transition: { 
-                    duration: 0.6,
-                    delay: index * 0.1,
-                    ease: [0.16, 1, 0.3, 1]
-                  }
-                }}
-                viewport={{ once: true, margin: "-50px" }}
-              >
-                <motion.div 
-                  className={style.timelineContent}
-                  style={{ 
-                    borderColor: `${milestone.color}40`,
-                    boxShadow: `0 10px 30px ${milestone.color}20`
-                  }}
-                  whileHover={{
-                    scale: 1.05,
-                    boxShadow: `0 15px 40px ${milestone.color}40`,
-                    transition: { duration: 0.3 }
-                  }}
-                >
-                  <div className={style.timelineDate}>
-                    {milestone.date}
-                    <div style={{ 
-                      fontSize: '0.7rem',
-                      opacity: 0.8,
-                      marginTop: '0.2rem'
-                    }}>
-                      {milestone.year}
-                    </div>
-                  </div>
-                  
-                  <div className={style.timelineContentInner}>
-                    <h2 className={style.timelineTitle}>
-                      {milestone.title}
-                    </h2>
-                    <p className={style.timelineDescription}>
-                      {milestone.description}
-                    </p>
-                  </div>
+            }}
+            viewport={{ once: true, margin: "-50px" }}
+            style={{
+              borderColor: `${milestone.color}40`,
+              boxShadow: `0 10px 30px ${milestone.color}20`,
+            }}
+          >
+            <div className={style.stepLabel}>Step {index + 1}</div>
+            <div className={style.timelineDot} style={{ backgroundColor: milestone.color }}>
+              {milestone.icon}
+            </div>
+            <div className={style.cardDate}>
+              {milestone.date}
+              <div className={style.cardYear}>{milestone.year}</div>
+            </div>
+            <h3 className={style.cardTitle}>{milestone.title}</h3>
+            <p className={style.cardDescription}>{milestone.description}</p>
+          </motion.div>
 
-                  <div 
-                    className={style.timelineDot}
-                    style={{ 
-                      // backgroundColor: milestone.color,
-                      color: 'white',
-                      position: 'absolute',
-                      top: '1.5rem',
-                      // right: '1.5rem',
-                      width: '40px',
-                      height: '40px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      fontSize: '1.9rem',
-                      // boxShadow: `0 0 0 4px rgba(17, 24, 39, 0.8)`
-                    }}
-                  >
-                    {milestone.icon}
-                  </div>
-                </motion.div>
-              </motion.div>
-            ))}
+        
+          {index < milestones.length - 1 && (
+            <div className={style.arrowWrapper}>
+              <svg width="28" height="28" viewBox="0 0 24 24">
+                <path
+                  d="M12 4v16m0 0l-6-6m6 6l6-6"
+                  stroke="#3B82F6"
+                  strokeWidth="2"
+                  fill="none"
+                  strokeLinecap="round"
+                />
+              </svg>
+            </div>
+          )}
+        </div>
+      ))}
+    </div> */}
+
+<div className={style.timelineGridWrapper}>
+      {/* Top Row: First 3 steps */}
+      <div className={style.timelineRow}>
+        {milestones.slice(0, 3).map((milestone, index) => (
+          <div key={index} className={style.timelineStep}>
+            <motion.div
+              className={style.timelineCard}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+                transition: {
+                  duration: 0.6,
+                  delay: index * 0.1,
+                  ease: [0.16, 1, 0.3, 1],
+                },
+              }}
+              viewport={{ once: true, margin: "-50px" }}
+              style={{
+                borderColor: `${milestone.color}40`,
+                boxShadow: `0 10px 30px ${milestone.color}20`,
+              }}
+            >
+              <div className={style.stepLabel}>Step {index + 1}</div>
+              {/* <div className={style.timelineDot} style={{ backgroundColor: milestone.color }}>
+                {milestone.icon}
+              </div> */}
+              <div className={style.cardDate}>
+                {milestone.date}
+                <div className={style.cardYear}>{milestone.year}</div>
+              </div>
+              <h3 className={style.cardTitle}>{milestone.title}</h3>
+              <p className={style.cardDescription}>{milestone.description}</p>
+            </motion.div>
+
+            {/* → Arrow (except last in top row) */}
+            {index < 2 && (
+              <div className={style.arrowRight}>
+                <svg width="32" height="32" viewBox="0 0 24 24">
+                  <path d="M4 12h16m0 0l-6-6m6 6l-6 6" stroke="#3B82F6" strokeWidth="2" fill="none" />
+                </svg>
+              </div>
+            )}
+            {/* ↓ Down arrow after 3rd card */}
+            {index === 2 && (
+              <div className={style.arrowDown}>
+                <svg width="32" height="32" viewBox="0 0 24 24">
+                  <path d="M12 4v16m0 0l-6-6m6 6l6-6" stroke="#3B82F6" strokeWidth="2" fill="none" />
+                </svg>
+              </div>
+            )}
           </div>
+        ))}
+      </div>
+
+      {/* Bottom Row: Last 2 steps */}
+      <div className={style.timelineRow}>
+  {[milestones[4], milestones[3]].map((milestone, index) => (
+    <div key={index + 3} className={style.timelineStep}>
+      <motion.div
+        className={style.timelineCard}
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{
+          opacity: 1,
+          y: 0,
+          transition: {
+            duration: 0.6,
+            delay: index * 0.1,
+            ease: [0.16, 1, 0.3, 1],
+          },
+        }}
+        viewport={{ once: true, margin: "-50px" }}
+        style={{
+          borderColor: `${milestone.color}40`,
+          boxShadow: `0 10px 30px ${milestone.color}20`,
+        }}
+      >
+        <div className={style.stepLabel}>Step {index === 0 ? 5 : 4}</div>
+        {/* <div className={style.timelineDot} style={{ backgroundColor: milestone.color }}>
+          {milestone.icon}
+        </div> */}
+        <div className={style.cardDate}>
+          {milestone.date}
+          <div className={style.cardYear}>{milestone.year}</div>
+        <h3 className={style.cardTitle}>{milestone.title}</h3>
+        </div>
+        <p className={style.cardDescription}>{milestone.description}</p>
+      </motion.div>
+
+      {/* → Arrow should now appear after the first (Step 5) card */}
+      {index === 0 && (
+        <div className={style.arrowRight}>
+         <svg width="32" height="32" viewBox="0 0 24 24">
+      <path d="M20 12H4m0 0l6-6m-6 6l6 6" stroke="#3B82F6" strokeWidth="2" fill="none" />
+    </svg>
+        </div>
+      )}
+    </div>
+  ))}
+</div>
+
+    </div>
+
+
         </Row>
         </ContentBlock>
       </Container>
