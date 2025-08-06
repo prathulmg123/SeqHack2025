@@ -6,7 +6,7 @@
   }
 
   width: calc(100% - var(--tot-margin));
-  margin: 0 var(--right-margin) 0 var(--text-margin-left);
+  margin: auto var(--right-margin) auto var(--text-margin-left);
 
   &.withoutMenu {
     --tot-margin: calc(var(--woutmenu-margin-left) + var(--right-margin));

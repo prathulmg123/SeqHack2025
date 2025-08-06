@@ -131,7 +131,7 @@
   visibility: visible;
 
   @media (--md-l) {
-    max-width: 39%;
+    /* max-width: 39%; */
   }
 }
 
@@ -147,7 +147,7 @@
 }
 
 .titleInner {
-  overflow: hidden;
+  /* overflow: hidden; */
 
   @media (--md-l) {
     margin-left: -20%;

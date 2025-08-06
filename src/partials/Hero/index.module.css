@@ -13,12 +13,15 @@
 
   @media (--md-l) {
     display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
   }
 }
 
 .logoContainer {
-  margin-top: var(--frame-margin);
-  margin-bottom: var(--frame-margin);
+  /* margin-top: var(--frame-margin); */
+  /* margin-bottom: var(--frame-margin); */
  /* margin-left: var(--frame-margin);  */
 }
 
@@ -228,7 +231,11 @@
 .enterButtonContainer > * {
   margin: 0 auto;
 }
-
+.specialCardContentBlock{
+  position: absolute !important;
+  bottom: 0 !important;
+  /* height: 100vh; */
+}
 /* Responsive adjustments */
 @media (min-width: 1000px) {
   .heroContent {
@@ -252,12 +259,20 @@
 }
 }
 @media (max-width: 768px) {
+.specialCardContentBlock{
+  position: relative !important;
+  /* height: 100vh; */
+}
+  .head{
+    flex-wrap: wrap;
+    
+  }
   .loadingTitle {
     font-size: 2rem !important;
   }
   .specialCardDescription{
-  font-size: 0.8rem !important;
-  margin-top: 150px !important;
+    font-size: 0.8rem !important;
+    margin-top: 100vh !important;
 }
   .heroContent {
     padding: 1rem;

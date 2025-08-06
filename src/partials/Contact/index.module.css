@@ -126,7 +126,7 @@
   .contactWrapper {
     flex-direction: column;
     gap: 1.5rem;
-    padding: 1.5rem;
+    /* padding: 1.5rem; */
     position: relative;
   }
   
@@ -135,6 +135,10 @@
     width: 100%;
     justify-content: center;
     flex-wrap: wrap;
+  }
+  
+  .contactSection {
+    flex-direction: column;
   }
   
   .contactItem,

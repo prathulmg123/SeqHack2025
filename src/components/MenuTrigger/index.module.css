@@ -2,17 +2,17 @@
   --size: 50px;
   --offset-top: 150px;
 
-  margin-top: var(--spc-4);
-  margin-left: calc(var(--frame-margin) - 4px);
+  /* margin-top: var(--spc-4); */
+  /* margin-left: calc(var(--frame-margin) - 4px); */
 
   @media (--md-l) {
-    margin-left: calc(var(--spc-6) - 4px);
+    /* margin-left: calc(var(--spc-6) - 4px); */
   }
 
   @media (--xl) {
     --offset-top: 200px;
 
-    margin-left: calc(var(--spc-17) - 4px);
+    /* margin-left: calc(var(--spc-17) - 4px); */
   }
 
   &.notReady {

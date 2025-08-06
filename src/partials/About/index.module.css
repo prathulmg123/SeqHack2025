@@ -40,6 +40,10 @@
 
 /* For smaller screens */
 @media (max-width: 768px) {
+  .arrowRight,
+.arrowDown {
+  display: none !important;
+}
   .portfolioHeading {
     font-size: 2rem !important;
   }
@@ -119,7 +123,7 @@
   width: 100%;
   position: relative;
   z-index: 2;
-  margin: 10vh auto;
+  margin: 1rem 0;
 }
 
 .card {
@@ -146,9 +150,11 @@ background: rgba(0, 0, 30, 0.51);
 @media (max-width: 768px) {
   .grid {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    /* gap: 1.5rem; */
     margin: 0;
-    width: 100%;;
+    width: 100%;
+    text-align: justify;
+    padding: 1rem 0.5rem;
   }
   .customHeading > span{
   font-size: 2rem !important;
@@ -383,7 +389,7 @@ background: rgba(0, 0, 30, 0.51);
 .modernTimeline {
   width: 100%;
   padding: 60px 0;
-  overflow-x: auto;
+  /* overflow-x: auto; */
   -webkit-overflow-scrolling: touch;
   position: relative;
 }
@@ -396,7 +402,7 @@ background: rgba(0, 0, 30, 0.51);
   display: flex;
   gap: 2rem;
   padding: 0 40px;
-  align-items: flex-start;
+  align-items: stretch;
   position: relative;
 }
 
@@ -406,7 +412,7 @@ background: rgba(0, 0, 30, 0.51);
 }
 
 .modernCard {
-  flex: 0 0 300px;
+  flex: 1;
   position: relative;
   /* background: rgba(255, 255, 255, 0.05); */
   background: rgba(0, 0, 30, 0.51);
@@ -419,7 +425,7 @@ background: rgba(0, 0, 30, 0.51);
   box-shadow: 0 4px 20px rgba(10 58 146 / 69%);
   z-index: 2;
   opacity: 1;
-  min-height: 40vh;
+  /* min-height: 40vh; */
 }
 
 .cardNumber {
@@ -497,10 +503,30 @@ background: rgba(0, 0, 30, 0.51);
 .timelineRow {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
   gap: 4rem;
   flex-wrap: nowrap;
+}
+
+@media (max-width: 900px) {
+  .timelineRow {
+    flex-direction: column;
+    gap: 2rem;
+    align-items: stretch;
+  }
+  .arrowRight {
+    position: static;
+    transform: none;
+    margin: 0 auto 1rem auto;
+    right: unset;
+    top: unset;
+  }
+  .arrowDown {
+    position: static;
+    margin: 0.5rem auto 0 auto;
+    bottom: unset;
+  }
 }
 
 .timelineStep {
@@ -523,19 +549,28 @@ background: rgba(0, 0, 30, 0.51);
   transition: 0.3s ease;
 } */
 .timelineCard {
-  /* background: linear-gradient(180deg, #1e1b4b, #1e3a8a); */
   color: white;
   padding: 2rem;
   border-radius: 2.5rem;
-  /* border: 2px solid rgba(255, 255, 255, 0.1); */
-  width: 320px;
-  min-height: 240px;
+  max-width: 320px;
+  height: 100%;
+  /* min-height: 240px; */
   text-align: left;
   transition: 0.3s ease;
   position: relative;
   border: 1px solid blue !important;
   box-shadow: 0 4px 20px rgba(10 58 146 / 69%) !important;
   background: rgba(0, 0, 30, 0.51);
+}
+
+@media (max-width: 900px) {
+  .timelineCard {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    text-align: left;
+    padding: 1.2rem;
+  }
 }
 
 /* Step Label */
@@ -653,10 +688,20 @@ background: rgba(0, 0, 30, 0.51);
 .timelineGridWrapper {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
   gap: 4rem;
   margin-top: 4rem;
+  width: 100%;
+}
+
+@media (max-width: 900px) {
+  .timelineGridWrapper {
+    gap: 2rem;
+    margin-top: 2rem;
+    padding: 0 0.5rem;
+  }
 }
 .specialCardDescription{
   font-size: 1.2rem;
+  text-align: justify;
 }
