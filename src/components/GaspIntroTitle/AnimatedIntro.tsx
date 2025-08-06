@@ -112,7 +112,7 @@ const IntroScene = () => {
       <canvas ref={canvasRef} className={styles.bgCanvas}></canvas>
       <div className={styles.content}>
         <h1 className={styles.textReveal}>
-          <span>SEQATHON 3.0</span>
+          <span>SEQATHON</span>
         </h1>
         <p className={styles.subtitle}>Your gateway to the future of innovation.</p>
       </div>

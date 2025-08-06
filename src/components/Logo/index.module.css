@@ -31,7 +31,7 @@
 }
 
 .root.toBlack .logoImage {
-  animation: to-black 2.5s forwards;
+  animation: to-white 2.5s forwards;
 }
 
 @media screen and (max-width: 768px){
