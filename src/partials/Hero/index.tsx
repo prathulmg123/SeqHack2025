@@ -165,12 +165,12 @@ export default function Hero() {
             <div className={style.menuContainer}>
               <Menu />
             </div>
+          </header>
             {
               app.ready && (
             <LangSwitch />
             )
             }
-          </header>
 
           <Section name="hero" className={style.root}>
 
@@ -187,7 +187,7 @@ export default function Hero() {
             {
               app.ready && (
                 <Container grid 
-                className={`${style.fadeIn} ${style.specialCardContainer}`} 
+                className={`${style.fadeIn} ${style.specialCardContainer} ${style.specialCardContentBlock}`} 
                >
                   <Row start={3} end={4}>
                     <ContentBlock>

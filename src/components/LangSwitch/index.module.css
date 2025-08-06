@@ -1,6 +1,8 @@
 .container {
-  position: fixed;
-  top: var(--frame-margin);
+  margin-left: auto;
+  margin-top: 20px;
+  position: absolute;
+  /* top: var(--frame-margin); */
   right: var(--frame-margin);
   left: auto;
   display: flex;
@@ -155,6 +157,9 @@
 @media screen and (max-width: 768px){
 .label{
   font-size: 1rem !important;
-
+}
+.container{
+  position: relative;
+  gap: 0.1rem;
 }
 }

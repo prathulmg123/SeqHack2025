@@ -147,7 +147,7 @@ function About() {
                 <span className={style.glowText}>Rewards & Benefits</span>
               </Heading>
             </div>
-            <Container grid >
+            <div className={style.grid} grid >
               <Row start={1} end={3}>
                 <ContentBlock className={style.contentBlock}>
                   <div className={style.specialCardDescription}>
@@ -156,7 +156,7 @@ function About() {
 
                 </ContentBlock>
               </Row>
-            </Container>
+            </div>
             <div className={style.grid}>
               {rewards.map((reward, index) => (
                 <motion.div
