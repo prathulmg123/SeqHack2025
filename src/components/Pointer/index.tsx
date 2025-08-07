@@ -16,8 +16,8 @@ import { useLocation } from 'react-router-dom'
 
 gsap.registerPlugin(ScrambleTextPlugin)
 
-const TRAIL_COUNT = 5;
-const TRAIL_DELAY = 0.1;
+const TRAIL_COUNT = 5
+const TRAIL_DELAY = 0.1
 
 function Pointer() {
   const location = useLocation()
@@ -48,20 +48,18 @@ function Pointer() {
   useEffect(() => {
     if (trailRefs.current.length !== TRAIL_COUNT) return
 
-    // Update main cursor
     gsap.to(cursorRef.current, {
       x: mousePos.x,
       y: mousePos.y,
       duration: 0.1,
-      ease: 'power1.out'
+      ease: 'power1.out',
     })
 
-    // Update trail elements with delay
     const newTrailPositions = [...trailPositions]
     for (let i = 0; i < TRAIL_COUNT; i++) {
       const targetX = i === 0 ? mousePos.x : newTrailPositions[i - 1].x
       const targetY = i === 0 ? mousePos.y : newTrailPositions[i - 1].y
-      
+
       gsap.to(trailRefs.current[i], {
         x: targetX,
         y: targetY,
@@ -69,55 +67,46 @@ function Pointer() {
         delay: i * TRAIL_DELAY,
         ease: 'power1.out',
         onUpdate: () => {
-          newTrailPositions[i] = { 
-            x: parseFloat(trailRefs.current[i]?.style.left || '0'), 
-            y: parseFloat(trailRefs.current[i]?.style.top || '0') 
+          newTrailPositions[i] = {
+            x: parseFloat(trailRefs.current[i]?.style.left || '0'),
+            y: parseFloat(trailRefs.current[i]?.style.top || '0'),
           }
-        }
+        },
       })
     }
-    
+
     setTrailPositions(newTrailPositions)
   }, [mousePos])
 
   const classes = cn(style.root, {
     [style.dark]: location.pathname !== '/',
     [style[`type-${pointer.type}`]]: pointer.type,
-    [style.hidden]: pointer.type === 'hidden' // Add hidden class when type is 'hidden'
+    [style.hidden]: pointer.type === 'hidden',
   })
 
   return (
     <>
-      {/* Animated Star Cursor */}
+      {/* Custom Triangle Cursor */}
       <div className={classes} ref={cursorRef}>
-        <div className={style.star}>
-          <div className={style.starCore} />
-          <div className={style.starGlow} />
-          {[...Array(5)].map((_, i) => (
-            <div 
-              key={i} 
-              className={style.starPoint}
-              style={{ '--rotate': `${i * 72}deg` } as React.CSSProperties}
-            />
-          ))}
-          <div className={style.starTwinkle} />
-        </div>
+        <div className={style.triangleCursor} />
       </div>
-      
-      {/* Star Dust Trail */}
+
+      {/* Glowing Trail Particles */}
       {Array.from({ length: TRAIL_COUNT }).map((_, i) => (
-        <div 
+        <div
           key={i}
-          ref={el => trailRefs.current[i] = el}
+          ref={(el) => (trailRefs.current[i] = el)}
           className={`${style.trail} ${style[`trail-${i}`]}`}
-          style={{
-            '--trail-scale': 0.8 - (i / (TRAIL_COUNT * 2)),
-            '--trail-opacity': 1 - (i / TRAIL_COUNT) * 0.9,
-            '--trail-delay': `${i * TRAIL_DELAY}s`,
-            '--trail-hue': 45 + (i * 2),
-            '--trail-saturation': '100%',
-            '--trail-lightness': '60%'
-          } as React.CSSProperties}
+          style={
+            {
+              '--trail-scale': 0.8 - i / (TRAIL_COUNT * 2),
+              '--trail-opacity': 1 - (i / TRAIL_COUNT) * 0.9,
+              '--trail-delay': `${i * TRAIL_DELAY}s`,
+              '--trail-hue': 195 + i * 2,
+              '--trail-saturation': '100%',
+              '--trail-lightness': '60%',
+            } as React.CSSProperties
+          }
         >
           <div className={style.trailParticle} />
         </div>
