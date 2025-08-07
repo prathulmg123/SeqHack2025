@@ -62,7 +62,7 @@ function About() {
       color: '#6366F1'
     },
     {
-      title: 'Problem Statement',
+      title: 'Initial Problem Release',
       date: 'AUG 18 - AUG 21',
       year: '2025',
       description: 'The problem will be released on August 18, and solutions are due by August 21. Get ready to innovate in this 3-day challenge!',
@@ -70,7 +70,7 @@ function About() {
       color: '#EC4899'
     },
     {
-      title: 'Workshop Series',
+      title: 'Solution Submission',
       date: 'AUG 25 - SEP 05',
       year: '2025',
       description: 'Attend expert-led workshops to enhance your skills and prepare for the final challenge.',
@@ -78,7 +78,7 @@ function About() {
       color: '#3B82F6'
     },
     {
-      title: 'Mentorship Phase',
+      title: 'Shortlisting Round',
       date: 'SEP 01 - SEP 10',
       year: '2025',
       description: 'Get 1:1 mentorship sessions with industry experts to refine your solution.',
@@ -86,7 +86,7 @@ function About() {
       color: '#8B5CF6'
     },
     {
-      title: 'Final Problem Statement',
+      title: 'Final Confirmation',
       date: 'SEP 15 - SEP 16',
       year: '2025',
       description: 'The final problem will be out on September 15th at noon. Submit your solution by midnight on September 16th.',
@@ -102,7 +102,7 @@ function About() {
       color: '#F59E0B'
     },
     {
-      title: 'Presentation',
+      title: 'Final Submission',
       date: 'SEP 19',
       year: '2025',
       description: 'Prepare and submit your final presentation and demo video.',
@@ -110,7 +110,7 @@ function About() {
       color: '#F97316'
     },
     {
-      title: 'Final Showcase',
+      title: 'Project Presentation',
       date: 'SEP 20',
       year: '2025',
       description: 'Live project showcase and Q&A with the judging panel.',
@@ -118,7 +118,7 @@ function About() {
       color: '#EC4899'
     },
     {
-      title: 'Results & Awards',
+      title: 'Winners Announcement',
       date: 'SEP 20',
       year: '2025',
       description: 'Winners announced and closing ceremony with special guest speakers.',
@@ -378,9 +378,9 @@ function About() {
                       </motion.div>
                       {index < 2 && (
                         <div className={style.arrowRight}>
-                          <svg width="32" height="32" viewBox="0 0 24 24">
-                            <path d="M4 12h16m0 0l-6-6m6 6l-6 6" stroke="#EC4899" strokeWidth="2" fill="none" />
-                          </svg>
+                           <svg width="32" height="32" viewBox="0 0 24 24">
+                          <path d="M20 12H4m0 0l6-6m-6 6l6 6" stroke="#EC4899" strokeWidth="2" fill="none" />
+                        </svg>
                         </div>
                       )}
                       {index === 0 && (
