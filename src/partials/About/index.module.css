@@ -640,6 +640,12 @@ background: rgba(0, 0, 30, 0.51);
   bottom: -40px;
 }
 
+.arrowLeft {
+  left: -40px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
 .cardDate {
   font-weight: 600;
   font-size: 0.95rem;

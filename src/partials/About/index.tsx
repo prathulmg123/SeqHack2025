@@ -70,6 +70,22 @@ function About() {
       color: '#EC4899'
     },
     {
+      title: 'Workshop Series',
+      date: 'AUG 25 - SEP 05',
+      year: '2025',
+      description: 'Attend expert-led workshops to enhance your skills and prepare for the final challenge.',
+      icon: '🎓',
+      color: '#3B82F6'
+    },
+    {
+      title: 'Mentorship Phase',
+      date: 'SEP 01 - SEP 10',
+      year: '2025',
+      description: 'Get 1:1 mentorship sessions with industry experts to refine your solution.',
+      icon: '👥',
+      color: '#8B5CF6'
+    },
+    {
       title: 'Final Problem Statement',
       date: 'SEP 15 - SEP 16',
       year: '2025',
@@ -78,18 +94,34 @@ function About() {
       color: '#10B981'
     },
     {
-      title: 'Presentation',
-      date: 'SEP 20',
+      title: 'Prototype Development',
+      date: 'SEP 17 - SEP 18',
       year: '2025',
-      description: 'Showcase your final project through demos and presentations.',
-      icon: '📑',
+      description: 'Build and refine your prototype based on the final problem statement.',
+      icon: '⚙️',
       color: '#F59E0B'
     },
     {
-      title: 'Results',
+      title: 'Presentation',
+      date: 'SEP 19',
+      year: '2025',
+      description: 'Prepare and submit your final presentation and demo video.',
+      icon: '📑',
+      color: '#F97316'
+    },
+    {
+      title: 'Final Showcase',
       date: 'SEP 20',
       year: '2025',
-      description: 'Winners announced and closing ceremony',
+      description: 'Live project showcase and Q&A with the judging panel.',
+      icon: '🎤',
+      color: '#EC4899'
+    },
+    {
+      title: 'Results & Awards',
+      date: 'SEP 20',
+      year: '2025',
+      description: 'Winners announced and closing ceremony with special guest speakers.',
       icon: '🏆',
       color: '#8B5CF6'
     }
@@ -263,98 +295,148 @@ function About() {
           <Row start={1} end={3}>
 
             <div className={style.timelineGridWrapper}>
-              {/* Top Row: First 3 steps */}
+              {/* Row 1: First 3 milestones */}
               <div className={style.timelineRow}>
-                {milestones.slice(0, 3).map((milestone, index) => (
-                  <div key={index} className={style.timelineStep}>
-                    <motion.div
-                      className={style.timelineCard}
-                      initial={{ opacity: 0, y: 40 }}
-                      whileInView={{
-                        opacity: 1,
-                        y: 0,
-                        transition: {
-                          duration: 0.6,
-                          delay: index * 0.1,
-                          ease: [0.16, 1, 0.3, 1],
-                        },
-                      }}
-                      viewport={{ once: true, margin: "-50px" }}
-                      style={{
-                        borderColor: `${milestone.color}40`,
-                        boxShadow: `0 10px 30px ${milestone.color}20`,
-                      }}
-                    >
-                      <div className={style.stepLabel}>Step {index + 1}</div>
+                {milestones.slice(0, 3).map((milestone, index, array) => (
+                  <React.Fragment key={index}>
+                    <div className={style.timelineStep}>
+                      <motion.div
+                        className={style.timelineCard}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{
+                          opacity: 1,
+                          y: 0,
+                          transition: {
+                            duration: 0.6,
+                            delay: index * 0.1,
+                            ease: [0.16, 1, 0.3, 1],
+                          },
+                        }}
+                        viewport={{ once: true, margin: "-50px" }}
+                        style={{
+                          borderColor: `${milestone.color}40`,
+                          boxShadow: `0 10px 30px ${milestone.color}20`,
+                        }}
+                      >
+                        <div className={style.stepLabel}>Step {index + 1}</div>
+                        <div className={style.cardDate}>
+                          {milestone.date}
+                          <div className={style.cardYear}>{milestone.year}</div>
+                        </div>
+                        <h3 className={style.cardTitle}>{milestone.title}</h3>
+                        <p className={style.cardDescription}>{milestone.description}</p>
+                      </motion.div>
+                      {index < 2 ? (
+                        <div className={style.arrowRight}>
+                          <svg width="32" height="32" viewBox="0 0 24 24">
+                            <path d="M4 12h16m0 0l-6-6m6 6l-6 6" stroke="#EC4899" strokeWidth="2" fill="none" />
+                          </svg>
+                        </div>
+                      ) : (
+                        <div className={style.arrowDown}>
+                          <svg width="32" height="32" viewBox="0 0 24 24">
+                            <path d="M12 4v16m0 0l6-6m-6 6l-6-6" stroke="#EC4899" strokeWidth="2" fill="none" />
+                          </svg>
+                        </div>
 
-                      <div className={style.cardDate}>
-                        {milestone.date}
-                        <div className={style.cardYear}>{milestone.year}</div>
-                      </div>
-                      <h3 className={style.cardTitle}>{milestone.title}</h3>
-                      <p className={style.cardDescription}>{milestone.description}</p>
-                    </motion.div>
-
-                    {/* → Arrow (except last in top row) */}
-                    {index < 2 && (
-                      <div className={style.arrowRight}>
-                        <svg width="32" height="32" viewBox="0 0 24 24">
-                          <path d="M4 12h16m0 0l-6-6m6 6l-6 6" stroke="#3B82F6" strokeWidth="2" fill="none" />
-                        </svg>
-                      </div>
-                    )}
-                    {/* ↓ Down arrow after 3rd card */}
-                    {index === 2 && (
-                      <div className={style.arrowDown}>
-                        <svg width="32" height="32" viewBox="0 0 24 24">
-                          <path d="M12 4v16m0 0l-6-6m6 6l6-6" stroke="#3B82F6" strokeWidth="2" fill="none" />
-                        </svg>
-                      </div>
-                    )}
-                  </div>
+                      )}
+                    </div>
+                  </React.Fragment>
                 ))}
               </div>
 
-              {/* Bottom Row: Last 2 steps */}
+              {/* Row 2: Next 3 milestones (reversed) */}
               <div className={style.timelineRow}>
-                {[milestones[4], milestones[3]].map((milestone, index) => (
-                  <div key={index + 3} className={style.timelineStep}>
-                    <motion.div
-                      className={style.timelineCard}
-                      initial={{ opacity: 0, y: 40 }}
-                      whileInView={{
-                        opacity: 1,
-                        y: 0,
-                        transition: {
-                          duration: 0.6,
-                          delay: index * 0.1,
-                          ease: [0.16, 1, 0.3, 1],
-                        },
-                      }}
-                      viewport={{ once: true, margin: "-50px" }}
-                      style={{
-                        borderColor: `${milestone.color}40`,
-                        boxShadow: `0 10px 30px ${milestone.color}20`,
-                      }}
-                    >
-                      <div className={style.stepLabel}>Step {index === 0 ? 5 : 4}</div>
-                      <div className={style.cardDate}>
-                        {milestone.date}
-                        <div className={style.cardYear}>{milestone.year}</div>
+                {[...milestones.slice(3, 6)].reverse().map((milestone, index) => (
+                  <React.Fragment key={index + 3}>
+                    <div className={style.timelineStep}>
+                      <motion.div
+                        className={style.timelineCard}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{
+                          opacity: 1,
+                          y: 0,
+                          transition: {
+                            duration: 0.6,
+                            delay: index * 0.1,
+                            ease: [0.16, 1, 0.3, 1],
+                          },
+                        }}
+                        viewport={{ once: true, margin: "-50px" }}
+                        style={{
+                          borderColor: `${milestone.color}40`,
+                          boxShadow: `0 10px 30px ${milestone.color}20`,
+                        }}
+                      >
+                        <div className={style.stepLabel}>Step {6 - index}</div>
+                        <div className={style.cardDate}>
+                          {milestone.date}
+                          <div className={style.cardYear}>{milestone.year}</div>
+                        </div>
                         <h3 className={style.cardTitle}>{milestone.title}</h3>
-                      </div>
-                      <p className={style.cardDescription}>{milestone.description}</p>
-                    </motion.div>
+                        <p className={style.cardDescription}>{milestone.description}</p>
+                      </motion.div>
+                      {index < 2 && (
+                        <div className={style.arrowRight}>
+                          <svg width="32" height="32" viewBox="0 0 24 24">
+                            <path d="M4 12h16m0 0l-6-6m6 6l-6 6" stroke="#EC4899" strokeWidth="2" fill="none" />
+                          </svg>
+                        </div>
+                      )}
+                      {index === 0 && (
+                        <div className={style.arrowDown}>
+                          <svg width="32" height="32" viewBox="0 0 24 24">
+                            <path d="M12 4v16m0 0l6-6m-6 6l-6-6" stroke="#EC4899" strokeWidth="2" fill="none" />
+                          </svg>
+                        </div>
+                      )}
+                    </div>
+                  </React.Fragment>
+                ))}
+              </div>
 
-                    {/* → Arrow should now appear after the first (Step 5) card */}
-                    {index === 0 && (
-                      <div className={style.arrowRight}>
+              {/* Row 3: Last 3 milestones */}
+              <div className={style.timelineRow}>
+                {milestones.slice(6, 9).map((milestone, index, array) => (
+                  <React.Fragment key={index + 6}>
+                    <div className={style.timelineStep}>
+                      <motion.div
+                        className={style.timelineCard}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{
+                          opacity: 1,
+                          y: 0,
+                          transition: {
+                            duration: 0.6,
+                            delay: index * 0.1,
+                            ease: [0.16, 1, 0.3, 1],
+                          },
+                        }}
+                        viewport={{ once: true, margin: "-50px" }}
+                        style={{
+                          borderColor: `${milestone.color}40`,
+                          boxShadow: `0 10px 30px ${milestone.color}20`,
+                        }}
+                      >
+                        <div className={style.stepLabel}>Step {index + 7}</div>
+                        <div className={style.cardDate}>
+                          {milestone.date}
+                          <div className={style.cardYear}>{milestone.year}</div>
+                        </div>
+                        <h3 className={style.cardTitle}>{milestone.title}</h3>
+                        <p className={style.cardDescription}>{milestone.description}</p>
+                      </motion.div>
+                      {index < 2 && (
+                        <div className={style.arrowRight}>
                         <svg width="32" height="32" viewBox="0 0 24 24">
-                          <path d="M20 12H4m0 0l6-6m-6 6l6 6" stroke="#3B82F6" strokeWidth="2" fill="none" />
-                        </svg>
-                      </div>
-                    )}
-                  </div>
+                            <path d="M4 12h16m0 0l-6-6m6 6l-6 6" stroke="#EC4899" strokeWidth="2" fill="none" />
+                          </svg>
+                        </div>
+
+
+                      )}
+                    </div>
+                  </React.Fragment>
                 ))}
               </div>
 
