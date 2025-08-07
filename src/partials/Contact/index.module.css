@@ -82,6 +82,7 @@
   border: 1px solid blue;
   background: rgba(0, 0, 30, 0.87);
     box-shadow: 0 4px 20px rgba(10 58 146 / 69%);
+  border-radius: 10px;
 }
 
 .contactItem:hover,

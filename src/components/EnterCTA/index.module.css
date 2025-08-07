@@ -23,7 +23,7 @@
     --ring-size: 100px;
     bottom: 140px;
   top: calc(100vh - 100px);
-  right: 30px;
+  right: 10rem;
   }
   .label{
     font-size: 0.8rem !important;

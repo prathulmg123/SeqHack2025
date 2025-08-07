@@ -15,7 +15,7 @@
   }
   
   .modal {
-    /* background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); */
+    background: rgba(26, 26, 26, 0.95);
     border-radius: 20px;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
     max-width: 800px;
@@ -23,8 +23,9 @@
     max-height: 90vh;
     overflow-y: auto;
     position: relative;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(0, 102, 255, 0.3);
     animation: slideIn 0.3s ease-out;
+    cursor: default; /* Ensure default cursor for the modal */
   }
   
   .header {
@@ -72,6 +73,17 @@
   
   .form {
     padding: 30px 40px 40px;
+    cursor: default; /* Ensure default cursor for the form */
+  }
+  
+  /* Ensure form elements don't hide the cursor */
+  .form * {
+    cursor: default;
+  }
+  
+  /* Make sure input fields and buttons show pointer cursor */
+  input, button, select, textarea, .inputWrapper, .inputGroup {
+    cursor: pointer !important;
   }
   
   .formGrid {

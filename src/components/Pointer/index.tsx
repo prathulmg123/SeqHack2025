@@ -82,15 +82,23 @@ function Pointer() {
 
   const classes = cn(style.root, {
     [style.dark]: location.pathname !== '/',
-    [style[`type-${pointer.type}`]]: pointer.type
+    [style[`type-${pointer.type}`]]: pointer.type,
+    [style.hidden]: pointer.type === 'hidden' // Add hidden class when type is 'hidden'
   })
 
   return (
     <>
       {/* Main Cursor */}
       <div className={classes} ref={cursorRef}>
-        <div className={style.cursorInner} />
-        <div className={style.cursorOuter} />
+        <div className={style.cursorCenter} />
+        <div className={style.cursorGear}>
+          {[...Array(8)].map((_, i) => (
+            <div key={i} className={style.gearTooth} style={{
+              '--rotate': `${i * 45}deg`,
+              '--delay': `${i * 0.05}s`
+            } as React.CSSProperties} />
+          ))}
+        </div>
       </div>
       
       {/* Trail Elements */}
@@ -104,7 +112,9 @@ function Pointer() {
             '--trail-opacity': 1 - (i / TRAIL_COUNT) * 0.8,
             '--trail-delay': `${i * TRAIL_DELAY}s`
           } as React.CSSProperties}
-        />
+        >
+          <div className={style.trailInner} />
+        </div>
       ))}
     </>
   )

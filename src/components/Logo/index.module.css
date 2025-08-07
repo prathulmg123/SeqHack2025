@@ -20,6 +20,7 @@
   object-fit: contain;
   transition: opacity 1s var(--expo-ease-in-out);
   max-height: 233px;
+  opacity: 0.7;
 }
 
 .root.hidden .logoImage {
@@ -31,7 +32,7 @@
 }
 
 .root.toBlack .logoImage {
-  animation: to-white 2.5s forwards;
+  animation: to-black 2.5s forwards;
 }
 
 @media screen and (max-width: 768px){

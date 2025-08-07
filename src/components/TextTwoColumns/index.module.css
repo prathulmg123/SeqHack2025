@@ -16,7 +16,7 @@
 
 .title {
   @mixin highlight;
-color: white !important;
+color: black !important;
   margin: 0;
   font-weight: var(--fw-light);
   transform: translate3d(0, 100%, 0);
@@ -34,7 +34,7 @@ color: white !important;
 
 .text {
   @mixin body-3;
-color: white !important;
+color: black !important;
   opacity: 0;
 
   .visible & {

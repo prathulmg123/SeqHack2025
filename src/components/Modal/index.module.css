@@ -71,7 +71,7 @@
   cursor: none;
   transform: translateY(-50%);
   visibility: hidden;
-  color: white !important;
+  color: black !important;
 
   &.open,
   &.transitionOut {
@@ -110,7 +110,7 @@
   z-index: var(--z-above);
   overflow: auto;
   height: var(--app-height);
-  background: linear-gradient(135deg, #710371, #0f0f27d1)!important;
+  background: white;
   -webkit-overflow-scrolling: touch;
   transition: visibility 0s 0.3s;
   visibility: hidden;

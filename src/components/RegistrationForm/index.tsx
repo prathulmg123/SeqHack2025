@@ -177,13 +177,7 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({ isOpen, onClose, on
       setErrors(prev => ({ ...prev, teamSize: undefined }));
     }
   };
-  const overHandler = useCallback(() => {
-    dispatch.pointer.setType('hidden')
-  }, [dispatch.pointer])
-  
-  const outHandler = useCallback(() => {
-    dispatch.pointer.setType('default')
-  }, [dispatch.pointer])
+  // Remove cursor hiding handlers since we want the cursor to be visible at all times
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -220,16 +214,16 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({ isOpen, onClose, on
 
   return (
     <div className={style.overlay}>
-      <div className={style.modal}  >
+      <div className={style.modal}>
         <div className={style.header}>
           <h2>Hackathon Registration</h2>
-          <button className={style.closeButton} onClick={onClose} onMouseEnter={overHandler} onMouseLeave={outHandler}>
+          <button className={style.closeButton} onClick={onClose}>
             <FaTimes />
           </button>
         </div>
 
         <form onSubmit={handleSubmit} className={style.form}>
-          <div className={style.formGrid} onMouseEnter={overHandler} onMouseLeave={outHandler}>
+          <div className={style.formGrid}>
             {/* College Information */}
             <div className={style.section}>
               <h3>College Information</h3>
@@ -451,10 +445,10 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({ isOpen, onClose, on
           </div>
 
           <div className={style.formActions}>
-            <button type="button" onClick={onClose}onMouseEnter={overHandler} onMouseLeave={outHandler} className={style.cancelButton}>
+            <button type="button" onClick={onClose} className={style.cancelButton}>
               Cancel
             </button>
-            <button type="submit" disabled={isSubmitting}onMouseEnter={overHandler} onMouseLeave={outHandler} className={style.submitButton}>
+            <button type="submit" disabled={isSubmitting} className={style.submitButton}>
               {isSubmitting ? 'Submitting...' : 'Register Team'}
             </button>
           </div>

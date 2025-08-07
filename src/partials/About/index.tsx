@@ -147,7 +147,7 @@ function About() {
                 <span className={style.glowText}>Rewards & Benefits</span>
               </Heading>
             </div>
-            <div className={style.grid} grid >
+            <div className={style.grid} >
               <Row start={1} end={3}>
                 <ContentBlock className={style.contentBlock}>
                   <div className={style.specialCardDescription}>
