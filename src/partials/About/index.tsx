@@ -57,7 +57,7 @@ function About() {
       title: 'Registration',
       date: 'AUG 04 - AUG 16',
       year: '2025',
-      description: 'Register your team and get ready for an exciting hackathon experience',
+      description: 'Sign up your team to participate in the hackathon.',
       icon: '📝',
       color: '#6366F1'
     },
@@ -65,7 +65,7 @@ function About() {
       title: 'Initial Problem Release',
       date: 'AUG 18 - AUG 21',
       year: '2025',
-      description: 'The problem will be released on August 18, and solutions are due by August 21. Get ready to innovate in this 3-day challenge!',
+      description: 'Get the first challenge and start working on your solution.',
       icon: '🚀',
       color: '#EC4899'
     },
@@ -73,7 +73,7 @@ function About() {
       title: 'Solution Submission',
       date: 'AUG 25 - SEP 05',
       year: '2025',
-      description: 'Attend expert-led workshops to enhance your skills and prepare for the final challenge.',
+      description: 'Attend workshops and submit your solution by the deadline.',
       icon: '🎓',
       color: '#3B82F6'
     },
@@ -81,7 +81,7 @@ function About() {
       title: 'Shortlisting Round',
       date: 'SEP 01 - SEP 10',
       year: '2025',
-      description: 'Get 1:1 mentorship sessions with industry experts to refine your solution.',
+      description: 'Top teams get mentorship and move to the next stage.',
       icon: '👥',
       color: '#8B5CF6'
     },
@@ -89,7 +89,7 @@ function About() {
       title: 'Final Confirmation',
       date: 'SEP 15 - SEP 16',
       year: '2025',
-      description: 'The final problem will be out on September 15th at noon. Submit your solution by midnight on September 16th.',
+      description: 'Receive the final problem and submit your updated solution.',
       icon: '💻',
       color: '#10B981'
     },
@@ -97,7 +97,7 @@ function About() {
       title: 'Prototype Development',
       date: 'SEP 17 - SEP 18',
       year: '2025',
-      description: 'Build and refine your prototype based on the final problem statement.',
+      description: 'Build a working prototype based on the final challenge.',
       icon: '⚙️',
       color: '#F59E0B'
     },
@@ -105,7 +105,7 @@ function About() {
       title: 'Final Submission',
       date: 'SEP 19',
       year: '2025',
-      description: 'Prepare and submit your final presentation and demo video.',
+      description: 'Submit your final presentation with confidence and clarity.',
       icon: '📑',
       color: '#F97316'
     },
@@ -113,7 +113,7 @@ function About() {
       title: 'Project Presentation',
       date: 'SEP 20',
       year: '2025',
-      description: 'Live project showcase and Q&A with the judging panel.',
+      description: 'Present your project live to the judges, showcase your innovation',
       icon: '🎤',
       color: '#EC4899'
     },
@@ -121,7 +121,7 @@ function About() {
       title: 'Winners Announcement',
       date: 'SEP 20',
       year: '2025',
-      description: 'Winners announced and closing ceremony with special guest speakers.',
+      description: 'Winners revealed during the closing ceremony.',
       icon: '🏆',
       color: '#8B5CF6'
     }

@@ -629,15 +629,28 @@ background: rgba(0, 0, 30, 0.51);
   justify-content: center;
 }
 
+@keyframes slideRight {
+  0% { transform: translateY(-50%) translateX(0); }
+  50% { transform: translateY(-50%) translateX(5px); }
+  100% { transform: translateY(-50%) translateX(0); }
+}
+
 .arrowRight {
   right: -40px;
   top: 50%;
   transform: translateY(-50%);
-  
+  animation: slideRight 1.8s ease-in-out infinite;
+}
+
+@keyframes slideDown {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(5px); }
+  100% { transform: translateY(0); }
 }
 
 .arrowDown {
   bottom: -40px;
+  animation: slideDown 1.8s ease-in-out infinite;
 }
 
 .arrowLeft {
