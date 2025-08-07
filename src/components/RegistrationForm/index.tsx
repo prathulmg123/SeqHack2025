@@ -209,13 +209,25 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({ isOpen, onClose, on
       setIsSubmitting(false);
     }
   };
+  const overHandler = useCallback(() => {
+    dispatch.pointer.setType('hidden')
+  }, [dispatch.pointer])
 
+  const outHandler = useCallback(() => {
+    dispatch.pointer.setType('default')
+  }, [dispatch.pointer])
+
+
+  const onCloseUp = () => {
+    onClose()
+    dispatch.pointer.setType('default')
+  }
   if (!isOpen) return null;
 
   return (
     <div className={style.overlay}>
       <div className={style.modal}>
-        <div className={style.header}>
+        <div className={style.header} onMouseEnter={overHandler} onMouseLeave={outHandler}>
           <h2>Hackathon Registration</h2>
           <button className={style.closeButton} onClick={onClose}>
             <FaTimes />
@@ -223,7 +235,7 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({ isOpen, onClose, on
         </div>
 
         <form onSubmit={handleSubmit} className={style.form}>
-          <div className={style.formGrid}>
+          <div className={style.formGrid} onMouseEnter={overHandler} onMouseLeave={outHandler}>
             {/* College Information */}
             <div className={style.section}>
               <h3>College Information</h3>
@@ -444,8 +456,8 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({ isOpen, onClose, on
             </div>
           </div>
 
-          <div className={style.formActions}>
-            <button type="button" onClick={onClose} className={style.cancelButton}>
+          <div className={style.formActions} onMouseEnter={overHandler} onMouseLeave={outHandler}>
+            <button type="button" onClick={onCloseUp} className={style.cancelButton}>
               Cancel
             </button>
             <button type="submit" disabled={isSubmitting} className={style.submitButton}>

@@ -63,8 +63,8 @@ function Logo() {
   }, [dispatch.pointer])
 
   return (
-    <div className={classes} onClick={handleLogoClick} onMouseEnter={overHandler} onMouseLeave={outHandler} style={{ cursor: 'pointer' }}>
-      <div className={style.logoContainer}>
+    <div className={classes} onClick={handleLogoClick}  style={{ cursor: 'pointer' }}>
+      <div className={style.logoContainer} onMouseEnter={overHandler} onMouseLeave={outHandler}>
         <img 
           src="/public/images/10thLogo.png" 
           alt="Seqato Logo" 
