@@ -88,32 +88,38 @@ function Pointer() {
 
   return (
     <>
-      {/* Main Cursor */}
+      {/* Animated Star Cursor */}
       <div className={classes} ref={cursorRef}>
-        <div className={style.cursorCenter} />
-        <div className={style.cursorGear}>
-          {[...Array(8)].map((_, i) => (
-            <div key={i} className={style.gearTooth} style={{
-              '--rotate': `${i * 45}deg`,
-              '--delay': `${i * 0.05}s`
-            } as React.CSSProperties} />
+        <div className={style.star}>
+          <div className={style.starCore} />
+          <div className={style.starGlow} />
+          {[...Array(5)].map((_, i) => (
+            <div 
+              key={i} 
+              className={style.starPoint}
+              style={{ '--rotate': `${i * 72}deg` } as React.CSSProperties}
+            />
           ))}
+          <div className={style.starTwinkle} />
         </div>
       </div>
       
-      {/* Trail Elements */}
+      {/* Star Dust Trail */}
       {Array.from({ length: TRAIL_COUNT }).map((_, i) => (
         <div 
           key={i}
           ref={el => trailRefs.current[i] = el}
           className={`${style.trail} ${style[`trail-${i}`]}`}
           style={{
-            '--trail-scale': 1 - (i / (TRAIL_COUNT * 1.5)),
-            '--trail-opacity': 1 - (i / TRAIL_COUNT) * 0.8,
-            '--trail-delay': `${i * TRAIL_DELAY}s`
+            '--trail-scale': 0.8 - (i / (TRAIL_COUNT * 2)),
+            '--trail-opacity': 1 - (i / TRAIL_COUNT) * 0.9,
+            '--trail-delay': `${i * TRAIL_DELAY}s`,
+            '--trail-hue': 45 + (i * 2),
+            '--trail-saturation': '100%',
+            '--trail-lightness': '60%'
           } as React.CSSProperties}
         >
-          <div className={style.trailInner} />
+          <div className={style.trailParticle} />
         </div>
       ))}
     </>

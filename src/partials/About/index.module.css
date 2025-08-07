@@ -140,6 +140,7 @@ background: rgba(0, 0, 30, 0.51);
   box-shadow: 0 4px 20px rgba(10 58 146 / 69%);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   min-height: 25vh;
+  margin-top: 2rem;
 
 }
 .card:hover {

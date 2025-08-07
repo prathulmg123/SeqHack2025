@@ -1,14 +1,192 @@
-/* Main Cursor */
+/* Animated Star Cursor */
 .root {
   position: fixed;
   z-index: var(--z-pointer);
-  top: 0;
   left: 0;
+  top: 0;
   pointer-events: none;
   transform: translateZ(0);
   will-change: transform;
+  width: 32px;
+  height: 32px;
+  filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.7));
 }
 
+.star {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform: translate(-50%, -50%);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.starCore {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background: #FFD700;
+  border-radius: 50%;
+  top: 25%;
+  left: 25%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  box-shadow: 0 0 15px 5px rgba(255, 215, 0, 0.5);
+  animation: pulse 2s infinite alternate;
+}
+
+.starGlow {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, rgba(255, 215, 0, 0.6) 50%, transparent 70%);
+  border-radius: 50%;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  animation: glowPulse 3s infinite alternate;
+}
+
+.starPoint {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background: #FFD700;
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(var(--rotate)) translateY(-24px) scale(0.8);
+  transform-origin: center;
+  z-index: 3;
+  animation: float 3s infinite ease-in-out;
+  animation-delay: calc(var(--rotate) * 0.02s);
+}
+
+.starTwinkle {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, transparent 70%);
+  border-radius: 50%;
+  top: 0;
+  left: 0;
+  z-index: 4;
+  opacity: 0;
+  animation: twinkle 2s infinite;
+  animation-delay: 1s;
+}
+
+@keyframes pulse {
+  0% { transform: translate(-50%, -50%) scale(1); opacity: 0.9; }
+  100% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
+}
+
+@keyframes glowPulse {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(1.2); opacity: 0.8; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translate(-50%, -50%) rotate(var(--rotate)) translateY(-24px) scale(0.8); }
+  50% { transform: translate(-50%, -50%) rotate(calc(var(--rotate) + 5deg)) translateY(-26px) scale(0.85); }
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1); }
+}
+
+/* Hover State */
+.type-hover .star {
+  transform: translate(-50%, -50%) scale(1.3);
+}
+
+.type-hover .starCore {
+  animation: pulse 1s infinite alternate;
+  box-shadow: 0 0 20px 8px rgba(255, 215, 0, 0.6);
+}
+
+/* Click/Drag State */
+.type-drag .star {
+  transform: translate(-50%, -50%) scale(0.9);
+}
+
+.type-drag .starCore {
+  animation: pulse 0.5s infinite alternate;
+  box-shadow: 0 0 25px 10px rgba(255, 100, 0, 0.7);
+}
+
+/* Hidden State */
+.hidden .star,
+.hidden .starCore,
+.hidden .starGlow,
+.hidden .starPoint,
+.hidden .starTwinkle {
+  display: none !important;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Hide trail elements when hidden */
+.hidden .trail,
+.hidden .trailParticle {
+  display: none !important;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Star Dust Trail */
+.trail {
+  position: fixed;
+  width: 12px;
+  height: 12px;
+  transform: translate(-50%, -50%) scale(var(--trail-scale, 1));
+  opacity: var(--trail-opacity, 0.7);
+  pointer-events: none;
+  z-index: calc(var(--z-pointer) - 1);
+  transition: all 0.3s ease-out;
+  filter: blur(1px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.trailParticle {
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle at 30% 30%,
+    hsl(var(--trail-hue, 45), 100%, 80%) 0%,
+    hsl(calc(var(--trail-hue, 45) + 10), 100%, 60%) 50%,
+    transparent 70%
+  );
+  border-radius: 50%;
+  box-shadow: 
+    0 0 15px 3px hsla(var(--trail-hue, 45), 100%, 60%, 0.6),
+    inset 0 0 10px 2px rgba(255, 255, 255, 0.6);
+  opacity: 0.8;
+  animation: 
+    trailPulse 1.5s infinite ease-in-out,
+    trailDrift 3s infinite linear;
+  animation-delay: var(--trail-delay, 0s);
+  transform-origin: center;
+}
+
+@keyframes trailDrift {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(2px, -2px) rotate(5deg); }
+  50% { transform: translate(0, -4px) rotate(0deg); }
+  75% { transform: translate(-2px, -2px) rotate(-5deg); }
+}
+
+@keyframes trailPulse {
+  0% { transform: scale(0.6); opacity: 0.3; }
+  50% { transform: scale(1); opacity: 0.7; }
+  100% { transform: scale(0.6); opacity: 0.3; }
+}
+
+/* Main Cursor */
 .cursorCenter {
   position: absolute;
   width: 8px;

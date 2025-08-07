@@ -91,10 +91,10 @@
 
 .text {
   white-space: nowrap; /* Prevents text from wrapping */
-  font-size: 0.7rem;
+  font-size: 1rem;
   line-height: 1.2;
   letter-spacing: 0.05em;
-  text-transform: uppercase;
+  text-transform: lowercase;
   white-space: nowrap;
   transform: translate3d(0, 0, 0);
   transition: transform 0.5s var(--power3-ease-out);
