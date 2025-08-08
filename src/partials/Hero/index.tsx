@@ -76,7 +76,7 @@ const CountdownTimer = () => {
 
   return (
     <div className={style.timerContainer}>
-      <span className={style.timerLabel}>Event Starts In</span>
+      <span className={style.timerLabel}>Registration <br></br> Ends In</span>
       <div className={style.timerDigits}>
       {timeLeft.days > 0 && (
         <>
@@ -140,11 +140,18 @@ export default function Hero() {
   
   return (
     <>
-    <CountdownClock endDate="2025-08-15T23:59:59" animationDelay={9000} />
+   {app.ready && ( <CountdownClock endDate="2025-08-15T23:59:59" animationDelay={6000} />)}
       {loading ? (
 
         <div className={style.loadingScreen}>
-          <h1 className={style.loadingTitle}>SEQATHON</h1>
+          {/* <h1 className={style.loadingTitle}>SEQATHON</h1> */}
+          <div className={style.heroTitleContainer}>
+                    <img
+                      src="/images/SeqathonTitle.png"
+                      alt="SEQATHON 10th Anniversary"
+                      className={style.heroloaderImage}
+                    />
+                  </div>
           <div className={style.loadingBarContainer}>
             <div
               className={style.loadingBar}
@@ -192,11 +199,11 @@ export default function Hero() {
                   <Row start={3} end={4}>
                     <ContentBlock>
                       <div className={style.specialCardDescription}>
-                        SEQATHON is not just a hackathon – it's an innovation challenge brought to you by SEQATO. Whether you're a problem solver, coder, or tech visionary, this is your platform to turn bold ideas into real-world solutions.
+                      This is more than a hackathon. It’s a stage for innovators, problem solvers, and tech visionaries to shape the future.
                         <br /><br />
-                        With multiple stages of selection and a focus on creativity, logic, and impact, SEQATHON is where smart minds meet serious challenges.
+                        With multiple challenge stages, mentorship from industry leaders, and prizes that matter, <strong>SEQATHON</strong> is where great ideas become real solutions.
                         <br /><br />
-                        Are you ready to think different and build what's next?
+                        <strong style={{fontSize: '1.4rem'}}>The clock is ticking are you ready to compete ?</strong>
                       </div>
                     </ContentBlock>
                   </Row>
@@ -216,7 +223,7 @@ export default function Hero() {
                     />
                   </div>
                   <Typewriter
-                    text="Join us for the most exciting coding competition of the year as SEQATO celebrates 10 years of innovation. Showcase your skills, learn from experts, and win amazing prizes!."
+                    text="Join us in celebrating a decade of innovation with SEQATO at the ultimate hackathon experience. Collaborate, create, and compete for glory as you tackle real world challenges, learn from industry leaders, and push the boundaries of technology."
                     speed={20}
                     delay={20} // Delay before starting the animation (after the title appears)
                     play={!loading}
@@ -234,8 +241,8 @@ export default function Hero() {
             <footer className={scrollClasses}>
               <span className={style.scrollIndicator} />
               <div>
-                <span className={style.scrollText}>{t('scroll_cta.line1')}</span>
-                <span className={style.scrollText}>{t('scroll_cta.line2')}</span>
+                <span className={style.scrollText} style={{fontSize:'1.2rem'}}>{t('scroll_cta.line1')}</span>
+                <span className={style.scrollText} style={{fontSize:'1.2rem'}}>{t('scroll_cta.line2')}</span>
               </div>
             </footer>
           </Section>

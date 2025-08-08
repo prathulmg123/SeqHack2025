@@ -10,17 +10,17 @@ type Project = {
 const initialState: Project[] = [
   {
     name: 'Guidelines',
-    url: 'sketchin',
+    url: 'guidelines',
     videoID: 'skReel'
   },
   {
     name: 'Evaluation Criteria',
-    url: 'aquest',
+    url: 'criteria',
     videoID: 'aqReel'
   },
   {
     name: 'FAQ',
-    url: 'fastweb',
+    url: 'faq',
     videoID: 'fbReel'
   },
   // {

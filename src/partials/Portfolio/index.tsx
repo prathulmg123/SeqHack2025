@@ -70,8 +70,8 @@ function Portfolio() {
       fetchPriority="high"
     />,
       title: "Registration",
-      date: "Aug 15",
-      description: "Register and receive participant details by email.,Register and receive participant details by email."
+      date: "Aug 15 - Aug 20",
+      description: "The Call for Innovators Assemble your team, strategize, and submit your application to compete in SEQATHON 2025."
     },
     
     {
@@ -86,8 +86,8 @@ function Portfolio() {
        fetchPriority="high"
     />,
       title: "Problem Statement Release",
-      date: "Aug 18",
-      description: "Problem statements sent to all registered teams."
+      date: "Aug 22",
+      description: "The first challenge is unveiled! The official problem statement for the online qualifier will be released to the registered and verified teams."
     },
 
     {
@@ -101,9 +101,9 @@ function Portfolio() {
     height={450}     // keep aspect ratio, adjust to match real image
      fetchPriority="high"
   />,
-      title: "Solution Submission",
-      date: "Aug 21",
-      description: "Teams submit solutions via GitHub."
+      title: "Qualifier Code Freeze",
+      date: "Aug 28",
+      description: "The deadline for the online qualifier. Finalize your code and submit your solution for evaluation by our technical committee."
     },
 
     {
@@ -117,9 +117,9 @@ function Portfolio() {
     height={450}     // keep aspect ratio, adjust to match real image
     // fetchpriority="low"
   />,
-      title: "Shortlisting and Payment",
-      date: "Aug 26",
-      description: "Top 10 teams are shortlisted and informed to submit payment details."
+      title: "Grand Finale Onboarding",
+      date: "Sept 2 - Sept 5",
+      description: "Finalists are announced on September 2 and must confirm their spot by completing the final registration formalities (including paying a nominal participation fee of Rs. 400 per participant) by September 5 deadline."
     },
   
   ]
@@ -212,7 +212,7 @@ function Portfolio() {
                   <span>Sept 15 (Noon)</span>
                 </div>
                 <p className={style.specialCardDescription}>
-                  Final problem statements sent to 10 teams. Teams reply with selected problem statement.
+                Exclusive final problem statement released to all finalist teams. Development sprint begins.
                 </p>
                 <div className={style.specialCardSecondDate}>
                   <div className={style.specialCardDate}>
@@ -220,7 +220,7 @@ function Portfolio() {
                     <span>Sept 16 (Midnight)</span>
                   </div>
                   <p className={style.specialCardDescription}>
-                    Teams submit final solutions via GitHub.
+                  Final code freeze — all project submissions must be uploaded via SEQATHON Git for evaluation.
                   </p>
                 </div>
               </div>
@@ -244,7 +244,7 @@ function Portfolio() {
                   <span>Sept 20</span>
                 </div>
                 <p className={style.specialCardDescription}>
-                  All 10 teams present at our office for the final presentation.
+                All finalist teams gather at SEQATO Office in Technopark Trivandrum to showcase their completed projects in front of the judging panel.
                 </p>
                 <div className={style.specialCardSecondDate}>
                   <div className={style.specialCardDate}>
@@ -252,7 +252,7 @@ function Portfolio() {
                     <span>Sept 20</span>
                   </div>
                   <p className={style.specialCardDescription}>
-                    Results will be announced and prize distribution ceremony.
+                  Winners are announced, and the event concludes with the official prize distribution ceremony.
                   </p>
                 </div>
               </div>

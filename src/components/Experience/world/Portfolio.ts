@@ -225,13 +225,13 @@ ctx.stroke();
     this.projects = [
       {
         name: 'Guidelines',
-        url: 'sketchin',
+        url: 'guidelines',
         media: 'image',
         source: (() => {
           const img = new Image();
           img.src = createCardImage(
-            'Project Guidelines', 
-            'Detailed instructions and requirements for project submission.\nFollow the project guidelines carefully to ensure smooth submission and evaluation', 
+            'Participation Guidelines', 
+            'Your roadmap to a successful submission!\nFollow these instructions carefully to meet all requirements, avoid last-minute issues, and maximize your chances of success during evaluation.', 
             '📋'
           );
           return img;
@@ -239,7 +239,7 @@ ctx.stroke();
       },
       {
         name: 'Evaluation Criteria',
-        url: 'aquest',
+        url: 'criteria',
         media: 'image',
         source: (() => {
           const img = new Image();
@@ -253,7 +253,7 @@ ctx.stroke();
       },
       {
         name: 'FAQ',
-        url: 'fastweb',
+        url: 'faq',
         media: 'image',
         source: (() => {
           const img = new Image();

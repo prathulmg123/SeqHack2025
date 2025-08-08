@@ -10,109 +10,44 @@ import ScrambleTextPlugin from 'gsap/ScrambleTextPlugin'
 import cn from 'classnames'
 
 // Hooks
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useCallback, useRef } from 'react'
 import { useSelector } from 'react-redux'
 import { useLocation } from 'react-router-dom'
 
 gsap.registerPlugin(ScrambleTextPlugin)
-
-const TRAIL_COUNT = 5
-const TRAIL_DELAY = 0.1
+// type Props = {}
 
 function Pointer() {
   const location = useLocation()
   const pointer = useSelector((state: RootState) => state.pointer)
   const cursorRef = useRef<HTMLDivElement>(null)
-  const trailRefs = useRef<(HTMLDivElement | null)[]>([])
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
-  const [trailPositions, setTrailPositions] = useState(
-    Array(TRAIL_COUNT).fill({ x: 0, y: 0 })
-  )
 
-  // Initialize trail refs
-  useEffect(() => {
-    trailRefs.current = trailRefs.current.slice(0, TRAIL_COUNT)
-  }, [])
-
-  // Update cursor position with smooth trail effect
-  useEffect(() => {
-    const updateCursor = (e: MouseEvent) => {
-      setMousePos({ x: e.clientX, y: e.clientY })
-    }
-
-    window.addEventListener('mousemove', updateCursor)
-    return () => window.removeEventListener('mousemove', updateCursor)
-  }, [])
-
-  // Animate cursor and trail
-  useEffect(() => {
-    if (trailRefs.current.length !== TRAIL_COUNT) return
-
-    gsap.to(cursorRef.current, {
-      x: mousePos.x,
-      y: mousePos.y,
-      duration: 0.1,
-      ease: 'power1.out',
-    })
-
-    const newTrailPositions = [...trailPositions]
-    for (let i = 0; i < TRAIL_COUNT; i++) {
-      const targetX = i === 0 ? mousePos.x : newTrailPositions[i - 1].x
-      const targetY = i === 0 ? mousePos.y : newTrailPositions[i - 1].y
-
-      gsap.to(trailRefs.current[i], {
-        x: targetX,
-        y: targetY,
-        duration: 0.3,
-        delay: i * TRAIL_DELAY,
-        ease: 'power1.out',
-        onUpdate: () => {
-          newTrailPositions[i] = {
-            x: parseFloat(trailRefs.current[i]?.style.left || '0'),
-            y: parseFloat(trailRefs.current[i]?.style.top || '0'),
-          }
-        },
+  const update = useCallback(() => {
+    if (cursorRef.current) {
+      gsap.set(cursorRef.current, {
+        x: window.cursor.x,
+        y: window.cursor.y
       })
     }
 
-    setTrailPositions(newTrailPositions)
-  }, [mousePos])
+    requestAnimationFrame(update)
+  }, [])
+
+  useEffect(() => {
+    update()
+  }, [update])
 
   const classes = cn(style.root, {
     [style.dark]: location.pathname !== '/',
-    [style[`type-${pointer.type}`]]: pointer.type,
-    [style.hidden]: pointer.type === 'hidden',
+    [style[`type-${pointer.type}`]]: pointer.type
   })
 
   return (
-    <>
-      {/* Custom Triangle Cursor */}
-      <div className={classes} ref={cursorRef}>
-        <div className={style.triangleCursor} />
-      </div>
-
-      {/* Glowing Trail Particles */}
-      {Array.from({ length: TRAIL_COUNT }).map((_, i) => (
-        <div
-          key={i}
-          ref={(el) => (trailRefs.current[i] = el)}
-          className={`${style.trail} ${style[`trail-${i}`]}`}
-          style={
-            {
-              '--trail-scale': 0.8 - i / (TRAIL_COUNT * 2),
-              '--trail-opacity': 1 - (i / TRAIL_COUNT) * 0.9,
-              '--trail-delay': `${i * TRAIL_DELAY}s`,
-              '--trail-hue': 195 + i * 2,
-              '--trail-saturation': '100%',
-              '--trail-lightness': '60%',
-            } as React.CSSProperties
-          }
-        >
-          <div className={style.trailParticle} />
-        </div>
-      ))}
-    </>
+    <div className={classes} ref={cursorRef}>
+      <div className={style.leftLine} />
+      <div className={style.rightLine} />
+      <div className={style.circle} />
+    </div>
   )
 }
-
 export default Pointer

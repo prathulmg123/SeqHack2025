@@ -96,8 +96,8 @@ const LangSwitch = () => {
       >
         <div
           className={style.button}
-          onMouseEnter={overHandler}
-          onMouseLeave={outHandler}
+          // onMouseEnter={overHandler}
+          // onMouseLeave={outHandler}
         >
           <span className={style.label}>
             <Email className={style.email}/>
@@ -106,18 +106,18 @@ const LangSwitch = () => {
           <span className={style.marker} />
         </div>
       </motion.div>
-      <motion.div
+      {/* <motion.div
         className={style.registerButton}
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.2 }}
         onClick={handleRegisterClick}
-        onMouseEnter={overHandler}
-        onMouseLeave={outHandler}
+        // onMouseEnter={overHandler}
+        // onMouseLeave={outHandler}
       >
         <span className={style.registerText}>Register Now</span>
         <span className={style.arrowIcon}>→</span>
-      </motion.div>
+      </motion.div> */}
       
       {/* Registration Form Modal */}
       {isRegistrationFormOpen && (

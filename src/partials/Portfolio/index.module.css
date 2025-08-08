@@ -126,7 +126,7 @@
   /* grid-template-columns: repeat(2, 1fr); */
   gap: 2rem;
   z-index: 2;
-  height: 45vh;
+  /* height: 45vh; */
 }
 
 .timelineItem {
@@ -239,7 +239,7 @@
 }
 
 .timelineDescription {
-  font-size: 1rem;
+  font-size: 1.2rem;
   color: #ddd;
   margin: 0;
   line-height: 1.6;
@@ -489,7 +489,7 @@
 }
 
 .specialCardDescription {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   color: #ddd;
   line-height: 1.6;
   margin: 0.5rem 0 0;
