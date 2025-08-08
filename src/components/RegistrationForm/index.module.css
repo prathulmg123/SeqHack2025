@@ -233,7 +233,7 @@
   .inputWrapper select:focus,
   .inputGroup textarea:focus {
     outline: none;
-    border-color: #ff4d4d;
+    border-color: blue;
     background: rgba(255, 255, 255, 0.15);
     box-shadow: 0 0 20px rgba(255, 77, 77, 0.3);
   }
@@ -286,7 +286,7 @@
   
   .uploadButton:hover {
     background: rgba(255, 255, 255, 0.15);
-    border-color: #ff4d4d;
+    border-color: blue;
     transform: translateY(-2px);
   }
   

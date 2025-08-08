@@ -229,9 +229,9 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({ isOpen, onClose, on
       <div className={style.modal}>
         <div className={style.header} onMouseEnter={overHandler} onMouseLeave={outHandler}>
           <h2>Hackathon Registration</h2>
-          <button className={style.closeButton} onClick={onClose}>
+          {/* <button className={style.closeButton} onClick={onClose}>
             <FaTimes />
-          </button>
+          </button> */}
         </div>
 
         <form onSubmit={handleSubmit} className={style.form}>
