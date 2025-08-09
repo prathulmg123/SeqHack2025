@@ -23,6 +23,11 @@
     },
     {
       "component": "TextTwoColumns",
+      "title": "Is there any fee for registration or participation?",
+      "text": "There is no fee for the initial levels of the hackathon. However, teams selected for the final round will be required to pay ₹400 per participant as a registration fee for the final event."
+    },
+    {
+      "component": "TextTwoColumns",
       "title": "Will there be food?",
       "text": "Yes! Snacks, meals, and drinks will be provided to keep you energized throughout the event. If you have any specific dietary restrictions, please let us know ahead of time."
     },

@@ -1,3 +1,10 @@
+.rewardImage {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  margin-bottom: 1rem;
+}
+
 .root {
   @mixin body-2;
 
@@ -509,6 +516,13 @@ background: rgba(0, 0, 30, 0.51);
   gap: 4rem;
   flex-wrap: nowrap;
 }
+.timelineRowThird {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 4rem;
+  flex-wrap: nowrap;
+}
 
 @media (max-width: 900px) {
   .timelineRow {
@@ -668,7 +682,7 @@ background: rgba(0, 0, 30, 0.51);
 }
 
 .cardYear {
-  font-size: 0.75rem;
+  font-size: 1rem;
   opacity: 0.7;
   margin-top: 0.2rem;
 }
@@ -680,7 +694,7 @@ background: rgba(0, 0, 30, 0.51);
 }
 
 .cardDescription {
-  font-size: 1rem;
+  font-size: 1.1rem;
   opacity: 0.9;
   line-height: 1.6;
 }

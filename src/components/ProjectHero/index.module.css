@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column;
   margin-top: calc(var(--frame-margin) * 4);
-  margin-bottom: var(--module-margin-bottom);
+  /* margin-bottom: var(--module-margin-bottom); */
   background-color: transparent;
 
   @media (--md-l) {
@@ -218,5 +218,19 @@
 
   path {
     stroke: #000;
+  }
+}
+
+.inner {
+  color: black !important;
+  opacity: 0;
+  transform: translate3d(0, 100%, 0);
+  transition: all 1s var(--expo-ease-in-out) 0s;
+  font-size: 1.7rem;
+
+  .open & {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    transition: all 2s var(--expo-ease-in-out) calc(var(  --modal-enter-delay) + 0.5s);
   }
 }

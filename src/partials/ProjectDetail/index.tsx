@@ -23,7 +23,7 @@ const Components: Modules = {
   Awards,
   Media,
   Numbers,
-  TextIntro,
+  // TextIntro,
   TextTwoColumns
 }
 

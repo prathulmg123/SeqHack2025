@@ -10,7 +10,7 @@ import Heading from 'components/Heading'
 import { List, ListItem } from 'components/List'
 import React, { useEffect } from 'react';
 
-import { FaMoneyBillWave, FaGift, FaRocket, FaCode } from 'react-icons/fa'
+import { FaTrophy, FaGift, FaRocket, FaCode } from 'react-icons/fa'
 import { Trans, useTranslation } from 'react-i18next'
 import { motion } from 'framer-motion'
 
@@ -24,24 +24,24 @@ function About() {
 
   const rewards = [
     {
-      icon: <FaMoneyBillWave className={style.neonBlueIcon} />,
-      title: 'HUGE PRIZE POOL',
-      description: 'Amazing cash prizes await those who seek innovation!',
+      icon: <img src="/images/cash.png" alt="Prize Money" className={style.rewardImage} />,
+      title: 'Substantial Prize Pool',
+      description: 'Compete for a total prize pool valued at over ₹1,00,000, with significant cash awards distributed among the top finalist teams.',
     },
     {
-      icon: <FaGift className={style.neonBlueIcon} />,
-      title: 'GOODIES?',
-      description: 'Stickers, T-Shirts, and more fascinating prizes!',
+      icon: <img src="/images/gift.png" alt="Prize Money" className={style.rewardImage} />,
+      title: 'Exclusive Merchandise & Swag',
+      description: <>{'All finalists will receive a limited-edition SEQATHON kit, which includes:'}<br />• Official Event T-Shirt<br />• Custom Sticker Pack<br />• Certificate of Achievement<br />• And more surprise perks</>,
     },
     {
-      icon: <FaRocket className={style.neonBlueIcon} />,
-      title: 'RESUME BOOST!',
-      description: 'Boost your resume with a new project! Better if you win!',
+      icon: <img src="/images/boost.png" alt="Prize Money" className={style.rewardImage} />,
+      title: 'Career & Portfolio Development',
+      description: 'Develop a high-impact project to feature in your professional portfolio. Top performers will gain exclusive access to internship interviews and career opportunities at SEQATO.',
     },
     {
-      icon: <FaCode className={style.neonBlueIcon} />,
-      title: 'CODE & CHILL',
-      description: 'Write code, chill with the others and have fun!',
+      icon: <img src="/images/pc.png" alt="Prize Money" className={style.rewardImage} />,
+      title: 'Mentorship & Networking',
+      description: 'Engage directly with senior engineers and tech leads from SEQATO. Collaborate with talented peers from across the nation and build lasting connections with industry leaders.',
     },
   ]
 
@@ -62,66 +62,58 @@ function About() {
       color: '#6366F1'
     },
     {
-      title: 'Initial Problem Release',
-      date: 'AUG 18 - AUG 21',
+      title: 'Qualifier Challenge Release',
+      date: 'AUG 23',
       year: '2025',
-      description: 'Get the first challenge and start working on your solution.',
+      description: 'The official problem statement for the first challenge will be released exclusively to the shortlisted qualifier teams.',
       icon: '🚀',
       color: '#EC4899'
     },
     {
-      title: 'Solution Submission',
-      date: 'AUG 25 - SEP 05',
+      title: 'Qualifier Submission Deadline',
+      date: 'AUG 30',
       year: '2025',
-      description: 'Attend workshops and submit your solution by the deadline.',
+      description: 'All qualifier teams must submit their completed solutions for this phase via the designated repository for evaluation.',
       icon: '🎓',
       color: '#3B82F6'
     },
     {
-      title: 'Shortlisting Round',
-      date: 'SEP 01 - SEP 10',
+      title: 'Finalist Announcement & Onboarding',
+      date: 'SEP 03 - SEP 06',
       year: '2025',
-      description: 'Top teams get mentorship and move to the next stage.',
+      description: 'The top 10 teams advancing to the Grand Finale are announced. These teams will then confirm their participation by completing the final registration and payment.',
       icon: '👥',
       color: '#8B5CF6'
     },
     {
-      title: 'Final Confirmation',
-      date: 'SEP 15 - SEP 16',
+      title: 'Final Challenge Release',
+      date: 'SEP 16',
       year: '2025',
-      description: 'Receive the final problem and submit your updated solution.',
+      description: 'The exclusive, in-depth problem statement for the Grand Finale is released to the 10 finalist teams to kick off the final development sprint.',
       icon: '💻',
       color: '#10B981'
     },
     {
-      title: 'Prototype Development',
-      date: 'SEP 17 - SEP 18',
+      title: 'Final Submission Deadline',
+      date: 'SEP 18',
       year: '2025',
-      description: 'Build a working prototype based on the final challenge.',
+      description: 'The final development phase concludes. All code and project materials for the Grand Finale must be submitted via GitLab by midnight.',
       icon: '⚙️',
       color: '#F59E0B'
     },
     {
-      title: 'Final Submission',
-      date: 'SEP 19',
+      title: 'Project Showcase (On-site)',
+      date: 'SEP 20',
       year: '2025',
-      description: 'Submit your final presentation with confidence and clarity.',
+      description: 'The 10 finalist teams present their solutions and give a live demonstration to our elite jury at the SEQATO headquarters.',
       icon: '📑',
       color: '#F97316'
     },
     {
-      title: 'Project Presentation',
-      date: 'SEP 20',
+      title: 'Winners Announcement & Ceremony',
+      date: 'SEP 20 - (Evening)',
       year: '2025',
-      description: 'Present your project live to the judges, showcase your innovation',
-      icon: '🎤',
-      color: '#EC4899'
-    },
-    {
-      title: 'Winners Announcement',
-      date: 'SEP 20',
-      year: '2025',
-      description: 'Winners revealed during the closing ceremony.',
+      description: 'The SEQATHON 2025 champions are announced, followed by the prize distribution and official closing ceremony.',
       icon: '🏆',
       color: '#8B5CF6'
     }
@@ -183,7 +175,7 @@ function About() {
               <Row start={1} end={3}>
                 <ContentBlock className={style.contentBlock}>
                   <div className={style.specialCardDescription}>
-                    <p>Unlock exciting rewards and exclusive benefits by participating in our hackathon. Stand a chance to win cash prizes, mentorship opportunities, and potential job offers from top tech companies. All participants will receive certificates, swag, and networking opportunities with industry leaders.</p>
+                    <p>Unlock career-defining opportunities, gain elite mentorship, and compete for a substantial prize pool.</p>
                   </div>
 
                 </ContentBlock>
@@ -208,7 +200,7 @@ function About() {
           </ContentBlock>
         </Row>
       </Container>
-      <Container grid outerRightOnMobile>
+      {/* <Container grid outerRightOnMobile>
         <Row start={1} end={3}>
           <div className={`${style.section} ${style.headingContainer}`}>
             <Heading
@@ -220,8 +212,8 @@ function About() {
             </Heading>
           </div>
         </Row>
-      </Container>
-      <Container grid >
+      </Container> */}
+      {/* <Container grid >
         <Row start={1} end={3}>
           <ContentBlock className={style.contentBlock}>
             <div className={style.specialCardDescription}>
@@ -230,8 +222,8 @@ function About() {
 
           </ContentBlock>
         </Row>
-      </Container>
-      <Container>
+      </Container> */}
+      {/* <Container>
         <ContentBlock>
           <Row start={1} end={3}>
             <div className={style.modernTimeline}>
@@ -264,7 +256,7 @@ function About() {
             </div>
           </Row>
         </ContentBlock>
-      </Container>
+      </Container> */}
 
       <Container grid outerRightOnMobile>
         <Row start={1} end={3}>
@@ -396,7 +388,7 @@ function About() {
               </div>
 
               {/* Row 3: Last 3 milestones */}
-              <div className={style.timelineRow}>
+              <div className={style.timelineRowThird}>
                 {milestones.slice(6, 9).map((milestone, index, array) => (
                   <React.Fragment key={index + 6}>
                     <div className={style.timelineStep}>
@@ -426,7 +418,7 @@ function About() {
                         <h3 className={style.cardTitle}>{milestone.title}</h3>
                         <p className={style.cardDescription}>{milestone.description}</p>
                       </motion.div>
-                      {index < 2 && (
+                      {index < 1 && (
                         <div className={style.arrowRight}>
                         <svg width="32" height="32" viewBox="0 0 24 24">
                             <path d="M4 12h16m0 0l-6-6m6 6l-6 6" stroke="#EC4899" strokeWidth="2" fill="none" />

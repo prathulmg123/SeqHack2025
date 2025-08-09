@@ -14,15 +14,16 @@
     
     {
       "component": "TextTwoColumns",
-      "title": "Evaluation Criteria for Phase 1 & Phase 2 (Warmup)",
-"text": "What's Judged :<br>✅ Problem Understanding – Did you understand the problem statement and requirements clearly?<br>✅ Approach and Clarity – How you structured your solution and your reasoning behind the approach.<br>✅ Code Quality – Clean, readable, and efficient code over just speed.<br>✅ Functionality – Does your solution work and meet the problem requirements?<br>✅ Documentation – Clear README or inline comments explaining your logic and setup.<br> ✅ Testing – Are there unit/integration tests? Do they cover important cases?<br><br>💡 Remember:<br> * This isn't just about writing code.<br> * Bring your logic, your curiosity, and your structured thinking.<br> * Experiment, iterate, and document your journey.<br><br>Your GitHub submission should reflect your approach, clarity of thought, and creativity."
+      "title": "Level 1: IGNITION STAGE ",
+"text": "The top 10 teams will be selected based on a review of their open-source contributions, past achievements, and their Level 1 solution submission, focusing on:<br><br>✅ Conceptual Clarity: A clear understanding of the problem statement and requirements.<br>✅ Strategic Approach: The structure of your solution and the reasoning behind your technical choices.<br>✅ Code Quality: Clean, readable, and efficient code.<br>✅Functionality: A working solution that meets all problem requirements.<br>✅ Documentation: Clear explanations of your logic and setup.<br> ✅ Testing – Are there unit/integration tests? Do they cover important cases?<br><br>💡 Remember:<br> * This isn't just about writing code.<br> * Bring your logic, your curiosity, and your structured thinking.<br> * Experiment, iterate, and document your journey.<br><br>Your GitHub submission should reflect your approach, clarity of thought, and creativity."
+
       
       
     },
     {
       "component": "TextTwoColumns",
-      "title": "Final Phase Evaluation Criteria (Presentation Day)",
-   "text": "Detailed evaluation criteria for the presentation on September 20 will be shared with the top 10 shortlisted teams who complete Phase 1 and Phase 2.<br><br>It will cover :<br>✅ Solution depth and impact<br>✅ Presentation clarity and demo quality<br>✅ Technical innovation and feasibility<br>✅ Team collaboration and communication<br><br>🎯 Key Takeaways<br>✨ Focus on the process as much as the solution<br>✨ Show your ability to think creatively and practically<br>✨ Quality matters more than speed<br>✨ Document your approach and decision points<br><br>Ready to showcase your skills and take on the challenge?<br>Your hackathon journey begins now. Let's build something legendary together.🚀"
+      "title": "LEVEL 2: MISSION CORE ",
+    "text": "Winners will be selected based on a holistic evaluation of their work across the following areas:<br><br>✅ Code Quality & Functionality: How well-built, efficient, and effective is the technical solution?<br>✅ Innovation & Practicality: How creatively does the solution address the given problem? We will evaluate the originality of the team's approach and the overall feasibility of their proposed solution to the real-world challenge.<br>✅ Clarity & Effectiveness of Presentation: How well did the team communicate their project's vision, features, and value?<br>✅ Solution depth and impact<br>✅ Presentation clarity and demo quality<br>✅ Technical innovation and feasibility<br>✅ Team collaboration and communication<br><br>🎯 Key Takeaways<br>✨ Focus on the process as much as the solution<br>✨ Show your ability to think creatively and practically<br>✨ Quality matters more than speed<br>✨ Document your approach and decision points<br><br>Ready to showcase your skills and take on the challenge?<br>Your hackathon journey begins now. Let's build something legendary together.🚀"
     }
   ]
 }
