@@ -52,9 +52,9 @@ const root = ReactDOM.createRoot(rootElement)
 root.render(
   <CustomRouter>
     <Provider store={store}>
-      {/* <AppWithReloadHandler> */}
+      <AppWithReloadHandler>
         <Router />
-      {/* </AppWithReloadHandler> */}
+      </AppWithReloadHandler>
     </Provider>
   </CustomRouter>
 )

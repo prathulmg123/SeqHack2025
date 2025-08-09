@@ -106,7 +106,7 @@ function Contact() {
   }, [dispatch.pointer])
 
  const overHandler = useCallback(() => {
-    dispatch.pointer.setType('hidden')
+    dispatch.pointer.setType('hover')
   }, [dispatch.pointer])
 
 

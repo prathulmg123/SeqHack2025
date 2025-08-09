@@ -9,6 +9,7 @@
 }
 
 .leftLine,
+.centerLine,
 .rightLine,
 .circle {
   position: absolute;
@@ -24,6 +25,7 @@
 }
 
 .leftLine,
+.centerLine,
 .rightLine {
   top: 0;
   left: -1px;
@@ -35,6 +37,11 @@
 
 .leftLine {
   transform: rotate(-5deg);
+}
+
+.centerLine {
+  transform: rotate(-30deg);
+  height: 25px;
 }
 
 .rightLine {
@@ -55,6 +62,7 @@
 
 .dark {
   .leftLine,
+  .centerLine,
   .rightLine,
   .circle {
     background-color: var(--color-black);
@@ -71,6 +79,11 @@
     transition: transform 0.3s var(--power3-ease-out);
   }
 
+  .centerLine {
+    transform: rotate(-30deg) scale(1, 0);
+    transition: transform 0.3s var(--power3-ease-out) 0.05s;
+  }
+
   .rightLine {
     transform: rotate(-55deg) scale(1, 0);
     transition: transform 0.3s var(--power3-ease-out) 0.1s;
@@ -80,6 +93,10 @@
 .type-hover {
   .leftLine {
     transform: translate3d(-1px, 8px, 0) rotate(4deg) scale(1, 0.5);
+  }
+
+  .centerLine {
+    transform: translate3d(4px, 6px, 0) rotate(-30deg) scale(1, 0.5);
   }
 
   .rightLine {

@@ -61,7 +61,7 @@
   border: 0;
   background-color: transparent;
   color: var(--color-white);
-  cursor: none;
+  cursor: none !important;
 
   &&::after,
   &&::before {

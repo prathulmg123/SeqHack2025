@@ -45,6 +45,7 @@
   flex-direction: row;
   gap: 1.5rem;
   align-items: center;
+  cursor: none !important;
 }
 
 .contactItem {
@@ -83,6 +84,7 @@
   background: rgba(0, 0, 30, 0.87);
     box-shadow: 0 4px 20px rgba(10 58 146 / 69%);
   border-radius: 10px;
+  cursor: none !important;
 }
 
 .contactItem:hover,
@@ -136,6 +138,7 @@
     width: 100%;
     justify-content: center;
     flex-wrap: wrap;
+    cursor: none !important;
   }
   
   .contactSection {
@@ -146,6 +149,7 @@
   .socialItem {
     padding: 0.6rem 1rem;
     font-size: 0.9rem;
+    cursor: none !important;
   }
 }
 

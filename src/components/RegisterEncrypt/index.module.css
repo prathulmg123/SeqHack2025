@@ -50,13 +50,14 @@
   width: auto;
   height: auto;
   margin-bottom: 2rem;
+  cursor: none !important;
 }
 
 .lockGroup {
   display: flex;
   flex-direction: column;
   align-items: center;
-  cursor: pointer;
+  cursor: none !important;
   width: auto;
   height: auto;
 }
@@ -68,6 +69,7 @@
 
 .lockGroup:hover .lockTop {
   transform: translateY(44px);
+  cursor: none !important;
 }
 
 .lockMain {
@@ -82,7 +84,7 @@
   border-radius: 30px;
   font-size: 0.8rem;
   font-weight: 400;
-  cursor: pointer;
+  cursor: none !important;
   margin-top: 10px;
   position: relative;
   overflow: hidden;

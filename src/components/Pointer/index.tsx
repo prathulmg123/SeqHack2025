@@ -45,6 +45,7 @@ function Pointer() {
   return (
     <div className={classes} ref={cursorRef}>
       <div className={style.leftLine} />
+      <div className={style.centerLine} />
       <div className={style.rightLine} />
       <div className={style.circle} />
     </div>

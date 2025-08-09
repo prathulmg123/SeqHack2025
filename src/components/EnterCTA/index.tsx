@@ -82,7 +82,7 @@ const EnterCTA = () => {
   const setHover = useCallback(() => {
     if (!app.loaded) return
 
-    dispatch.pointer.setType('hidden')
+    dispatch.pointer.setType('hover')
   }, [app.loaded, dispatch.pointer])
 
   const removeHover = useCallback(() => {
