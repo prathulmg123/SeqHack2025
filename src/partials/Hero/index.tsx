@@ -43,19 +43,18 @@ const CountdownTimer = () => {
 
  
   useEffect(() => {
-    // Correct target date (UTC)
-    const targetDate = new Date(Date.UTC(2025, 8, 20, 0, 0, 0)); // July 31, 2025
+    // Target date: August 20, 2025, 23:59:59 (11 days from August 9, 2025)
+    const targetDate = new Date('2025-08-20T23:59:59+05:30');
 
     const updateTimer = () => {
       const now = new Date();
-      const nowUTC = new Date(now.getTime() + now.getTimezoneOffset() * 60000);
-      const difference = targetDate.getTime() - nowUTC.getTime();
+      const difference = targetDate.getTime() - now.getTime();
 
       if (difference > 0) {
         const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+        const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((difference / 1000 / 60) % 60);
+        const seconds = Math.floor((difference / 1000) % 60);
 
         setTimeLeft({ days, hours, minutes, seconds });
       } else {
@@ -140,7 +139,7 @@ export default function Hero() {
   
   return (
     <>
-   {app.ready && ( <CountdownClock endDate="2025-08-15T23:59:59" animationDelay={6000} />)}
+   {app.ready && ( <CountdownClock endDate="2025-08-20T23:59:59+05:30" animationDelay={6000} />)}
       {loading ? (
 
         <div className={style.loadingScreen}>

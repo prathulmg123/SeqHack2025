@@ -101,7 +101,7 @@
   will-change: transform;
 
   @media (--md-l) {
-    font-size: 0.8rem;
+    font-size: 1.2rem;
   }
 }
 
