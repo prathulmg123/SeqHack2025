@@ -168,13 +168,19 @@ export default class Title {
 
     // Apply smaller scale specifically for "SEQATHON 3·0"
     if (this.settings.text === 'SEQATHON') {
-      mobileScale = 0.009
+      mobileScale = 0.005
       desktopScale = 0.020
     }
 
     if (this.settings.text === 'Mission Briefing' || this.settings.text === 'Battle Plan') {
-      mobileScale = 0.009
+      mobileScale = 0.005
       desktopScale = 0.018
+    }
+
+
+    if (this.settings.text === 'Register') {
+      mobileScale = 0.005
+      // desktopScale = 0.018
     }
 
     // Mobile

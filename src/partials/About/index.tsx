@@ -1,26 +1,77 @@
-import style from './index.module.css'
+import style from './index.module.css';
 
 // Components
-import Section from 'components/Section'
-import Container, { Row } from 'components/Container'
-import ContentBlock from 'components/ContentBlock'
-import ImageTrigger from 'components/ImageTrigger'
-import Square from 'components/Square'
-import Heading from 'components/Heading'
-import { List, ListItem } from 'components/List'
-import React, { useEffect } from 'react';
+import Section from 'components/Section';
+import Container, { Row } from 'components/Container';
+import ContentBlock from 'components/ContentBlock';
+import Heading from 'components/Heading';
+import React, { useEffect, useState } from 'react';
 
-import { FaTrophy, FaGift, FaRocket, FaCode } from 'react-icons/fa'
-import { Trans, useTranslation } from 'react-i18next'
-import { motion } from 'framer-motion'
+import { useTranslation } from 'react-i18next';
+import { motion } from 'framer-motion';
+
+// Helper function to parse date string to Date object
+const parseDate = (dateStr: string): Date => {
+  const [month, day] = dateStr.split(' ');
+  const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+  const monthIndex = months.indexOf(month.toUpperCase());
+  if (monthIndex === -1) {
+    return new Date(NaN); // Invalid month
+  }
+  return new Date(2025, monthIndex, parseInt(day));
+};
+
+// Helper function to get the current stage index
+const getCurrentStageIndex = (milestones: any[]): number => {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  // First, check if we are currently within any milestone's date range
+  for (let i = 0; i < milestones.length; i++) {
+    const [startDateStr, endDateStr] = milestones[i].date.split(' - ').map((s: any) =>
+      s.trim().replace('(', '').replace(')', '').replace('Evening', '').trim()
+    );
+
+    try {
+      const startDate = parseDate(startDateStr);
+      const endDate = endDateStr ? parseDate(endDateStr) : startDate;
+
+      if (isNaN(startDate.getTime()) || isNaN(endDate.getTime())) continue;
+
+      endDate.setHours(23, 59, 59, 999); // Include the entire end day
+
+      if (today >= startDate && today <= endDate) {
+        return i; // This is the current stage
+      }
+    } catch (e) {
+      continue;
+    }
+  }
+
+  // If no stage is currently active, find the next upcoming one
+  for (let i = 0; i < milestones.length; i++) {
+    const [startDateStr] = milestones[i].date.split(' - ').map((s: any) =>
+      s.trim().replace('(', '').replace(')', '').replace('Evening', '').trim()
+    );
+
+    try {
+      const startDate = parseDate(startDateStr);
+      if (isNaN(startDate.getTime())) continue;
+
+      if (today < startDate) {
+        return i; // This is the next upcoming stage
+      }
+    } catch (e) {
+      continue;
+    }
+  }
+
+  return milestones.length; // Default to a non-existent index if all have passed
+};
 
 function About() {
-  const { t } = useTranslation('translation', { keyPrefix: 'about' })
-  const intro: string[] = t('intro', { returnObjects: true })
-  const clanTitle: string = t('clan_title')
-  const clan: string[] = t('clan', { returnObjects: true })
-  const methodTitle: string = t('method_title')
-  const method: string[] = t('method', { returnObjects: true })
+  const { t } = useTranslation('translation', { keyPrefix: 'about' });
+  const intro: string[] = t('intro', { returnObjects: true });
 
   const rewards = [
     {
@@ -43,13 +94,6 @@ function About() {
       title: 'Mentorship & Networking',
       description: 'Engage directly with senior engineers and tech leads from SEQATO. Collaborate with talented peers from across the nation and build lasting connections with industry leaders.',
     },
-  ]
-
-  const roadmapItems = [
-    { num: '01', title: 'Code Quality', desc: 'Robust, clean, and efficient code implementation', img: '/public/images/browser.png' },
-    { num: '02', title: 'Innovation', desc: 'Creative and practical solutions that push boundaries', img: '/public/images/ideaInov.png' },
-    { num: '03', title: 'Presentation', desc: 'Clear, engaging, and professional demonstration', img: '/public/images/presentation.png' },
-    // { num: '04', title: 'Impact', desc: 'Real-world applicability and potential', img: '/public/images/browser.png' }
   ];
 
   const milestones = [
@@ -118,51 +162,19 @@ function About() {
       color: '#8B5CF6'
     },
     {
-      title: 'Winners Announcement & Ceremony',
-      date: 'SEP 20 - (Evening)',
-      year: '2025',
-      description: 'The SEQATHON 2025 champions are announced, followed by the prize distribution and official closing ceremony.',
-      icon: '🏆',
-      color: '#8B5CF6'
+      title: 'Placeholder',
+      date: '',
+      year: '',
+      description: '',
+      icon: '',
+      color: ''
     }
   ];
+
+  const [currentStageIndex, setCurrentStageIndex] = useState(-1);
+
   useEffect(() => {
-    function drawConnectors() {
-      const cards = document.querySelectorAll('.modernCard');
-      const svg = document.querySelector('.cardConnectorSVG');
-      if (!svg || cards.length < 2) return;
-
-      svg.innerHTML = '';
-
-      for (let i = 0; i < cards.length - 1; i++) {
-        const start = cards[i].getBoundingClientRect();
-        const end = cards[i + 1].getBoundingClientRect();
-        const svgRect = svg.getBoundingClientRect();
-
-        const startX = start.right - svgRect.left;
-        const startY = start.top + start.height / 2 - svgRect.top;
-        const endX = end.left - svgRect.left;
-        const endY = end.top + end.height / 2 - svgRect.top;
-
-        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-        path.setAttribute('class', 'cardConnectorPath');
-
-        const d = `
-          M ${startX} ${startY}
-          C ${(startX + endX) / 2} ${startY},
-            ${(startX + endX) / 2} ${endY},
-            ${endX} ${endY}
-        `;
-
-        path.setAttribute('d', d);
-        svg.appendChild(path);
-      }
-    }
-
-
-    drawConnectors();
-    window.addEventListener('resize', drawConnectors);
-    return () => window.removeEventListener('resize', drawConnectors);
+    setCurrentStageIndex(getCurrentStageIndex(milestones));
   }, []);
 
   return (
@@ -173,9 +185,8 @@ function About() {
             <div className={style.headingContainer}>
               <Heading
                 misaligned
-                key={intro[0]}
-                className={`${style.font} ${style.portfolioHeading} ${style.customHeading}`}
-              >
+                key="rewards-heading"
+                className={`${style.font} ${style.portfolioHeading} ${style.customHeading}`}>
                 <span className={style.glowText}>Rewards & Benefits</span>
               </Heading>
             </div>
@@ -185,7 +196,6 @@ function About() {
                   <div className={style.specialCardDescription}>
                     <p>Unlock career-defining opportunities, gain elite mentorship, and compete for a substantial prize pool.</p>
                   </div>
-
                 </ContentBlock>
               </Row>
             </div>
@@ -196,7 +206,6 @@ function About() {
                   className={style.card}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  // transition={{ duration: 0.4, delay: index * 0.2 }}
                   viewport={{ once: true }}
                 >
                   <div className={style.icon}>{reward.icon}</div>
@@ -208,117 +217,59 @@ function About() {
           </ContentBlock>
         </Row>
       </Container>
-      {/* <Container grid outerRightOnMobile>
-        <Row start={1} end={3}>
-          <div className={`${style.section} ${style.headingContainer}`}>
-            <Heading
-              misaligned
-              key={intro[0]}
-              className={`${style.font} ${style.portfolioHeading} ${style.customHeading}`}
-            >
-              <span className={style.glowText}>Evaluation Criteria</span>
-            </Heading>
-          </div>
-        </Row>
-      </Container> */}
-      {/* <Container grid >
-        <Row start={1} end={3}>
-          <ContentBlock className={style.contentBlock}>
-            <div className={style.specialCardDescription}>
-              <p>Evaluation focuses on problem understanding,<br></br> structured approach, code quality, and documentation.<br></br> Creativity, clarity of thought, and teamwork are key across all phases.<br></br> Finalists will also be judged on solution impact, innovation, and presentation.</p>
-            </div>
-
-          </ContentBlock>
-        </Row>
-      </Container> */}
-      {/* <Container>
-        <ContentBlock>
-          <Row start={1} end={3}>
-            <div className={style.modernTimeline}>
-              <div className={style.roadmapRow}>
-                {roadmapItems.map((item, index) => (
-                  <div
-                    key={index}
-                    className={`${style.modernCard} ${style[`color-${(index % 4) + 1}`]}`}
-                    data-aos="fade-up"
-                    data-aos-delay={index * 100}
-                  >
-                    <div className={style.cardNumber}>{index + 1}</div>
-                    <div className={style.cardContent}>
-                      <img
-                        src={item.img}
-                        loading="lazy"
-                        decoding="async"
-                        alt="Mobile preview"
-                        style={{ display: 'block', width: '40%', height: 'auto' }}
-                        width={140}
-
-                      />
-
-                      <h3 className={style.cardTitle}>{item.title}</h3>
-                      <p className={style.cardDescription}>{item.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </Row>
-        </ContentBlock>
-      </Container> */}
 
       <Container grid outerRightOnMobile>
         <Row start={1} end={3}>
           <div className={`${style.section} ${style.headingContainer}`}>
             <Heading
               misaligned
-              key={intro[0]}
-              className={`${style.font} ${style.portfolioHeading} ${style.customHeading}`}
-            >
-              <span className={style.glowText}>Timeline</span>
+              key="timeline-heading"
+              className={`${style.font} ${style.portfolioHeading} ${style.customHeading}`}>
+              <span className={style.glowText}>Timeline & Milestones</span>
             </Heading>
           </div>
         </Row>
-      </Container>
-      <Container grid >
         <Row start={1} end={3}>
           <ContentBlock className={style.contentBlock}>
             <div className={style.specialCardDescription}>
-              <p>Stay on track with clearly defined phases and deadlines.<br></br> Each stage has specific deliverables and review points.<br></br> Timely submissions are crucial for progressing to the next round.</p>
+              <p>From registration to the grand finale, every date is a crucial step toward victory. Stay on track with the official SEQATHON 2025 timeline.</p>
             </div>
-
           </ContentBlock>
         </Row>
       </Container>
-      {/* <Container> */}
-      <Container className="timeline-container">
-        <ContentBlock>
-          <Row start={1} end={3}>
 
-            <div className={style.timelineGridWrapper}>
-              {/* Row 1: First 3 milestones */}
-              <div className={style.timelineRow}>
-                {milestones.slice(0, 3).map((milestone, index, array) => (
-                  <React.Fragment key={index}>
+      <Container>
+        <Row>
+          <div className={style.timelineGridWrapper}>
+            {/* Row 1: First 3 milestones */}
+            <div className={style.timelineRow}>
+              {milestones.slice(0, 3).map((milestone, index) => {
+                const absoluteIndex = index;
+                const isCurrent = absoluteIndex === currentStageIndex;
+                return (
+                  <React.Fragment key={absoluteIndex}>
                     <div className={style.timelineStep}>
                       <motion.div
                         className={style.timelineCard}
                         initial={{ opacity: 0, y: 20 }}
-                        whileInView={{
-                          opacity: 1,
-                          y: 0,
-                          transition: {
-                            duration: 0.6,
-                            delay: index * 0.1,
-                            ease: [0.16, 1, 0.3, 1],
-                          },
-                        }}
+                        whileInView={{ opacity: 1, y: 0, transition: { duration: 0.6, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] } }}
                         viewport={{ once: true, margin: "-50px" }}
                         style={{
-                          borderColor: `${milestone.color}40`,
-                          boxShadow: `0 10px 30px ${milestone.color}20`,
+                          borderColor: isCurrent ? '#10B981' : `${milestone.color}40`,
+                          boxShadow: isCurrent ? '0 0 15px #10B98180, 0 0 30px #10B98140' : `0 10px 30px ${milestone.color}20`,
+                          position: 'relative',
+                          overflow: 'hidden',
                         }}
+                        animate={isCurrent ? { scale: [1, 1.02, 1], transition: { duration: 2, repeat: Infinity, repeatType: 'reverse', ease: 'easeInOut' } } : {}}
                       >
-                        <div className={style.stepLabel}>Step {index + 1}</div>
+                        <div className={style.stepLabel}>
+                          Step {absoluteIndex + 1}
+                          {isCurrent && (
+                            <motion.span className={style.currentBadge} initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: 'spring', stiffness: 500, damping: 25 }}>
+                              You Are Here
+                            </motion.span>
+                          )}
+                        </div>
                         <div className={style.cardDate}>
                           {milestone.date}
                           <div className={style.cardYear}>{milestone.year}</div>
@@ -328,47 +279,48 @@ function About() {
                       </motion.div>
                       {index < 2 ? (
                         <div className={style.arrowRight}>
-                          <svg width="32" height="32" viewBox="0 0 24 24">
-                            <path d="M4 12h16m0 0l-6-6m6 6l-6 6" stroke="#EC4899" strokeWidth="2" fill="none" />
-                          </svg>
+                          <svg width="32" height="32" viewBox="0 0 24 24"><path d="M4 12h16m0 0l-6-6m6 6l-6 6" stroke="#EC4899" strokeWidth="2" fill="none" /></svg>
                         </div>
                       ) : (
                         <div className={style.arrowDown}>
-                          <svg width="32" height="32" viewBox="0 0 24 24">
-                            <path d="M12 4v16m0 0l6-6m-6 6l-6-6" stroke="#EC4899" strokeWidth="2" fill="none" />
-                          </svg>
+                          <svg width="32" height="32" viewBox="0 0 24 24"><path d="M12 4v16m0 0l6-6m-6 6l-6-6" stroke="#EC4899" strokeWidth="2" fill="none" /></svg>
                         </div>
-
                       )}
                     </div>
                   </React.Fragment>
-                ))}
-              </div>
+                )
+              })}
+            </div>
 
-              {/* Row 2: Next 3 milestones (reversed) */}
-              <div className={style.timelineRow}>
-                {[...milestones.slice(3, 6)].reverse().map((milestone, index) => (
-                  <React.Fragment key={index + 3}>
+            {/* Row 2: Next 3 milestones (reversed) */}
+            <div className={style.timelineRow}>
+              {[...milestones.slice(3, 6)].reverse().map((milestone, index) => {
+                const absoluteIndex = 5 - index;
+                const isCurrent = absoluteIndex === currentStageIndex;
+                return (
+                  <React.Fragment key={absoluteIndex}>
                     <div className={style.timelineStep}>
                       <motion.div
                         className={style.timelineCard}
                         initial={{ opacity: 0, y: 20 }}
-                        whileInView={{
-                          opacity: 1,
-                          y: 0,
-                          transition: {
-                            duration: 0.6,
-                            delay: index * 0.1,
-                            ease: [0.16, 1, 0.3, 1],
-                          },
-                        }}
+                        whileInView={{ opacity: 1, y: 0, transition: { duration: 0.6, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] } }}
                         viewport={{ once: true, margin: "-50px" }}
                         style={{
-                          borderColor: `${milestone.color}40`,
-                          boxShadow: `0 10px 30px ${milestone.color}20`,
+                          borderColor: isCurrent ? '#10B981' : `${milestone.color}40`,
+                          boxShadow: isCurrent ? '0 0 15px #10B98180, 0 0 30px #10B98140' : `0 10px 30px ${milestone.color}20`,
+                          position: 'relative',
+                          overflow: 'hidden',
                         }}
+                        animate={isCurrent ? { scale: [1, 1.02, 1], transition: { duration: 2, repeat: Infinity, repeatType: 'reverse', ease: 'easeInOut' } } : {}}
                       >
-                        <div className={style.stepLabel}>Step {6 - index}</div>
+                        <div className={style.stepLabel}>
+                          Step {absoluteIndex + 1}
+                          {isCurrent && (
+                            <motion.span className={style.currentBadge} initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: 'spring', stiffness: 500, damping: 25 }}>
+                              You Are Here
+                            </motion.span>
+                          )}
+                        </div>
                         <div className={style.cardDate}>
                           {milestone.date}
                           <div className={style.cardYear}>{milestone.year}</div>
@@ -376,50 +328,54 @@ function About() {
                         <h3 className={style.cardTitle}>{milestone.title}</h3>
                         <p className={style.cardDescription}>{milestone.description}</p>
                       </motion.div>
-                      {index < 2 && (
+                      {index < 2 ? (
                         <div className={style.arrowRight}>
-                           <svg width="32" height="32" viewBox="0 0 24 24">
-                          <path d="M20 12H4m0 0l6-6m-6 6l6 6" stroke="#EC4899" strokeWidth="2" fill="none" />
-                        </svg>
+                          <svg width="32" height="32" viewBox="0 0 24 24"><path d="M20 12H4m0 0l6-6m-6 6l6 6" stroke="#EC4899" strokeWidth="2" fill="none" /></svg>
                         </div>
-                      )}
-                      {index === 0 && (
+                      ) : (
                         <div className={style.arrowDown}>
-                          <svg width="32" height="32" viewBox="0 0 24 24">
-                            <path d="M12 4v16m0 0l6-6m-6 6l-6-6" stroke="#EC4899" strokeWidth="2" fill="none" />
-                          </svg>
+                          <svg width="32" height="32" viewBox="0 0 24 24"><path d="M12 4v16m0 0l6-6m-6 6l-6-6" stroke="#EC4899" strokeWidth="2" fill="none" /></svg>
                         </div>
                       )}
                     </div>
                   </React.Fragment>
-                ))}
-              </div>
+                )
+              })}
+            </div>
 
-              {/* Row 3: Last 3 milestones */}
-              <div className={style.timelineRow}>
-                {milestones.slice(6, 9).map((milestone, index, array) => (
-                  <React.Fragment key={index + 6}>
-                    <div className={style.timelineStep} style={index === 2 ? { visibility: 'hidden' } : {}}>
+            {/* Row 3: Last 3 milestones */}
+            <div className={style.timelineRow}>
+              {milestones.slice(6, 9).map((milestone, index) => {
+                const absoluteIndex = index + 6;
+                const isCurrent = absoluteIndex === currentStageIndex;
+                // Hide the 9th card (placeholder)
+                if (absoluteIndex === 8) {
+                  return null;
+                }
+                return (
+                  <React.Fragment key={absoluteIndex}>
+                    <div className={style.timelineStep}>
                       <motion.div
                         className={style.timelineCard}
-                        initial={{ opacity: index === 2 ? 0 : 0, y: 20 }}
-                        whileInView={{
-                          opacity: index === 2 ? 0 : 1,
-                          y: 0,
-                          transition: {
-                            duration: 0.6,
-                            delay: index * 0.1,
-                            ease: [0.16, 1, 0.3, 1],
-                          },
-                        }}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0, transition: { duration: 0.6, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] } }}
                         viewport={{ once: true, margin: "-50px" }}
                         style={{
-                          borderColor: `${milestone.color}40`,
-                          boxShadow: `0 10px 30px ${milestone.color}20`,
-                          visibility: index === 2 ? 'hidden' : 'visible'
+                          borderColor: isCurrent ? '#10B981' : `${milestone.color}40`,
+                          boxShadow: isCurrent ? '0 0 15px #10B98180, 0 0 30px #10B98140' : `0 10px 30px ${milestone.color}20`,
+                          position: 'relative',
+                          overflow: 'hidden',
                         }}
+                        animate={isCurrent ? { scale: [1, 1.02, 1], transition: { duration: 2, repeat: Infinity, repeatType: 'reverse', ease: 'easeInOut' } } : {}}
                       >
-                        <div className={style.stepLabel}>Step {index + 7}</div>
+                        <div className={style.stepLabel}>
+                          Step {absoluteIndex + 1}
+                          {isCurrent && (
+                            <motion.span className={style.currentBadge} initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: 'spring', stiffness: 500, damping: 25 }}>
+                              You Are Here
+                            </motion.span>
+                          )}
+                        </div>
                         <div className={style.cardDate}>
                           {milestone.date}
                           <div className={style.cardYear}>{milestone.year}</div>
@@ -429,25 +385,19 @@ function About() {
                       </motion.div>
                       {index < 1 && (
                         <div className={style.arrowRight}>
-                        <svg width="32" height="32" viewBox="0 0 24 24">
-                            <path d="M4 12h16m0 0l-6-6m6 6l-6 6" stroke="#EC4899" strokeWidth="2" fill="none" />
-                          </svg>
+                          <svg width="32" height="32" viewBox="0 0 24 24"><path d="M4 12h16m0 0l-6-6m6 6l-6 6" stroke="#EC4899" strokeWidth="2" fill="none" /></svg>
                         </div>
-
-
                       )}
                     </div>
                   </React.Fragment>
-                ))}
-              </div>
-
+                )
+              })}
             </div>
-
-
-          </Row>
-        </ContentBlock>
+          </div>
+        </Row>
       </Container>
     </Section>
-  )
+  );
 }
-export default About
+
+export default About;

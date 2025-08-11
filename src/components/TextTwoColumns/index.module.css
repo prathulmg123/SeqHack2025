@@ -2,6 +2,7 @@
   margin-bottom: var(--module-margin-bottom);
   opacity: 0;
   transition: all 0.5s ease 0s;
+  margin-top: 2rem;
 
   &.open {
     opacity: 1;

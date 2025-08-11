@@ -156,6 +156,13 @@
   }
 }
 
+
+@media screen and (max-width: 768px){
+  .button {
+    margin-right: 10px;
+  }
+  }
+
 .button {
   --vertical-margin: var(--offset-top) * 2;
 

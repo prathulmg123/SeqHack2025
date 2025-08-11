@@ -12,12 +12,6 @@
       "text": "Stay on track with each phase of the hackathon — from registration to final presentations. Know when to submit, what to expect, and how to prepare at every stage. Follow the guidelines to make the most of your Seqathon 2025 journey!"
     },
     {
-      "component": "Media",
-      "media": [
-       
-      ]
-    },
-    {
       "component": "TextTwoColumns",
       "title": "Eligibility",
       "text": "<ul><li>Open exclusively to all currently enrolled engineering college students, regardless of branch or year of study.</li><br><li>Participants must provide an approval letter from their respective college principal to confirm eligibility.</li></ul>",

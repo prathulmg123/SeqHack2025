@@ -265,7 +265,7 @@
   /* height: 100vh; */
 }
   .head{
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
     
   }
   .loadingTitle {

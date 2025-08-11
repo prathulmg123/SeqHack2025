@@ -164,7 +164,12 @@
   font-size: 1rem !important;
 }
 .container{
-  position: relative;
+  position: absolute;
   gap: 0.1rem;
+  top: 2px;
+        left: 80px;
+        right: unset;
+        margin-top: 0;
+    
 }
 }
