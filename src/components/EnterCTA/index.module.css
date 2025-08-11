@@ -1,29 +1,33 @@
 .root {
-  --ring-size: 270px;
+  --ring-size: 120px;
+  position: fixed;
+  left: 50%;
+  bottom: 25%;
+  transform: translateX(-50%) scale(0.9);
+  transition: opacity 0.7s ease, visibility 0.7s ease, transform 0.3s ease;
+  will-change: opacity, visibility, transform;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0 20px 50px;
+  box-sizing: border-box;
+}
 
-  position: absolute;
-  top: calc(100% - calc(var(--ring-size) * 0.85));
-  right: 100px;
-  transform: translate3d(-50%, 0, 0);
-  transition: opacity 0.7s ease 0s, visibility 0s 0s;
-  will-change: opacity, visibility;
-  
-  @media(--md-l) {
-    /* top: calc(100% - var(--ring-size ));
-    left: var(--text-margin-left); */
-    transform: translate3d(0, 0, 0);
-
-    /* margin-left: var(--text-margin-left); */
+@media screen and (min-width: 768px) {
+  .root {
+    --ring-size: 150px;
+    bottom: 8%;
+    transform: translateX(-50%) scale(1);
   }
 }
 
-@media screen and (min-width: 1000px){
-  
+@media screen and (min-width: 1000px) {
   .root {
-    --ring-size: 100px;
-    bottom: 140px;
-  top: calc(100vh - 100px);
-  right: 10rem;
+    --ring-size: 140px;
+    bottom: 5%;
   }
   .label{
     font-size: 0.8rem !important;

@@ -116,6 +116,14 @@ function About() {
       description: 'The SEQATHON 2025 champions are announced, followed by the prize distribution and official closing ceremony.',
       icon: '🏆',
       color: '#8B5CF6'
+    },
+    {
+      title: 'Winners Announcement & Ceremony',
+      date: 'SEP 20 - (Evening)',
+      year: '2025',
+      description: 'The SEQATHON 2025 champions are announced, followed by the prize distribution and official closing ceremony.',
+      icon: '🏆',
+      color: '#8B5CF6'
     }
   ];
   useEffect(() => {
@@ -388,15 +396,15 @@ function About() {
               </div>
 
               {/* Row 3: Last 3 milestones */}
-              <div className={style.timelineRowThird}>
+              <div className={style.timelineRow}>
                 {milestones.slice(6, 9).map((milestone, index, array) => (
                   <React.Fragment key={index + 6}>
-                    <div className={style.timelineStep}>
+                    <div className={style.timelineStep} style={index === 2 ? { visibility: 'hidden' } : {}}>
                       <motion.div
                         className={style.timelineCard}
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={{ opacity: index === 2 ? 0 : 0, y: 20 }}
                         whileInView={{
-                          opacity: 1,
+                          opacity: index === 2 ? 0 : 1,
                           y: 0,
                           transition: {
                             duration: 0.6,
@@ -408,6 +416,7 @@ function About() {
                         style={{
                           borderColor: `${milestone.color}40`,
                           boxShadow: `0 10px 30px ${milestone.color}20`,
+                          visibility: index === 2 ? 'hidden' : 'visible'
                         }}
                       >
                         <div className={style.stepLabel}>Step {index + 7}</div>

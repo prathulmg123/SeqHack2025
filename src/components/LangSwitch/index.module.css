@@ -78,6 +78,7 @@
   color: var(--color-white);
   /* overflow: hidden; */
   font-size: 1.3rem;
+  margin-top: 10px;
   span {
     display: inline-block;
     transition: transform 0.5s var(--power3-ease-out);
