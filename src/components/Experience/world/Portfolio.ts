@@ -34,7 +34,6 @@ import captionFragmentShader from './shaders/title/fragment'
 // Components
 import Experience from '../Experience'
 
-
 type DebugObject = {
   offsetX: number
   offsetY: number
@@ -214,70 +213,113 @@ ctx.stroke();
   
   // Add icon (using emoji as an example)
   ctx.font = '100px Arial';
-  ctx.fillText(icon, canvas.width / 2, y + 110);
+  ctx.fillText(icon, canvas.width / 2, 400);
   
   return canvas.toDataURL('image/png');
 };
 
 
 
-
-    this.projects = [
-      {
-        name: 'Guidelines',
-        url: 'guidelines',
-        media: 'image',
-        source: (() => {
-          const img = new Image();
-          img.src = createCardImage(
-            'Participation Guidelines', 
-            'Your roadmap to a successful submission!\nFollow these instructions carefully to meet all requirements, avoid last-minute issues, and maximize your chances of success during evaluation.', 
-            '📋'
-          );
-          return img;
-        })()
-      },
-      {
-        name: 'Evaluation Criteria',
-        url: 'criteria',
-        media: 'image',
-        source: (() => {
-          const img = new Image();
-          img.src = createCardImage(
-            'Evaluation Criteria', 
-            'Projects will be evaluated based on:\n• Approach & Structure	(20%)\n• Functionality (20%)\n• Code Quality (15%)\n• Problem Understanding (15%)\n• Testing & Coverage (15%)\n• Documentation (15%)', 
-            '📊'
-          );
-          return img;
-        })()
-      },
-      {
-        name: 'FAQ',
-        url: 'faq',
-        media: 'image',
-        source: (() => {
-          const img = new Image();
-          img.src = createCardImage(
-            'Frequently Asked Questions', 
-            '• How many members per team? (Max 4)\n• What technologies can we use? (Any)\n• Is there a registration fee? (Yes)\n• When is the deadline? (Check timeline)', 
-            '❓'
-          );
-          return img;
-        })()
-      }
-      // {
-      //   name: 'Feudi',
-      //   url: 'feudi',
-      //   media: 'video',
-      //   source: document.getElementById('feudiReel') as HTMLVideoElement
-      // },
-      // {
-      //   name: 'Claraluna',
-      //   url: 'claraluna',
-      //   media: 'video',
-      //   source: document.getElementById('claralunaReel') as HTMLVideoElement
-      // }
-    ]
+this.projects = [
+  {
+    name: 'Guidelines',
+    url: 'guidelines',
+    media: 'image',
+    source: (() => {
+      const img = new Image();
+      img.src = createCardImage(
+        'Participation Guidelines', 
+        'Your roadmap to a successful submission!\nFollow these instructions carefully to meet all requirements, avoid last-minute issues, and maximize your chances of success during evaluation.', 
+        '📋'
+      );
+      return img;
+    })()
+  },
+  {
+    name: 'Evaluation Criteria',
+    url: 'criteria',
+    media: 'image',
+    source: (() => {
+      const img = new Image();
+      img.src = createCardImage(
+        'Evaluation Criteria', 
+        'Projects will be evaluated based on:\n• Approach & Structure	(20%)\n• Functionality (20%)\n• Code Quality (15%)\n• Problem Understanding (15%)\n• Testing & Coverage (15%)\n• Documentation (15%)', 
+        '📊'
+      );
+      return img;
+    })()
+  },
+  {
+    name: 'FAQ',
+    url: 'faq',
+    media: 'image',
+    source: (() => {
+      const img = new Image();
+      img.src = createCardImage(
+        'Frequently Asked Questions', 
+        '• How many members per team? (Max 4)\n• What technologies can we use? (Any)\n• Is there a registration fee? (Yes)\n• When is the deadline? (Check timeline)', 
+        '❓'
+      );
+      return img;
+    })()
+  },
+  {
+    name: 'FAQ',
+    url: 'faq',
+    media: 'image',
+    source: (() => {
+      const img = new Image();
+      img.src = createCardImage(
+        'Frequently Asked Questions', 
+        '• How many members per team? (Max 4)\n• What technologies can we use? (Any)\n• Is there a registration fee? (Yes)\n• When is the deadline? (Check timeline)', 
+        '❓'
+      );
+      return img;
+    })()
+  },
+  {
+    name: 'FAQ',
+    url: 'faq',
+    media: 'image',
+    source: (() => {
+      const img = new Image();
+      img.src = createCardImage(
+        'Frequently Asked Questions', 
+        '• How many members per team? (Max 4)\n• What technologies can we use? (Any)\n• Is there a registration fee? (Yes)\n• When is the deadline? (Check timeline)', 
+        '❓'
+      );
+      return img;
+    })()
+  },
+  {
+    name: 'FAQ',
+    url: 'faq',
+    media: 'image',
+    source: (() => {
+      const img = new Image();
+      img.src = createCardImage(
+        'Frequently Asked Questions', 
+        '• How many members per team? (Max 4)\n• What technologies can we use? (Any)\n• Is there a registration fee? (Yes)\n• When is the deadline? (Check timeline)', 
+        '❓'
+      );
+      return img;
+    })()
+  },
+  {
+    name: 'FAQ',
+    url: 'faq',
+    media: 'image',
+    source: (() => {
+      const img = new Image();
+      img.src = createCardImage(
+        'Frequently Asked Questions', 
+        '• How many members per team? (Max 4)\n• What technologies can we use? (Any)\n• Is there a registration fee? (Yes)\n• When is the deadline? (Check timeline)', 
+        '❓'
+      );
+      return img;
+    })()
+  }
+]
 
     this.debug = this.experience.debug
 
@@ -375,30 +417,38 @@ ctx.stroke();
   setItems() {
     this.group = new THREE.Group()
     this.group.name = 'portfolio'
+
+    // Set the group in front of the camera
     const { offsetX, offsetY, offsetZ } = this.debugObject
     this.group.position.set(offsetX, offsetY, offsetZ)
-  
+
     this.items = []
-  
-    for (let i = 0; i < this.projects.length; i++) {
+
+    for (let i = 0; i < 3; i++) {
+      // Geometry
       const geometry = new THREE.PlaneGeometry(0.7, 0.5, 12, 12)
+
+      // Play video
       const { source, name, url, media } = this.projects[i]
-  
-      const iChannel0Texture =
-        media === 'video'
-          ? new THREE.VideoTexture(source as HTMLVideoElement)
-          : new THREE.TextureLoader().load((source as HTMLImageElement).src)
-  
+      if (media === 'video') {
+        // source.play()
+      }
+
       const uniforms = {
         iFactor: { value: 2 },
-        iChannel0: { value: iChannel0Texture },
+        iChannel0: { 
+          value: media === 'video' 
+            ? new THREE.VideoTexture(source as HTMLVideoElement)
+            : new THREE.TextureLoader().load((source as HTMLImageElement).src)
+        },
         iChannel1: { value: this.resources.items.noise },
         iColorOuter: { value: this.debugObject.iColorOuter },
         iColorInner: { value: this.debugObject.iColorInner },
         iOffset: { value: new THREE.Vector2(0.01, 0.01) },
         isImage: { value: media === 'image' ? 1.0 : 0.0 }
       }
-  
+
+      // Material
       const material = new StateMaterialSet({
         normal: new THREE.ShaderMaterial({
           transparent: true,
@@ -407,97 +457,116 @@ ctx.stroke();
           fragmentShader
         })
       })
-  
-      const clickableMesh: ClickableMesh & { pathname?: string } = new ClickableMesh({
+
+      const clickableMeshs: ClickableMesh & { pathname?: string } = new ClickableMesh({
         geo: geometry,
         material
-      }) as any
-  
-      // metadata
-      clickableMesh.castShadow = false
-      clickableMesh.receiveShadow = false
-      clickableMesh.name = name
-      clickableMesh.pathname = url
-      clickableMesh.userData = { url, name }
-  
-      clickableMesh.position.set(i * 1.1, 0, -0.5)
-      clickableMesh.rotation.set(Math.PI / 4, Math.PI / -8, 0)
-  
-      this.clickableObjects.push(clickableMesh)
-      this.group.add(clickableMesh)
-      this.items[i] = clickableMesh
-  
-      // Hover detection state
-      let wasHovered = false
-  
-      const onHoverVisuals = (isHovered: boolean) => {
-        if (isHovered && !wasHovered) {
-          this.onMouseEnter(clickableMesh)
-        } else if (!isHovered && wasHovered) {
-          this.onMouseLeave(clickableMesh)
-        }
-        wasHovered = isHovered
-  
-        // pointer style + sound
-        if (isHovered) {
-          window.store.dispatch.pointer.setType('hover')
-          const index = randomIntFromInterval(1, this.howls.length - 1)
-          if (this.howls[index]) this.howls[index].play()
-        } else {
-          window.store.dispatch.pointer.setType('default')
-        }
-      }
-  
-      const checkHover = () => {
-        this.raycaster.setFromCamera(this.mouse, this.camera)
-        const intersects = this.raycaster.intersectObject(clickableMesh, true)
-        onHoverVisuals(intersects.length > 0)
-      }
-  
-      const animateHover = () => {
-         if (!this.isVisible) return
-        checkHover()
-        requestAnimationFrame(animateHover)
-      }
-      animateHover()
+      })
+      clickableMeshs.castShadow = false
+      clickableMeshs.receiveShadow = false
+      clickableMeshs.name = name
+      clickableMeshs.pathname = url
+
+      console.log(clickableMeshs,"mesh")
+      clickableMeshs.position.set(i * 1.1, 0, -0.5)
+      clickableMeshs.rotation.set(Math.PI / 4, Math.PI / -8, 0)
+
+
+    const clickableMesh = new ClickableMesh({
+      geo: geometry,
+      material
+    });
+    
+    // Store URL in userData
+    clickableMesh.userData = {
+      url: url,
+      name: name
+    };
+    
+    clickableMesh.castShadow = false;
+    clickableMesh.receiveShadow = false;
+    clickableMesh.name = name;
+    clickableMesh.position.set(i * 1.1, 0, -0.5);
+    clickableMesh.rotation.set(Math.PI / 4, Math.PI / -8, 0);
+
+    // Hide the fourth project (index 3)
+    if (i === 3) {
+      clickableMesh.visible = false;
     }
-  
-    this.setScale()
-    this.camera.add(this.group)
-  
-    // Debug folder code remains unchanged...
-  }
-  private onMouseEnter(mesh: THREE.Mesh) {
-    // window.store.dispatch.pointer.setType('none');
-    // // Play hover sound if needed
-    // if (this.howls?.length > 0) {
-    //   const soundIndex = randomIntFromInterval(0, this.howls.length - 1);
-    //   if (this.howls[soundIndex]) {
-    //     this.howls[soundIndex].play();
-    //   }
-    // }
-    // // Add hover animation
-    // gsap.to(mesh.scale, {
-    //   x: 1.1,
-    //   y: 1.1,
-    //   z: 1.1,
-    //   duration: 0.3,
-    //   ease: 'power2.out'
-    // });
-  }
-  
-  private onMouseLeave(mesh: THREE.Mesh) {
-    // window.store.dispatch.pointer.setType('default');
-    // // Reset hover animation
-    // gsap.to(mesh.scale, {
-    //   x: 1.0,
-    //   y: 1.0,
-    //   z: 1.0,
-    //   duration: 0.3,
-    //   ease: 'power2.out'
-    // });
+
+    // Add to clickable objects array
+    this.clickableObjects.push(clickableMesh);
+
+    // For hover effects
+    const onHover = (isHovered: boolean) => {
+      if (isHovered) {
+        window.store.dispatch.pointer.setType('hover');
+        const index = randomIntFromInterval(1, this.howls.length - 1);
+        if (this.howls[index]) {
+          this.howls[index].play();
+        }
+      } else {
+        window.store.dispatch.pointer.setType('default');
+      }
+    };
+
+    // Manually handle hover
+    const checkHover = () => {
+      this.raycaster.setFromCamera(this.mouse, this.camera);
+      const intersects = this.raycaster.intersectObject(clickableMesh, true);
+      onHover(intersects.length > 0);
+    };
+
+    // Check hover on animation frame
+    const animateHover = () => {
+      if (!this.isVisible) return;
+      checkHover();
+      requestAnimationFrame(animateHover);
+    };
+    animateHover();
+
+    this.group.add(clickableMesh);
+    this.items[i] = clickableMesh;
   }
 
+ 
+
+    this.setScale()
+
+    this.camera.add(this.group)
+
+    // Debug
+    if (this.debug.active && this.debugFolder) {
+      this.debugFolder
+        .add(this.debugObject, 'offsetY')
+        .min(-5)
+        .max(5)
+        .step(0.001)
+        .onChange(() => {
+          this.group.position.y = this.debugObject.offsetY
+        })
+      this.debugFolder
+        .add(this.debugObject, 'offsetZ')
+        .min(-5)
+        .max(5)
+        .step(0.001)
+        .onChange(() => {
+          this.group.position.z = this.debugObject.offsetZ
+        })
+      this.debugFolder.addColor(this.debugObject, 'iColorOuter').onChange((v: string) => {
+        for (const item of this.items) {
+          // @ts-ignore
+          item.material.uniforms.iColorOuter.value = new THREE.Color(v)
+        }
+      })
+      this.debugFolder.addColor(this.debugObject, 'iColorInner').onChange((v: string) => {
+        for (const item of this.items) {
+          // @ts-ignore
+          item.material.uniforms.iColorInner.value = new THREE.Color(v)
+        }
+      })
+    }
+  }
 
   setCaptions() {
     const promises = [this.loadFontAtlas(png), this.loadFont(fnt)]
