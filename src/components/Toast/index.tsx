@@ -50,7 +50,7 @@ const Toast: React.FC<ToastProps> = ({ message, type, duration = 5000, onClose }
       case 'success':
         return 'Success';
       case 'error':
-        return 'Error';
+        return 'Action required';
       case 'warning':
         return 'Warning';
       case 'info':

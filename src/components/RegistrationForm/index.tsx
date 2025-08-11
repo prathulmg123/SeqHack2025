@@ -51,10 +51,16 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({ isOpen, onClose, on
     const newErrors: Partial<FormData> & { participants?: (string | undefined)[] } = {};
     const errorMessages: string[] = [];
 
-    // Validate college name
+    // Validate college name - at least 3 letters, no numbers, not empty
     if (!formData.collegeName.trim()) {
       newErrors.collegeName = 'College name is required';
       errorMessages.push('College name is required');
+    } else if (formData.collegeName.trim().length < 3) {
+      newErrors.collegeName = 'College name must be at least 3 characters long';
+      errorMessages.push('College name must be at least 3 characters long');
+    } else if (/\d/.test(formData.collegeName.trim())) {
+      newErrors.collegeName = 'College name cannot contain numbers';
+      errorMessages.push('College name cannot contain numbers');
     }
 
     // Validate team size
@@ -69,24 +75,34 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({ isOpen, onClose, on
       const participant = formData.participants[i];
       const participantErrorMessages: string[] = [];
 
+      // Validate name - at least 3 letters, no numbers, not empty
       if (!participant.name.trim()) {
         participantErrorMessages.push('Name is required');
+      } else if (participant.name.trim().length < 3) {
+        participantErrorMessages.push('Name must be at least 3 characters long');
+      } else if (/\d/.test(participant.name.trim())) {
+        participantErrorMessages.push('Name cannot contain numbers');
       }
 
+      // Validate email - not empty, valid email format
       if (!participant.email.trim()) {
         participantErrorMessages.push('Email is required');
       } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(participant.email)) {
         participantErrorMessages.push('Please enter a valid email address');
       }
 
+      // Validate phone number - exactly 10 digits, not empty
       if (!participant.phoneNumber.trim()) {
         participantErrorMessages.push('Phone number is required');
-      } else if (!/^[0-9+\-\s()]{10,15}$/.test(participant.phoneNumber)) {
-        participantErrorMessages.push('Please enter a valid phone number');
+      } else if (!/^\d{10}$/.test(participant.phoneNumber.trim())) {
+        participantErrorMessages.push('Phone number must be exactly 10 digits');
       }
 
+      // Validate college ID proof - not empty, must be a file
       if (!participant.collegeIdProof) {
         participantErrorMessages.push('College ID proof is required');
+      } else if (!(participant.collegeIdProof instanceof File)) {
+        participantErrorMessages.push('College ID proof must be a valid file');
       }
 
       // Git link is mandatory only for participant 1
@@ -96,9 +112,11 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({ isOpen, onClose, on
         participantErrorMessages.push('Please enter a valid GitHub repository URL');
       }
 
-      // Validate karma points if registered in Mulearn
+      // Validate karma points if registered in Mulearn - must be a number
       if (participant.registeredInMulearn && !participant.karmaPoints.trim()) {
         participantErrorMessages.push('Karma points are required if registered in Mulearn');
+      } else if (participant.registeredInMulearn && participant.karmaPoints.trim() && !/^\d+$/.test(participant.karmaPoints.trim())) {
+        participantErrorMessages.push('Karma points must be a number');
       }
 
       if (participantErrorMessages.length > 0) {
@@ -111,13 +129,11 @@ const RegistrationForm: React.FC<RegistrationFormProps> = ({ isOpen, onClose, on
       newErrors.participants = participantErrors as any;
     }
 
-
-
     setErrors(newErrors);
     
     // Show toast with validation errors
     if (errorMessages.length > 0) {
-      showError(`Please fix the following errors: ${errorMessages.slice(0, 3).join('; ')}${errorMessages.length > 3 ? ' and more...' : ''}`);
+      showError(`${errorMessages.slice(0, 3).join('; ')}${errorMessages.length > 3 ? ' and more...' : ''}`);
     }
     
     return Object.keys(newErrors).length === 0;
