@@ -168,8 +168,9 @@
   }
 }
 
-@media screen and (min-height: 711px) and (max-height: 840px) {
+@media screen and (min-height: 600px) and (max-height: 840px) {
   .root {
-    --ring-size: 120px;
+    --ring-size: 90px;
+    bottom: 1% !important;
   }
 }

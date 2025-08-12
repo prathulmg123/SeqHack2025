@@ -513,3 +513,15 @@
   width: 100% !important;
   display: flex;
 }
+
+@media screen and (min-height: 600px) and (max-height: 840px) {
+  .heroImage {
+    width: 50% !important;
+  }
+  .timerLabel{
+    font-size: 0.8rem !important;
+  }
+  .timerDigits{
+    font-size: 2rem !important;
+  }
+}
