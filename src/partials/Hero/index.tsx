@@ -75,7 +75,7 @@ const CountdownTimer = () => {
 
   return (
     <div className={style.timerContainer}>
-      <span className={style.timerLabel}>Registration <br></br> Ends In</span>
+      <span className={style.timerLabel}>Registration Ends In</span>
       <div className={style.timerDigits}>
       {timeLeft.days > 0 && (
         <>
@@ -202,7 +202,7 @@ export default function Hero() {
                         <br /><br />
                         With multiple challenge stages, mentorship from industry leaders, and prizes that matter, <strong>SEQATHON</strong> is where great ideas become real solutions.
                         <br /><br />
-                        <strong style={{fontSize: '1.4rem'}}>The clock is ticking are you ready to compete ?</strong>
+                        <strong style={{fontSize: '1.4rem'}}>The clock is ticking, are you ready to compete?</strong>
                       </div>
                     </ContentBlock>
                   </Row>
@@ -240,8 +240,8 @@ export default function Hero() {
             <footer className={scrollClasses}>
               <span className={style.scrollIndicator} />
               <div>
-                <span className={style.scrollText} style={{fontSize:'1.2rem'}}>{t('scroll_cta.line1')}</span>
-                <span className={style.scrollText} style={{fontSize:'1.2rem'}}>{t('scroll_cta.line2')}</span>
+                <span className={style.scrollText} style={{fontSize:'1.5rem'}}>{t('scroll_cta.line1')}</span>
+                <span className={style.scrollText} style={{fontSize:'1.5rem'}}>{t('scroll_cta.line2')}</span>
               </div>
             </footer>
           </Section>

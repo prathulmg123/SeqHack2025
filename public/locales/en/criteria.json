@@ -11,6 +11,14 @@
       "component": "TextIntro",
       "text": "🎯 What We're Looking For : It’s not just about building something that works — it’s about how you think, structure your approach, and creatively solve real-world problems.\nHere’s exactly how we will evaluate your submissions across all phases."
     },
+    {
+      "component": "TextTwoColumns",
+      "title": "EVALUATION CRITERIA",
+     "text": "✅ Approach & Structure (20%)<br>✅ Functionality (20%)<br>✅ Code Quality (15%)<br>✅ Problem Understanding (15%)<br>✅ Testing & Coverage (15%)<br> ✅ Documentation (15%)<br>"
+
+      
+      
+    },
     
     {
       "component": "TextTwoColumns",

@@ -128,7 +128,7 @@ const createCardImage = (title: string, description: string, icon: string): stri
 
   // Set canvas size
   canvas.width = 700;
-  canvas.height = 500;
+  canvas.height = 580;
   
 
 const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
@@ -211,9 +211,35 @@ ctx.stroke();
   }
   ctx.fillText(line, canvas.width / 2, y);
   
+  // Calculate icon position based on text height
+  const iconSize = 100;
+  const paddingBottom = 50; // Space between text and icon
+  const iconY = y + paddingBottom + (iconSize / 2);
+  
   // Add icon (using emoji as an example)
-  ctx.font = '100px Arial';
-  ctx.fillText(icon, canvas.width / 2, 400);
+  ctx.font = `${iconSize}px Arial`;
+  ctx.textBaseline = 'middle'; // Center the icon vertically
+  ctx.fillText(icon, canvas.width / 2, iconY);
+  
+  // Add dummy text below the icon with proper spacing
+  const dummyText = 'Click to view more details →';
+  const textY = iconY + (iconSize / 2) + 30; // 30px spacing from icon
+  
+  // Set text style
+  ctx.font = '18px Arial';
+  ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'top'; // Align text from top
+  
+  // Add subtle shadow for better readability
+  ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';
+  ctx.shadowBlur = 4;
+  
+  // Draw the text
+  ctx.fillText(dummyText, canvas.width / 2, textY);
+  
+  // Reset shadow
+  ctx.shadowBlur = 0;
   
   return canvas.toDataURL('image/png');
 };
@@ -243,7 +269,7 @@ this.projects = [
       const img = new Image();
       img.src = createCardImage(
         'Evaluation Criteria', 
-        'Projects will be evaluated based on:\n• Approach & Structure	(20%)\n• Functionality (20%)\n• Code Quality (15%)\n• Problem Understanding (15%)\n• Testing & Coverage (15%)\n• Documentation (15%)', 
+        'Your work will be judged not just on code, but on clarity, problem-solving, and creativity. Check the criteria to see what matters most and how to stand out at every stage.', 
         '📊'
       );
       return img;

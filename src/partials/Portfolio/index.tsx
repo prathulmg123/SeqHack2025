@@ -46,7 +46,10 @@ const TimelineItem = ({ icon, title, date, description, index }: { icon: React.R
       <div className={style.timelineContent}>
         <h3 className={style.timelineTitle}>{title}</h3>
         <div className={style.timelineDate}>{date}</div>
-        <p className={style.timelineDescription}>{description}</p>
+        <p 
+          className={style.timelineDescription} 
+          dangerouslySetInnerHTML={{ __html: description }} 
+        />
       </div>
     </div>
   )
@@ -71,7 +74,7 @@ function Portfolio() {
     />,
       title: "Registration",
       date: "Aug 15 - Aug 20",
-      description: "The Call for Innovators Assemble your team, strategize, and submit your application to compete in SEQATHON 2025."
+      description: "<strong>The Call for Innovators : </strong>Assemble your team, strategize, and submit your application to compete in SEQATHON 2025."
     },
     
     {
@@ -209,7 +212,7 @@ function Portfolio() {
                 <h3 className={style.specialCardTitle}>Final Challenge</h3>
                 <div className={style.specialCardDate}>
                   <FaCalendarDay />
-                  <span>Sept 15 (Noon)</span>
+                  <span>Sept 15 ( 12:00 PM )</span>
                 </div>
                 <p className={style.specialCardDescription}>
                 Exclusive final problem statement released to all finalist teams. Development sprint begins.
@@ -217,7 +220,7 @@ function Portfolio() {
                 <div className={style.specialCardSecondDate}>
                   <div className={style.specialCardDate}>
                     <FaCalendarDay />
-                    <span>Sept 16 (Midnight)</span>
+                    <span>Sept 17 ( 12:00 AM )</span>
                   </div>
                   <p className={style.specialCardDescription}>
                   Final code freeze — all project submissions must be uploaded via SEQATHON Git for evaluation.
@@ -241,7 +244,7 @@ function Portfolio() {
                 <h3 className={style.specialCardTitle}>Presentation Day</h3>
                 <div className={style.specialCardDate}>
                   <FaCalendarDay />
-                  <span>Sept 20</span>
+                  <span>Sept 20 ( 9:00 AM )</span>
                 </div>
                 <p className={style.specialCardDescription}>
                 All finalist teams gather at SEQATO Office in Technopark Trivandrum to showcase their completed projects in front of the judging panel.
@@ -249,7 +252,7 @@ function Portfolio() {
                 <div className={style.specialCardSecondDate}>
                   <div className={style.specialCardDate}>
                     <FaCalendarDay />
-                    <span>Sept 20</span>
+                    <span>Sept 20 ( 5:00 PM )</span>
                   </div>
                   <p className={style.specialCardDescription}>
                   Winners are announced, and the event concludes with the official prize distribution ceremony.

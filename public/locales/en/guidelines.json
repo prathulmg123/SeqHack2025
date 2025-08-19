@@ -26,13 +26,21 @@
     {
       "component": "TextTwoColumns",
       "title": "Event Structure & Fees",
-      "text": "<ul><li><strong>Level 1:</strong> Participation is free of charge.</li><br><li><strong>Final Round:</strong> Teams advancing to the final round must pay a nominal fee of ₹400 per participant.</li></ul>"
+      "text": "<ul><li><strong>Level 1:</strong> Participation is free!</li><br><li><strong>Final Round:</strong>Shortlisted teams will compete in the final stage of the hackathon.</li><br><li><strong>Fees:</strong>Teams advancing to the final round must pay a nominal fee of ₹400 per participant.</li></ul>"
     },
 
     {
       "component": "TextTwoColumns",
       "title": "Requirements",
-      "text": "<ul><li>Each team must bring their own laptops and any necessary hardware for the final project demonstration.</li><li>Participants must adhere to the event’s Code of Conduct to maintain a respectful and collaborative environment.</li><li>Any form of plagiarism or unethical conduct will result in immediate disqualification</li></ul><br>Why Participate<br> <ul><li><strong>Exciting Prizes:</strong> Compete for a total prize pool of ₹1,00,000.</li><li><strong>Career Boost:</strong> Top performers get direct access to internship and career opportunities at SEQATO.</li><li><strong>Expert Mentorship:</strong> Learn from SEQATO’s senior engineers and technology leaders through one-on-one mentorship.</li><li><strong>Certificates:</strong> All finalists and winners will receive official certificates commemorating their achievement.</li><li><strong>Exclusive Swag:</strong> All finalists will receive a limited-edition SEQATHON kit, including T-shirts and other exclusive merchandise.</li></ul>",
+      "text": "<ul><li>Each team must bring their own laptops and any necessary hardware for the final project demonstration.</li><li>Participants must adhere to the event’s Code of Conduct to maintain a respectful and collaborative environment.</li><li>Any form of plagiarism or unethical conduct will result in immediate disqualification.</li><li>Usage of AI tools is permitted, but participants must be able to clearly explain the concepts, logic, and decisions behind their submissions when asked by the jury.</li></ul",
+      "numbers": [
+        
+      ]
+    },
+    {
+      "component": "TextTwoColumns",
+      "title": "Why Participate",
+      "text": "<ul><li><strong>Exciting Prizes:</strong> Compete for a total prize pool of ₹1,00,000.</li><li><strong>Career Boost:</strong> Top performers get direct access to internship and career opportunities at SEQATO.</li><li><strong>Expert Mentorship:</strong> Learn from SEQATO’s senior engineers and technology leaders through one-on-one mentorship.</li><li><strong>Certificates:</strong> All finalists and winners will receive official certificates commemorating their achievement.</li><li><strong>Exclusive Swag:</strong> All finalists will receive a limited-edition SEQATHON kit, including T-shirts and other exclusive merchandise.</li></ul>",
       "numbers": [
         
       ]

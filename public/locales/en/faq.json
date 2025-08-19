@@ -48,6 +48,11 @@
     },
     {
       "component": "TextTwoColumns",
+      "title": "Can we use AI tools in the competition?",
+      "text": "Yes, the usage of AI tools is permitted. However, participants must be able to clearly explain the concepts, logic, and decisions behind their submissions when asked by the jury."
+    },
+    {
+      "component": "TextTwoColumns",
       "title": "What do I get out of this hackathon?",
       "text": "✅ The chance to win cash prizes<br>✅ Learn and apply your skills to real-world challenges<br>✅ Network with peers, mentors, and our team<br>✅ Free food, swags, and a fun environment<br>✅ The experience of building under constraints and presenting your work<br>✅ A potential pathway to internship or career opportunities with us"
     }

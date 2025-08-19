@@ -26,7 +26,7 @@ function About() {
     {
       icon: <img src="/images/cash.png" alt="Prize Money" className={style.rewardImage} />,
       title: 'Substantial Prize Pool',
-      description: 'Compete for a total prize pool valued at over ₹1,00,000, with significant cash awards distributed among the top finalist teams.',
+      description: 'Compete for a total prize pool of ₹1,00,000, with significant cash awards distributed among the top finalist teams.',
     },
     {
       icon: <img src="/images/gift.png" alt="Prize Money" className={style.rewardImage} />,
@@ -36,12 +36,12 @@ function About() {
     {
       icon: <img src="/images/boost.png" alt="Prize Money" className={style.rewardImage} />,
       title: 'Career & Portfolio Development',
-      description: 'Develop a high-impact project to feature in your professional portfolio. Top performers will gain exclusive access to internship interviews and career opportunities at SEQATO.',
+      description: 'Develop a high-impact project to feature in your professional portfolio. Top performers will gain exclusive access to internship and career opportunities at SEQATO.',
     },
     {
       icon: <img src="/images/pc.png" alt="Prize Money" className={style.rewardImage} />,
       title: 'Mentorship & Networking',
-      description: 'Engage directly with senior engineers and tech leads from SEQATO. Collaborate with talented peers from across the nation and build lasting connections with industry leaders.',
+      description: 'Engage directly with senior engineers and tech leads from SEQATO. Collaborate with talented peers and build lasting connections with industry leaders.',
     },
   ]
 
@@ -447,7 +447,19 @@ function About() {
           </Row>
         </ContentBlock>
       </Container>
+      <Container>
+        <ContentBlock className=''>
+        <div className={style.scrollBar}>
+              <span className={style.scrollIndicator} />
+              <div>
+                <span className={style.scrollText} style={{fontSize:'1.4rem',marginRight:'1.2rem'}}>Scroll Down</span>
+               <span className={style.scrollText} style={{fontSize:'1.4rem',marginRight:'1.2rem'}}>to Register</span>
+              </div>
+            </div>
+        </ContentBlock>
+      </Container>
     </Section>
+    
   )
 }
 export default About

@@ -60,7 +60,7 @@
   .scrollText {
     display: block;
     margin-left: var(--spc-2);
-    transition: opacity 0.5s ease-in-out 4s;
+    transition: opacity 0.5s ease-in-out 3s;
 
     @media (--md-l) {
       margin-left: var(--spc-4);
@@ -70,7 +70,7 @@
   &.gone {
     .scrollText {
       opacity: 0;
-      transition: opacity 0.5s ease-in-out;
+      transition: opacity 0.4s ease-in-out;
     }
   }
 }
@@ -81,7 +81,7 @@
   height: 100px;
   background-color: #ccc;
   transform-origin: 50% 0%;
-  transition: transform 0.5s ease-in-out 4s;
+  transition: transform 0.5s ease-in-out 3s;
 
   &::before {
     top: 0;
@@ -92,7 +92,7 @@
     content: '';
 
     :global {
-      animation: downWipe 2s ease-in-out infinite;
+      animation: downWipe 1s ease-in-out infinite;
     }
   }
 
@@ -413,7 +413,7 @@
     pulse 2s ease-in-out infinite;
   transform-origin: center;
   will-change: transform, opacity;
-  filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.3));
+  /* filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.3)); */
 }
 
 @keyframes pulse {
