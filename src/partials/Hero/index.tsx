@@ -139,7 +139,7 @@ export default function Hero() {
   
   return (
     <>
-   {app.ready && ( <CountdownClock endDate="2025-08-20T23:59:59+05:30" animationDelay={6000} />)}
+   {app.ready && ( <CountdownClock endDate="2025-09-20T23:59:59+05:30" animationDelay={6000} />)}
       {loading ? (
 
         <div className={style.loadingScreen}>

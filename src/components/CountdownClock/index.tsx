@@ -78,18 +78,18 @@ const CountdownClock: React.FC<CountdownClockProps> = ({ endDate, animationDelay
 
   const formatNumber = (num: number) => num < 10 ? `0${num}` : num
 
-  if (timeLeft.isExpired) {
-    return (
-      <motion.div 
-        className={style.expiredMessage}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8, delay: animationDelay / 800 }}
-      >
-        Registration Closed
-      </motion.div>
-    )
-  }
+  // if (timeLeft.isExpired) {
+  //   return (
+  //     <motion.div 
+  //       className={style.expiredMessage}
+  //       initial={{ opacity: 0 }}
+  //       animate={{ opacity: 1 }}
+  //       transition={{ duration: 0.8, delay: animationDelay / 800 }}
+  //     >
+  //       Registration Closed
+  //     </motion.div>
+  //   )
+  // }
 
   return (
     <motion.div 

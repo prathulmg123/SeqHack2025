@@ -1,33 +1,56 @@
 .root {
-  @mixin body-2;
+  font-size: 16px;
+  line-height: 1.6;
 
   position: relative;
   z-index: 1;
-  padding-top: calc(15vh + var(--fs-display-1) + var(--spc-10));
-  margin-top: calc(var(--app-height) / 2);
+  padding-top: min(15vh, 150px);
+  margin-top: 0;
   color: var(--color-white);
-  /* pointer-events: none; */ /* ⚠️ Removed so content can be interacted with */
-
-  @media (--md-l) {
-    height: 400vh;
-  }
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
 
   h3 {
-    /* margin-top: var(--content-block-margin-top); */
+    margin: 1rem 0;
+    font-size: 1.5rem;
+    color: #fff;
   }
 }
 
 /* For smaller screens */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .portfolioHeading {
     font-size: 2rem !important;
+  }
+  
+  .specialCards {
+    grid-template-columns: 1fr;
+    padding: 0 2rem;
+  }
+  
+  .specialCard, .specialCardRight {
+    margin: 0.5rem 0;
   }
 }
 
 /* For very small screens */
 @media (max-width: 480px) {
   .portfolioHeading {
-    font-size: 1.75rem !important;
+    font-size: 1.5rem !important;
+  }
+  
+  .specialCard, .specialCardRight {
+    padding: 1rem;
+  }
+  
+  .specialCards {
+    padding: 0 1rem;
+  }
+  
+  h3 {
+    font-size: 1.25rem;
   }
 }
 .pre {
@@ -40,7 +63,10 @@
 }
 
 .cardContainer {
-  height: 200vh;
+  min-height: 100vh;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .video {
@@ -54,11 +80,11 @@
 }
 
 .projectSection {
-  padding-top: 15vh;
-
-  @media (--md-l) {
-    padding-top: 33vh;
-  }
+  padding: min(10vh, 100px) 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .customHeading {
   font-family: "Saira Semi Condensed", -apple-system, blinkmacsystemfont,
@@ -75,16 +101,10 @@
 .glow-text {
   font-weight: bold;
   color: #fff;
-  /* text-shadow:
-    0 0 3px #fff,
-    0 0 10px #fff,
-    0 0 15px #ff00ff,
-    0 0 20px #ff00ff,
-    0 0 25px #ff00ff,
-    0 0 30px #ff00ff,
-    0 0 35px #ff00ff; */
-    text-shadow: 0 0 5px #fff, 0 0 15px #11158b, 0 0 20px #0501ff;
+  text-shadow: 0 0 5px #fff, 0 0 15px #11158b, 0 0 20px #0501ff;
   animation: glow-pulse 2s infinite alternate;
+  background-clip: text;
+  -webkit-background-clip: text;
 }
 
 @keyframes glow-pulse {
@@ -136,9 +156,8 @@
   padding: 2.5rem 2rem 2rem; /* More top padding for the pin */
   /* min-height: 25vh; */
   opacity: 1;
-  border: 1px solid blue;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   background: rgba(0, 0, 30, 0.51);
-  /* border: 1px solid rgba(255, 255, 255, 0.1); */
   border-radius: 16px;
   /* Transparent glass-like background */
   /* background: linear-gradient(135deg, #8e078e, rgb(31 81 255 / 36%));  */
@@ -149,6 +168,24 @@
   flex-direction: column;
   box-sizing: border-box;
   color: white;
+  /* box-shadow: 0 4px 20px rgba(10, 58, 146, 0.1); */
+  box-shadow: 0 4px 20px rgba(10 58 146 / 69%);
+}
+
+.specialCard, .specialCardRight {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 1.5rem;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  margin: 0.5rem;
+  max-width: 100%;
+  overflow: hidden;
   /* box-shadow: 0 4px 20px rgba(10, 58, 146, 0.1); */
   box-shadow: 0 4px 20px rgba(10 58 146 / 69%);
 }
@@ -344,17 +381,15 @@
 
 /* Special Timeline Cards */
 .specialCards {
-          margin-left: var(--text-margin-left) !important;
+  margin-left: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 350px), 1fr));
   gap: 2rem;
-  justify-content: end;
-  margin: 4rem 56px 16px 6px;
-  position: relative;
-  padding-left: 2rem;
-}
-
-.specialCards::before {
+  margin: 2rem 0;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 0 2rem;
   /* content: '';
   position: absolute;
   left: 62;
