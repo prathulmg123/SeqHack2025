@@ -1,10 +1,28 @@
+/* .root {
+  @mixin body-2;
+
+  position: relative;
+  z-index: 1;
+  padding-top: calc(15vh + var(--fs-display-1) + var(--spc-10));
+  margin-top: calc(var(--app-height) / 2);
+  color: var(--color-white);
+
+  @media (--md-l) {
+    height: 400vh;
+  }
+
+  
+} */
+
+
 .root {
   font-size: 16px;
   line-height: 1.6;
 
   position: relative;
   z-index: 1;
-  padding-top: min(15vh, 150px);
+  padding-top: calc(5vh + var(--fs-display-1) + var(--spc-10));
+  /* padding-top: min(15vh, 300px); */
   margin-top: 0;
   color: var(--color-white);
   min-height: 100vh;
@@ -13,12 +31,11 @@
   overflow-x: hidden;
 
   h3 {
-    margin: 1rem 0;
+    /* margin: 1rem 0;
     font-size: 1.5rem;
-    color: #fff;
+    color: #fff; */
   }
 }
-
 /* For smaller screens */
 @media (max-width: 1024px) {
   .portfolioHeading {
